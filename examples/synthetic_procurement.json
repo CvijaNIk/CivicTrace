@@ -1,0 +1,37 @@
+[
+  {
+    "record_id": "SYN-001",
+    "buyer_id": "SYN-BUYER-A",
+    "supplier_id": "SYN-SUPPLIER-1",
+    "bid_count": 1,
+    "source_reference": "synthetic:SYN-001"
+  },
+  {
+    "record_id": "SYN-002",
+    "buyer_id": "SYN-BUYER-A",
+    "supplier_id": "SYN-SUPPLIER-0",
+    "bid_count": 3,
+    "source_reference": "synthetic:SYN-002"
+  },
+  {
+    "record_id": "SYN-003",
+    "buyer_id": "SYN-BUYER-A",
+    "supplier_id": "SYN-SUPPLIER-1",
+    "bid_count": null,
+    "source_reference": "synthetic:SYN-003"
+  },
+  {
+    "record_id": "SYN-004",
+    "buyer_id": "SYN-BUYER-A",
+    "supplier_id": "SYN-SUPPLIER-0",
+    "bid_count": 0,
+    "source_reference": "synthetic:SYN-004"
+  },
+  {
+    "record_id": "SYN-005",
+    "buyer_id": "SYN-BUYER-A",
+    "supplier_id": "SYN-SUPPLIER-1",
+    "bid_count": 1,
+    "source_reference": "synthetic:SYN-005"
+  }
+]
