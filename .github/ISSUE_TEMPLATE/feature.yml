@@ -1,0 +1,23 @@
+name: Feature or module
+description: Propose a useful, testable public-interest capability
+title: '[Feature] '
+labels: [enhancement]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective and public benefit
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Public sources, reuse rights, synthetic inputs and limitations
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria and tests
+    validations:
+      required: true

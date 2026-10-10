@@ -1,0 +1,18 @@
+name: Bug report
+description: Reproduce an error without private data
+title: '[Bug] '
+labels: [bug]
+body:
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Version, steps and minimal synthetic input
+      description: Do not post confidential files, personal data or credentials.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual results
+    validations:
+      required: true

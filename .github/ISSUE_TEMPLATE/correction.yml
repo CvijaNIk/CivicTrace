@@ -1,0 +1,16 @@
+name: Evidence or methodology correction
+description: Raise a reproducible data-quality, calculation or interpretation concern
+body:
+  - type: textarea
+    id: finding
+    attributes:
+      label: Finding/version, public references and proposed correction
+      description: Use public or synthetic information only. Sensitive reports follow SECURITY.md.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Reproduction, alternative explanations and test requirements
+    validations:
+      required: true
