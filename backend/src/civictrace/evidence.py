@@ -4,12 +4,20 @@ import json
 from datetime import datetime
 from hashlib import sha256
 
+from .ingestion import MAX_RECORDS
+
+MAX_IDENTITY_CHARS = 4096
+
 
 def validate_record(record):
     """Reject ambiguous identifiers/counts; preserve unknown counts as unknown."""
+    if not isinstance(record, dict):
+        raise ValueError("every record must be a JSON object")
     for key in ("record_id", "buyer_id", "supplier_id", "source_reference"):
         if not isinstance(record.get(key), str) or not record[key].strip():
             raise ValueError(f"{key} must be a nonempty string")
+        if len(record[key]) > MAX_IDENTITY_CHARS:
+            raise ValueError(f"{key} exceeds the 4096-character budget")
     count = record.get("bid_count")
     if count is not None and (type(count) is not int or count < 0):
         raise ValueError("bid_count must be a nonnegative integer or null")
@@ -25,6 +33,8 @@ def validate_timestamp(value):
 
 def single_bid_findings(records, *, snapshot_hash, collected_at):
     """Demo count equals one; an indicator does not establish wrongdoing."""
+    if not isinstance(records, list) or len(records) > MAX_RECORDS:
+        raise ValueError("records must be an array with at most 10000 entries")
     validate_timestamp(collected_at)
     if len(snapshot_hash) != 64 or any(c not in "0123456789abcdef" for c in snapshot_hash):
         raise ValueError("snapshot_hash must be a lowercase SHA-256 digest")
