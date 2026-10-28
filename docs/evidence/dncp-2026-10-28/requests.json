@@ -1,0 +1,47 @@
+[
+  {
+    "name": "legal",
+    "url": "https://www.contrataciones.gov.py/datos/aviso-legal",
+    "final_url": "https://www.contrataciones.gov.py/datos/aviso-legal",
+    "status": 200,
+    "bytes": 14706,
+    "sha256": "ef46fc6f6c33ff13edd008177306014545504869469a9d278d4a0000e9011b6e",
+    "retrieved_at": "2026-10-28T18:15:42.011346+00:00",
+    "content_type": "text/html; charset=UTF-8"
+  },
+  {
+    "name": "catalog",
+    "url": "https://www.contrataciones.gov.py/datos/data",
+    "final_url": "https://www.contrataciones.gov.py/datos/data",
+    "status": 200,
+    "bytes": 46747,
+    "sha256": "afd551652f286447ca2c9fabf5b9990ee92bc596a43626de33fa9ba640e14847",
+    "retrieved_at": "2026-10-28T18:15:46.565395+00:00",
+    "content_type": "text/html; charset=UTF-8"
+  },
+  {
+    "name": "swagger",
+    "url": "https://www.contrataciones.gov.py/datos/api/v3/doc/swagger.json",
+    "final_url": "https://www.contrataciones.gov.py/datos/api/v3/doc/swagger.json",
+    "status": 200,
+    "bytes": 27139,
+    "sha256": "67fb933f0f19ca650badf0e72fe443868dac4c94d913d52071af4349c98531cf",
+    "retrieved_at": "2026-10-28T18:15:53.080803+00:00",
+    "content_type": "application/json"
+  },
+  {
+    "name": "registry",
+    "url": "https://data.open-contracting.org/en/publication/63",
+    "final_url": "https://data.open-contracting.org/en/publication/63",
+    "status": 200,
+    "bytes": 55930,
+    "sha256": "5ca0785745c087d37c409ce6be737aa5702c3cfb200862aa0ee24bd25b248fbd",
+    "retrieved_at": "2026-10-28T18:15:57.859629+00:00",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "name": "api_record",
+    "url": "https://www.contrataciones.gov.py/datos/api/v3/ocds/record/ocds-03ad3f-365292-1",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

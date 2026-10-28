@@ -1,11 +1,11 @@
 # Public source assessment
-Assessed 2026-10-10 using official documentation and the OCP registry. Availability on a website
+Initial assessment 2026-10-10; DNCP reassessed 2026-10-28 using publisher pages and a bounded probe. Availability on a website
 does not imply permission to redistribute. No real records are bundled, API completeness is not
 validated, and no full acquisition was run in this foundation.
 
 | Source | Access/coverage | Reuse and quality | Decision |
 | --- | --- | --- | --- |
-| Paraguay DNCP via OCP registry | National procurement; annual JSONL gzip, CSV and Excel | Registry lists CC BY 4.0; OCDS lots/bids/local extensions; older quality review | Recommended first bounded historical dataset, with publisher-terms gate |
+| Paraguay DNCP via OCP registry | National procurement; annual JSONL gzip, CSV and Excel | Publisher catalogue and registry identify CC BY 4.0; current legal notice found; 22-process quality probe | Conditional local-pilot candidate; field semantics and wider coverage remain open |
 | EU TED | Official search API and bulk notice downloads; Europe | Strong reach; eForms/legacy formats and notice stages require mapping; check specific terms | Later connector; greater normalization cost |
 | OCP Data Registry | Multi-country compiled OCDS releases and downloads | Registry is an access layer, not one universal dataset license; source-specific quality | Use publisher-specific manifest and preserve processing lineage |
 | GLEIF | Global LEI records and relationships | Official open-data page declares CC0; LEI coverage is not all companies | v0.3 enrichment, not procurement launch dataset |
@@ -20,13 +20,14 @@ assumption. Retain the entire snapshot hash even if importing a subset; record e
 compression/decompression hashes and registry retrieval date separately from CivicTrace collection.
 Do not download or serve the all-time dataset by default.
 
-The registry lists CC BY 4.0 with attribution, license link and change disclosure requirements.
-Its linked publisher legal page returned 404 during this assessment. Therefore recommendation
-is provisional for distribution: resolve publisher terms and retain license evidence before
-publishing any derived extract. Acquisition rights, personal-data minimization, field coverage,
-compression expansion and performance must all pass review. The registry's quality review date
-is old; run fresh completeness checks for bids, tender dates, awards, currencies and identifiers.
-Missing inputs make individual indicators unavailable; never infer a zero or impute one bid.
+The [2026-10-28 DNCP review](DNCP_SOURCE_REVIEW_2026_10_28.md) finds a current
+publisher legal notice and publisher catalogue CC BY 4.0 metadata consistent with the registry.
+The obsolete `/datos/legal` link still fails; the current path is `/datos/aviso-legal`.
+One 256 KiB range yielded 22 complete compiled releases. Missing tenderer counts, bid dates/values
+and contract identities/signing dates prevent blanket indicator-readiness claims. No raw real
+records are bundled. Retain terms/attribution evidence and apply the
+[proposed connector input contract](DNCP_CONNECTOR_INPUT_CONTRACT.md). This is conditional
+support for a local pilot, not completion of #6/#7 or approval of every attachment/public extract.
 
 ## Verified documentation links
 - [DNCP registry entry and data quality](https://data.open-contracting.org/en/publication/63)

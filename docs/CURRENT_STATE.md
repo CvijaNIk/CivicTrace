@@ -10,7 +10,12 @@ provenance and CLI tests; documentation, governance, source assessment, CI and t
 Planned: all live connectors, canonical real-source validation, three production indicators,
 DuckDB/Parquet processing, React explorer, search, CSV exports, graph/R/cyber modules and hosting.
 No donation account or FUNDING.yml. Branding remains provisional with known conflicts.
-DNCP source recommendation is gated by publisher-terms verification and fresh field-quality review.
+DNCP has a [2026-10-28 source review](DNCP_SOURCE_REVIEW_2026_10_28.md): current publisher
+notice and catalogue license evidence support a conditional structured-data local pilot. A 256 KiB
+range probe profiled 22 complete processes; field semantics and wider completeness remain open.
+A bounded research profiler and synthetic tests are implemented; the
+[connector input contract](DNCP_CONNECTOR_INPUT_CONTRACT.md) is a proposal. No real connector,
+production activation or public source-data extract is implemented. PR #26 is still separate/unmerged.
 
 The docs/product-roadmap branch expands the README into a proposed long-term product blueprint:
 six detailed modules, public/local/research workflows, shared capabilities, dependencies, v0.6
