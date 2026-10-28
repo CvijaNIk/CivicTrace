@@ -41,3 +41,21 @@ jsonschema 4.26.0. Existing dev extra installed successfully.
 organization IDs, no network and no raw DNCP rows. No real-source import, live indicator,
 concentration calculation or production activation was performed. Hosted checks must be verified
 on this PR's own commit; these local results do not inherit PR #27's CI results.
+
+## Canonical v1 (#11)
+
+`PYTHONPATH=backend/src python -m pytest -q` includes the canonical precision/history/linkage
+tests and all 37 PR #28 edge cases. `scripts/canonical_example.py` asserts exact joint-award
+totals and cancellation exclusion. No real data, source download or personal data is used.
+
+Compatibility baseline: main `69e5b496247131899fc729053d0d074ad213448f`; PR #28
+`c41436039e8a45e7d08f4f7e339f05825c08d6e4` is included via a separate merge commit.
+PR #27 `415bda798e75f478cb06246a0efc0b744b922fc1` is a pinned design reference only.
+PR #26 `5e63f4904607f7c71ad500d9aaeb34eb45f7f0db` remains separate; its intake protections
+are not implied by canonical normalization. Compatibility rehearsal in an isolated worktree: PR #27 has one conflict in CURRENT_STATE prose;
+retaining this branch's state description gives 22 passed and 95 subtests passed, lint/docs passed.
+PR #26 conflicts in evidence.py imports and malformed-record wording inherited from #28.
+Combining ingestion limits with synthetic guards and preserving both diagnostic substrings gives
+35 passed and 103 subtests passed, lint/docs passed. These are rehearsal-only resolutions; neither
+branch is merged here. Recheck when either PR head changes. No source probe was executed.
+New hosted CI must be checked on this branch's own commit; other PRs' CI is not inherited.
