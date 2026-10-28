@@ -4,15 +4,20 @@ import json
 from datetime import datetime
 from hashlib import sha256
 
+from .synthetic import assess_record, validate_release_identity
+
 
 def validate_record(record):
     """Reject ambiguous identifiers/counts; preserve unknown counts as unknown."""
+    if not isinstance(record, dict):
+        raise ValueError("record must be an object")
     for key in ("record_id", "buyer_id", "supplier_id", "source_reference"):
         if not isinstance(record.get(key), str) or not record[key].strip():
             raise ValueError(f"{key} must be a nonempty string")
     count = record.get("bid_count")
     if count is not None and (type(count) is not int or count < 0):
         raise ValueError("bid_count must be a nonnegative integer or null")
+    assess_record(record)
     return record
 
 
@@ -30,12 +35,14 @@ def single_bid_findings(records, *, snapshot_hash, collected_at):
         raise ValueError("snapshot_hash must be a lowercase SHA-256 digest")
     findings = []
     seen = set()
+    seen_processes, seen_releases = set(), set()
     for record in records:
         validate_record(record)
         if record["record_id"] in seen:
             raise ValueError("duplicate record_id; deduplicate before analysis")
         seen.add(record["record_id"])
-        if record.get("bid_count") != 1:
+        validate_release_identity(record, seen_processes, seen_releases)
+        if not assess_record(record)["single_bid"]:
             continue
         identity = f"{snapshot_hash}:{record['record_id']}:single-bid:0.0.1"
         findings.append(
