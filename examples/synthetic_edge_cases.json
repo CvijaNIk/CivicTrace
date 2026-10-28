@@ -1,0 +1,992 @@
+{
+  "contract": "civictrace-synthetic-edge/1",
+  "license": "Apache-2.0",
+  "attribution": "Original invented CivicTrace test material; no DNCP records",
+  "privacy": "Invented organization identifiers only; no natural persons",
+  "cases": [
+    {
+      "name": "positive-explicit-single-bid",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "zero-is-not-one",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 0
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "competitive-bids",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 2
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "absent-bids-with-one-reported-tenderer",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "reported_tenderer_count": 1
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "absent",
+          "reported_tenderer_count_state": "present",
+          "reported_tenderer_count": 1,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "bid_count_unknown"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "null-bids-with-one-detail",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": null,
+          "bid_details": [
+            {
+              "id": "SYN-BID-A"
+            }
+          ]
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "null",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "present",
+          "bid_details_count": 1,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "bid_count_unknown"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "null-tenderers-empty-details",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": null,
+          "reported_tenderer_count": null,
+          "bid_details": []
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "null",
+          "reported_tenderer_count_state": "null",
+          "reported_tenderer_count": null,
+          "bid_details_state": "present",
+          "bid_details_count": 0,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "bid_count_unknown"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "absent-tenderers-four-details-no-bid-dates-values",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "bid_details": [
+            {
+              "id": "SYN-BID-0"
+            },
+            {
+              "id": "SYN-BID-1"
+            },
+            {
+              "id": "SYN-BID-2"
+            },
+            {
+              "id": "SYN-BID-3"
+            }
+          ]
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "present",
+          "bid_details_count": 4,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "two-tenderers-one-bid-remain-distinct",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "reported_tenderer_count": 2,
+          "bid_details": [
+            {
+              "id": "SYN-BID-A"
+            }
+          ]
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "present",
+          "reported_tenderer_count": 2,
+          "bid_details_state": "present",
+          "bid_details_count": 1,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "zero-tenderers-is-known",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "reported_tenderer_count": 0,
+          "bid_details": null
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "present",
+          "reported_tenderer_count": 0,
+          "bid_details_state": "null",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "offsets-cross-date",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "tender_start": "2025-01-01T23:30:00-03:00",
+          "tender_end": "2025-01-02T03:30:00Z"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "present",
+          "tender_duration_seconds": 3600,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "equal-instants",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "tender_start": "2025-01-02T00:00:00+02:00",
+          "tender_end": "2025-01-01T22:00:00Z"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "present",
+          "tender_duration_seconds": 0,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "offset-reverses-wall-order",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "tender_start": "2025-01-01T09:00:00-03:00",
+          "tender_end": "2025-01-01T10:00:00Z"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "reversed",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "missing-timezone",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "tender_start": "2025-01-01T00:00:00",
+          "tender_end": "2025-01-02T00:00:00Z"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "invalid",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "invalid-calendar",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "tender_start": "2025-02-30T00:00:00Z",
+          "tender_end": "2025-03-01T00:00:00Z"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "invalid",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "null-date",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "tender_start": null,
+          "tender_end": "2025-01-01T00:00:00Z"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "unknown",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "fractional-seconds",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "tender_start": "2025-01-01T00:00:00.000Z",
+          "tender_end": "2025-01-01T00:00:00.500Z"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "present",
+          "tender_duration_seconds": 0.5,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "absent-end-date",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "tender_start": "2025-01-01T00:00:00Z"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "unknown",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "procurement_status-cancelled",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "procurement_status": "cancelled"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "procurement_status_cancelled"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "procurement_status-unsuccessful",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "procurement_status": "unsuccessful"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "procurement_status_unsuccessful"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "award_status-cancelled",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "award_status": "cancelled"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "award_status_cancelled"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "award_status-pending",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "award_status": "pending"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "award_status_pending"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "award_status-unsuccessful",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "award_status": "unsuccessful"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "award_status_unsuccessful"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "active-award",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "procurement_status": "complete",
+          "award_status": "active"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "unknown-status",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "award_status": null
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "award_status_unknown"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "joint-suppliers",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "supplier_ids": [
+            "SYN-SUPPLIER-A",
+            "SYN-SUPPLIER-B"
+          ]
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [
+            "joint_suppliers_unallocated"
+          ],
+          "single_bid": false
+        }
+      ],
+      "expected_finding_record_ids": []
+    },
+    {
+      "name": "single-supplier-array",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "supplier_ids": [
+            "SYN-SUPPLIER-A"
+          ]
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "duplicate-record",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1
+        },
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1
+        }
+      ],
+      "expected_error": "duplicate record_id"
+    },
+    {
+      "name": "duplicate-release",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "process_id": "SYN-PROCESS-A",
+          "release_id": "SYN-RELEASE-A"
+        },
+        {
+          "record_id": "SYN-EDGE-002",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 2,
+          "process_id": "SYN-PROCESS-A",
+          "release_id": "SYN-RELEASE-A"
+        }
+      ],
+      "expected_error": "duplicate release identity"
+    },
+    {
+      "name": "conflicting-process",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "process_id": "SYN-PROCESS-A",
+          "release_id": "SYN-RELEASE-A"
+        },
+        {
+          "record_id": "SYN-EDGE-002",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 2,
+          "process_id": "SYN-PROCESS-A",
+          "release_id": "SYN-RELEASE-B"
+        }
+      ],
+      "expected_error": "duplicate process identity"
+    },
+    {
+      "name": "release-identity-scoped-to-process",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "process_id": "SYN-PROCESS-A",
+          "release_id": "SYN-RELEASE-A"
+        }
+      ],
+      "expected_assessments": [
+        {
+          "bid_count_state": "present",
+          "reported_tenderer_count_state": "absent",
+          "reported_tenderer_count": null,
+          "bid_details_state": "absent",
+          "bid_details_count": null,
+          "tender_period_state": "absent",
+          "tender_duration_seconds": null,
+          "exclusions": [],
+          "single_bid": true
+        }
+      ],
+      "expected_finding_record_ids": [
+        "SYN-EDGE-001"
+      ]
+    },
+    {
+      "name": "invalid-reported-tenderers-negative",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "reported_tenderer_count": -1
+        }
+      ],
+      "expected_error": "reported_tenderer_count must be a nonnegative integer or null"
+    },
+    {
+      "name": "invalid-reported-tenderers-boolean",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "reported_tenderer_count": true
+        }
+      ],
+      "expected_error": "reported_tenderer_count must be a nonnegative integer or null"
+    },
+    {
+      "name": "invalid-reported-tenderers-string",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "reported_tenderer_count": "1"
+        }
+      ],
+      "expected_error": "reported_tenderer_count must be a nonnegative integer or null"
+    },
+    {
+      "name": "invalid-reported-tenderers-fractional",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "reported_tenderer_count": 1.5
+        }
+      ],
+      "expected_error": "reported_tenderer_count must be a nonnegative integer or null"
+    },
+    {
+      "name": "missing-release-id",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "process_id": "SYN-PROCESS-A"
+        }
+      ],
+      "expected_error": "process_id and release_id must both be nonempty strings"
+    },
+    {
+      "name": "duplicate-supplier-ids",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "supplier_ids": [
+            "SYN-SUPPLIER-A",
+            "SYN-SUPPLIER-A"
+          ]
+        }
+      ],
+      "expected_error": "supplier_ids must be unique nonempty IDs including supplier_id"
+    },
+    {
+      "name": "malformed-details",
+      "records": [
+        {
+          "record_id": "SYN-EDGE-001",
+          "buyer_id": "SYN-BUYER-A",
+          "supplier_id": "SYN-SUPPLIER-A",
+          "source_reference": "synthetic:edge/v1/001",
+          "bid_count": 1,
+          "bid_details": [
+            null
+          ]
+        }
+      ],
+      "expected_error": "bid_details must be an array of objects or null"
+    }
+  ]
+}

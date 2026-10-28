@@ -9,7 +9,8 @@ The current demo input is a deliberately smaller synthetic contract, not an OCDS
 | buyer/supplier.identifier | Scheme + ID + jurisdiction; never match names alone |
 | money.amount/currency | Decimal value + ISO currency; missing is null, not zero |
 | tender.start/end | Timezone-aware timestamps; negative intervals quarantined |
-| tender.bid_count | Nonnegative integer or null; distinguish bids, bidders and valid bids |
+| tender.reported_tenderer_count | Nonnegative integer or null; publisher-reported tenderers, separate from submissions and detail rows |
+| bids/details | Preserve identities/status/lot scope; detail row count does not establish bid or tenderer count |
 | provenance | Snapshot hash, original record pointer, collection time, connector/schema version |
 
 Use normalized processes, releases, parties, awards, contracts and award_suppliers tables.
@@ -21,3 +22,8 @@ conflicting duplicates. Period, stage, category and currency define analysis coh
 Synthetic contract today: record_id, buyer_id, supplier_id and source_reference are nonempty
 strings; bid_count is an integer >= 0 or null. Duplicate record_id fails the demo. It does not
 encode award values, lots or procedures, and cannot validate real procurement records.
+
+The [synthetic edge-case contract](SYNTHETIC_EDGE_CASES.md) extends only the demo, with
+explicit unknown states, UTC period checks, cancellation/joint-supplier exclusions and duplicate
+rejection. `bid_count` remains a legacy explicit demo input; never map reported tenderers or
+detail-array length into it automatically. Canonical mapping remains issue #11; intake remains #7.

@@ -1,7 +1,9 @@
 # Analytical rules
 ## Single bid (demo implemented, production planned)
 Flag bid_count == 1. Unknown counts, zero, malformed and negative values must not be flags.
-The demo rejects malformed counts. Production must distinguish reported bids, bidders and valid
+The demo rejects malformed counts and duplicate process/release identities. Optional cancellation
+and joint-supplier guards exclude records conservatively; [edge-case diagnostics](SYNTHETIC_EDGE_CASES.md)
+record the reason. Reported tenderers and bid detail rows never supply `bid_count`. Production must distinguish reported bids, bidders and valid
 bids, account for procedure/stage/lot semantics, and expose denominator/exclusion counts.
 Single participation may have lawful explanations; review tender terms, exceptions and market.
 

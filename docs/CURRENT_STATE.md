@@ -7,6 +7,11 @@ Implemented: original synthetic procurement fixture; offline Python CLI; determi
 Evidence Passport JSON output; strict demo count/identity checks; JSON Schema; meaningful smoke,
 provenance and CLI tests; documentation, governance, source assessment, CI and templates.
 
+Implemented for issue #5: [37 synthetic edge cases](SYNTHETIC_EDGE_CASES.md), exact expected
+assessments/errors, CLI rerun/schema/lineage tests, and conservative optional demo guards for
+cancelled awards, duplicate releases and joint suppliers. Counts remain separate; UTC durations
+are diagnostic only. No canonical OCDS mapping is implemented.
+
 Planned: all live connectors, canonical real-source validation, three production indicators,
 DuckDB/Parquet processing, React explorer, search, CSV exports, graph/R/cyber modules and hosting.
 No donation account or FUNDING.yml. Branding remains provisional with known conflicts.
