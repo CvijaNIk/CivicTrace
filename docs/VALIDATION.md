@@ -20,3 +20,24 @@ CLI exports on the published head. Consult the PR checks for its exact live resu
 success is not a claim that remote checks have passed. No real-source pipeline, frontend,
 provider deployment or security audit was executed. External links are research references,
 not continuously crawled links. Publisher-terms and provisional-name limitations are documented.
+
+## Issue #5 synthetic regression run — 2026-10-28
+
+Base: `69e5b496247131899fc729053d0d074ad213448f` (main). PR #27 is a reviewed design
+reference, not the base branch. Python 3.12.14; pytest 9.2.0; ruff 0.17.3;
+jsonschema 4.26.0. Existing dev extra installed successfully.
+
+- `python -m pytest -q`: **12 passed, 88 subtests passed**, including 37 edge-case
+  datasets, all run twice through the CLI with exact expected results/errors.
+- `python -m ruff check .`, `python -m ruff format --check .`,
+  `python scripts/check_docs.py`, `git diff --check`: passed.
+- Original demo exported twice with collection time `2026-10-10T00:00:00Z`;
+  both runs produced two findings and `cmp` passed. Output SHA-256:
+  `3acf378be9295e2eb4e4b557d078deef64ddcd96cbe3aafc1bd1b6876eb1f85a`.
+- Edge corpus SHA-256:
+  `3b89df85a45f30a62d8eb4d2178b688039b8ec65d08e625a6ff6ad3a67c5bfde`.
+
+[Reproduction and case expectations](SYNTHETIC_EDGE_CASES.md). The tests use invented
+organization IDs, no network and no raw DNCP rows. No real-source import, live indicator,
+concentration calculation or production activation was performed. Hosted checks must be verified
+on this PR's own commit; these local results do not inherit PR #27's CI results.
