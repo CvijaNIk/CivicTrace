@@ -7,10 +7,21 @@ Implemented: original synthetic procurement fixture; offline Python CLI; determi
 Evidence Passport JSON output; strict demo count/identity checks; JSON Schema; meaningful smoke,
 provenance and CLI tests; documentation, governance, source assessment, CI and templates.
 
+Implemented for issue #5: [37 synthetic edge cases](SYNTHETIC_EDGE_CASES.md), exact expected
+assessments/errors, CLI rerun/schema/lineage tests, and conservative optional demo guards for
+cancelled awards, duplicate releases and joint suppliers. Counts remain separate; UTC durations
+are diagnostic only.
+
+Implemented for issue #11: [canonical v1 tables](DATA_MODEL.md), stable scoped identities,
+release/snapshot history, exact decimal amounts, explicit unknown states, relationship validation
+and conservative award totals. This is an offline OCDS-shaped subset, tested with invented data;
+full source mapping, database storage and live ingestion remain unimplemented.
+
 Planned: all live connectors, canonical real-source validation, three production indicators,
 DuckDB/Parquet processing, React explorer, search, CSV exports, graph/R/cyber modules and hosting.
 No donation account or FUNDING.yml. Branding remains provisional with known conflicts.
-DNCP source recommendation is gated by publisher-terms verification and fresh field-quality review.
+DNCP activation remains gated by open #6/#7. PR #27 proposes a fuller local input contract;
+its research branch is not merged here. No actual source intake is activated.
 
 The docs/product-roadmap branch expands the README into a proposed long-term product blueprint:
 six detailed modules, public/local/research workflows, shared capabilities, dependencies, v0.6
