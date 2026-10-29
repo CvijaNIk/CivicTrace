@@ -35,3 +35,7 @@ source rights/fields assessment, then a bounded, local DNCP connector with synth
 Implemented locally for #7: [bounded DNCP gzip intake](DNCP_LOCAL_IMPORT.md), using PR #29
 canonical mapping. This supersedes the earlier planned local-intake status only. No real-data
 pilot, production activation or redistribution clearance; #6 remains open.
+
+DNCP local publication now uses an atomic Linux no-replace directory rename; unsupported
+platforms/filesystems fail closed. Fault injection, concurrent writers and SIGKILL boundaries
+are covered with synthetic inputs. See [guarantees and recovery](DNCP_PUBLICATION.md).

@@ -1,11 +1,14 @@
 """Bounded, offline DNCP compiled-release intake. No network or publication capability."""
 
 import argparse
+import ctypes
+import errno
 import hashlib
 import json
 import os
 import shutil
 import stat
+import sys
 import tempfile
 import zlib
 from copy import deepcopy
@@ -153,6 +156,41 @@ def prepare(record):
     return result, rejects
 
 
+def _publisher():
+    """Return the Linux atomic no-replace primitive, or fail closed."""
+    if sys.platform != "linux":
+        raise IntakeError("atomic_publication_unsupported")
+    libc = ctypes.CDLL(None, use_errno=True)
+    rename = getattr(libc, "renameat2", None)
+    if rename is None:
+        raise IntakeError("atomic_publication_unsupported")
+    rename.argtypes = [ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint]
+    rename.restype = ctypes.c_int
+
+    def publish(stage, output):
+        # RENAME_NOREPLACE: one namespace operation; even an empty directory or
+        # dangling symlink at the destination must never be replaced.
+        if rename(-100, os.fsencode(stage), -100, os.fsencode(output), 1):
+            code = ctypes.get_errno()
+            if code in (errno.ENOSYS, errno.EINVAL, errno.EOPNOTSUPP):
+                raise IntakeError("atomic_publication_unsupported")
+            raise OSError(code, os.strerror(code), str(output))
+
+    return publish
+
+
+def _destination(output):
+    # Reject symlinks in every existing component, including dangling final links.
+    # The parent must remain operator-controlled for the duration of the import.
+    output = Path(os.path.abspath(output))
+    for parent in reversed(output.parents):
+        if not stat.S_ISDIR(parent.lstat().st_mode):
+            raise IntakeError("output_parent_not_directory")
+    if os.path.lexists(output):
+        raise IntakeError("output_exists")
+    return output
+
+
 def import_file(source, output, manifest, limits=Limits()):
     """Publish a new private evidence directory only after full hash and gzip validation.
 
@@ -164,9 +202,8 @@ def import_file(source, output, manifest, limits=Limits()):
         type(v) is not int or v < 1 or v > asdict(Limits())[k] for k, v in asdict(limits).items()
     ):
         raise IntakeError("invalid_limits")
-    source, output = Path(source), Path(output)
-    if output.exists():
-        raise IntakeError("output_exists")
+    source, output = Path(source), _destination(output)
+    publish = _publisher()
     fd = os.open(source, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
     stage = None
     try:
@@ -312,17 +349,24 @@ def import_file(source, output, manifest, limits=Limits()):
         }
         (stage / "manifest.json").write_text(serialize(manifest), encoding="utf-8")
         (stage / "summary.json").write_text(serialize(summary), encoding="utf-8")
-        # Never replace another intake, including a directory created during this run.
-        output.mkdir(mode=0o700)
-        for item in sorted(stage.iterdir(), key=lambda p: (p.name == "summary.json", p.name)):
-            item.rename(output / item.name)
-        stage.rmdir()
+        # All files are closed before the single atomic namespace transition.
+        publish(stage, output)
         stage = None
         return summary
     finally:
         os.close(fd)
         if stage is not None:
-            shutil.rmtree(stage)
+            try:
+                shutil.rmtree(stage)
+            except FileNotFoundError:
+                # The atomic rename may have succeeded before the publisher raised.
+                # No private staging directory remains to clean up.
+                pass
+            except OSError as exc:
+                raise IntakeError(
+                    f"private_staging_cleanup_failed: {stage}; "
+                    "stop writers, inspect and remove this staging directory manually"
+                ) from exc
 
 
 def main():
