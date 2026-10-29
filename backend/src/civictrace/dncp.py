@@ -358,6 +358,10 @@ def import_file(source, output, manifest, limits=Limits()):
         if stage is not None:
             try:
                 shutil.rmtree(stage)
+            except FileNotFoundError:
+                # The atomic rename may have succeeded before the publisher raised.
+                # No private staging directory remains to clean up.
+                pass
             except OSError as exc:
                 raise IntakeError(
                     f"private_staging_cleanup_failed: {stage}; "
