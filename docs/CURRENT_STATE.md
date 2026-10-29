@@ -31,3 +31,7 @@ features; later-stage capabilities remain planned and exploratory features are s
 
 Verification and GitHub issue links are recorded in VALIDATION.md and BACKLOG.md. Next task:
 source rights/fields assessment, then a bounded, local DNCP connector with synthetic mapping tests.
+
+Implemented locally for #7: [bounded DNCP gzip intake](DNCP_LOCAL_IMPORT.md), using PR #29
+canonical mapping. This supersedes the earlier planned local-intake status only. No real-data
+pilot, production activation or redistribution clearance; #6 remains open.
