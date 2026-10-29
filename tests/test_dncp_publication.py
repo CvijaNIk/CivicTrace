@@ -241,6 +241,23 @@ def test_missing_libc_primitive(tmp_path, monkeypatch):
     assert not list(tmp_path.glob(".dncp-*"))
 
 
+def test_exception_after_committed_publication_preserves_output(tmp_path, monkeypatch):
+    """A post-rename interrupt must not misreport a missing staging directory."""
+    src, m = setup(tmp_path)
+    out = tmp_path / "out"
+    real_publish = dncp._publisher()
+
+    def publish_then_interrupt(stage, destination):
+        real_publish(stage, destination)
+        raise KeyboardInterrupt("injected after successful publication")
+
+    monkeypatch.setattr(dncp, "_publisher", lambda: publish_then_interrupt)
+    with pytest.raises(KeyboardInterrupt, match="injected after successful publication"):
+        dncp.import_file(src, out, m)
+    complete(out)
+    assert not list(tmp_path.glob(".dncp-*"))
+
+
 def test_no_cleanup_after_success(tmp_path, monkeypatch):
     src, m = setup(tmp_path)
 
