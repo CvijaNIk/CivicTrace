@@ -49,12 +49,15 @@ regression checks the 2000-row path below 16 MiB; it is not a universal RSS guar
 
 The complete compressed snapshot is copied and hash-verified before parsing. Full gzip EOF/CRC,
 expanded hash, limits and single-member framing are required. Truncation, concatenated members,
-trailing garbage and limit failures discard staging; no canonical directory is published. There
-is no resume mode. A process kill can leave a private `.dncp-*` staging directory for local cleanup.
-Publication uses a new directory and individual renames after validation; a filesystem failure
-at that final stage can leave a partial directory, which must not be consumed as a completed run
-unless `summary.json`, `manifest.json` and all referenced files are present. No overwrite or
-cross-run reconciliation is attempted.
+trailing garbage and limit failures discard staging; no canonical directory is published.
+Publication and recovery now follow [the atomic publication contract](DNCP_PUBLICATION.md).
+On supported Linux local filesystems a single `renameat2(RENAME_NOREPLACE)` publishes the
+entire closed staging directory, including summary and manifest. Existing entries are never
+replaced, including empty directories and dangling symlinks. Other platforms, missing libc/kernel
+support or filesystem refusal fail closed; there is no per-file or check-then-rename fallback.
+A process kill or failed cleanup can leave private `.dncp-*` staging, never a partial final output.
+There is no resume mode. Parent directories must be private, nonsymlink and stable during import.
+This guarantees atomic visibility for process failures, not durability against power loss.
 
 Each physical line has a SHA-256 and original ordinal and is retained byte-for-byte as `.raw`,
 including invalid UTF-8/JSON. `validation.jsonl` reports accepted/rejected rows, field states and
