@@ -56,8 +56,14 @@ def cases(full=False):
     if full:
         # 2 GiB exactly; only 1024 rows so the line and row ceilings are independent.
         result += [
-            Case("expanded-boundary", 1024, dncp.Limits().line),
-            Case("expanded-overflow", 1025, dncp.Limits().line, expected_error="expanded_limit"),
+            Case("expanded-boundary", 1024, dncp.Limits().line, compression=6),
+            Case(
+                "expanded-overflow",
+                1025,
+                dncp.Limits().line,
+                compression=6,
+                expected_error="expanded_limit",
+            ),
             # Level 0 plus an ignored whitespace suffix gives exact compressed sizes.
             Case("compressed-boundary", 128, dncp.Limits().line - 1024, mode="compressed"),
             Case(

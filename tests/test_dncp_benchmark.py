@@ -94,3 +94,13 @@ def test_fanout_is_bounded_but_structurally_dense():
     raw = line(Case("dense", 1, mode="fanout"), 0)
     assert len(raw) < Limits().line
     assert len(json.loads(raw)["awards"]) == 4000
+
+
+def test_expanded_boundary_recipe_does_not_hit_other_ceilings_first():
+    # One maximum-size row is enough to catch a poorly compressing full recipe,
+    # without a multi-GiB fixture in ordinary CI.
+    case = next(c for c in cases(True) if c.name == "expanded-boundary")
+    raw = line(case, 0)
+    compressed_size = len(gzip.compress(raw, compresslevel=case.compression, mtime=0))
+    assert compressed_size * case.rows < Limits().compressed
+    assert len(raw) < compressed_size * Limits().ratio

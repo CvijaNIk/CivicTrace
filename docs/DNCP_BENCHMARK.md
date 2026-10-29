@@ -45,7 +45,8 @@ are recorded. Identical Python/zlib versions produce identical fixture bytes; gz
 across library versions is not promised, so the expanded hash is also supplied.
 
 The full expanded-boundary fixture is exactly 1,024 lines of 2 MiB, totaling 2 GiB; overflow
-adds one line. The compressed fixtures use gzip level 0 and a legal FCOMMENT header to reach
+adds one line. These two fixtures use compression level 6 so the compressed ceiling is not
+reached first. The compressed fixtures use gzip level 0 and a legal FCOMMENT header to reach
 exactly 256 MiB and 256 MiB + 1 byte without violating expanded/line/row limits. This tests
 that compressed ceiling independently; it does not model a typical annual dataset. The
 ratio-rejection case uses highly repeated padding. All other compression levels are in JSON.
@@ -73,7 +74,8 @@ observed at those milestones, not continuously sampled physical peak allocation;
 preallocation, delayed allocation, copy-on-write and shared extents can change their meaning. The importer only adds
 files/appends before success/cleanup: successful output is measured after publication; fatal
 output is measured immediately before `rmtree` via a benchmark-only wrapper. Failure timing
-therefore includes this directory scan. Empty/no-staging failures may have no disk observation.
+therefore includes this directory scan, and its RSS/Python peak may include observer
+allocations. Use successful passes for comparisons of importer memory scaling. Empty/no-staging failures may have no disk observation.
 The source fixture is additional disk space (add `fixture.compressed_bytes`); it is not counted
 twice in output metrics. The source snapshot retained inside output **is** included.
 
@@ -95,7 +97,8 @@ both passes, and raises on unexpected publication, counts, errors or cleanup.
 
 ## Recorded observations
 
-See [raw full-suite results](evidence/dncp-benchmark-2026-10-29/results.json) and the dated
+See [raw core results](evidence/dncp-benchmark-2026-10-29/results.json) and
+[raw byte-boundary results](evidence/dncp-benchmark-2026-10-29/byte-boundaries.json) and the dated
 [measurement report](evidence/dncp-benchmark-2026-10-29/README.md). Environment versions,
 importer source digest, fixture digests, exact sizes, summaries, repeat indices and all raw
 measurements are retained. Reported RSS is an empirical observation, never a guaranteed cap.
