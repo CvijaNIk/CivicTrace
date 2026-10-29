@@ -1,0 +1,887 @@
+{
+  "environment": {
+    "cgroup_cpu_max": "800000 100000",
+    "cgroup_memory_max": "8589934592",
+    "cpu_count": 9,
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "machine": "x86_64",
+    "mem_total": "10206484 kB",
+    "packages": {
+      "civictrace": "0.0.1"
+    },
+    "page_size": 4096,
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "zlib": "1.3.2"
+  },
+  "harness_sha256": "87a05c487d91eefe396338600bf0fa87fff91c67aebab2586f5bb95e490c95d8",
+  "importer_sha256": "f89156938bf8ab7beb2ef3b7dcc99ef8fd9269fd567be9ac596f6ece24aae0c4",
+  "limits": {
+    "compressed": 268435456,
+    "depth": 32,
+    "expanded": 2147483648,
+    "line": 2097152,
+    "ratio": 200,
+    "rows": 50000
+  },
+  "results": [
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": null,
+        "mode": "valid",
+        "name": "small",
+        "rows": 100,
+        "width": 0
+      },
+      "fixture": {
+        "compressed_bytes": 2295,
+        "compressed_sha256": "73a00030166111b32534a915738bbda002b342af1ae2d28b962cbcf402f7ae89",
+        "expanded_bytes": 35050,
+        "expanded_sha256": "d949447f3a29bb797c2d8d31c7f3bf7d589405ec58ae6aa42b0c29e09a47bfca"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 1314816,
+            "directory_allocated_bytes": 32768,
+            "files": 204,
+            "logical_bytes": 575054
+          },
+          "elapsed_seconds": 0.07366172399997595,
+          "error": null,
+          "input_mib_per_second": 0.45378091870412884,
+          "input_rows_per_second": 1357.5571486764638,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18268160,
+          "rss_hwm_bytes": 18874368,
+          "summary": {
+            "accepted": 100,
+            "compressed_bytes": 2295,
+            "expanded_bytes": 35050,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 100
+          },
+          "throughput_is_complete_import": true,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 1314816,
+            "directory_allocated_bytes": 32768,
+            "files": 204,
+            "logical_bytes": 575054
+          },
+          "elapsed_seconds": 0.2553661019999254,
+          "error": null,
+          "input_mib_per_second": 0.1308955438026337,
+          "input_rows_per_second": 391.5946526059642,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": 744659,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 19267584,
+          "summary": {
+            "accepted": 100,
+            "compressed_bytes": 2295,
+            "expanded_bytes": 35050,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 100
+          },
+          "throughput_is_complete_import": true,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": null,
+        "mode": "valid",
+        "name": "medium",
+        "rows": 5000,
+        "width": 0
+      },
+      "fixture": {
+        "compressed_bytes": 100921,
+        "compressed_sha256": "98a6f29ffc1e7ad195166690acf045c59de6dc0e7fb28051a70ed395d543889f",
+        "expanded_bytes": 1799450,
+        "expanded_sha256": "12b9f46946330dc863559fe87325f2e7db62fec0e4cfabaec81642e4d4b7437f"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 65097728,
+            "directory_allocated_bytes": 1323008,
+            "files": 10004,
+            "logical_bytes": 28804888
+          },
+          "elapsed_seconds": 2.966464973000029,
+          "error": null,
+          "input_mib_per_second": 0.5784963801280689,
+          "input_rows_per_second": 1685.5078504242128,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 20066304,
+          "summary": {
+            "accepted": 5000,
+            "compressed_bytes": 100921,
+            "expanded_bytes": 1799450,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 5000
+          },
+          "throughput_is_complete_import": true,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 65097728,
+            "directory_allocated_bytes": 1323008,
+            "files": 10004,
+            "logical_bytes": 28804888
+          },
+          "elapsed_seconds": 11.308734620999985,
+          "error": null,
+          "input_mib_per_second": 0.15174900695525206,
+          "input_rows_per_second": 442.136115805136,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": 1790800,
+          "repeat": 0,
+          "rss_baseline_bytes": 18276352,
+          "rss_hwm_bytes": 21135360,
+          "summary": {
+            "accepted": 5000,
+            "compressed_bytes": 100921,
+            "expanded_bytes": 1799450,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 5000
+          },
+          "throughput_is_complete_import": true,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": null,
+        "mode": "fanout",
+        "name": "child-fanout",
+        "rows": 2,
+        "width": 0
+      },
+      "fixture": {
+        "compressed_bytes": 71640,
+        "compressed_sha256": "3aea54046062c16fcef445d5f5c2c169db19c9334f23c4c285a4d7a607edcd1c",
+        "expanded_bytes": 1233752,
+        "expanded_sha256": "dcfa36b87b76b00a5fda0ae9f124569a9d9261d806d4d83adef404ff53f013e5"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 19652608,
+            "directory_allocated_bytes": 4096,
+            "files": 8,
+            "logical_bytes": 19632032
+          },
+          "elapsed_seconds": 0.9761103359999197,
+          "error": null,
+          "input_mib_per_second": 1.205394054156333,
+          "input_rows_per_second": 2.048948695898416,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18276352,
+          "rss_hwm_bytes": 91193344,
+          "summary": {
+            "accepted": 2,
+            "compressed_bytes": 71640,
+            "expanded_bytes": 1233752,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 2
+          },
+          "throughput_is_complete_import": true,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 19652608,
+            "directory_allocated_bytes": 4096,
+            "files": 8,
+            "logical_bytes": 19632032
+          },
+          "elapsed_seconds": 6.146428889000163,
+          "error": null,
+          "input_mib_per_second": 0.19142783825588852,
+          "input_rows_per_second": 0.3253921970169152,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": 66987270,
+          "repeat": 0,
+          "rss_baseline_bytes": 18268160,
+          "rss_hwm_bytes": 172658688,
+          "summary": {
+            "accepted": 2,
+            "compressed_bytes": 71640,
+            "expanded_bytes": 1233752,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 2
+          },
+          "throughput_is_complete_import": true,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 9,
+        "expected_error": "expanded_limit",
+        "mode": "compressible",
+        "name": "ratio-overflow",
+        "rows": 1,
+        "width": 2097152
+      },
+      "fixture": {
+        "compressed_bytes": 2316,
+        "compressed_sha256": "7d10421d8bf2ecb73ccf6fc3e863aa0de77ddc31a8612637d27f096059f4758f",
+        "expanded_bytes": 2097152,
+        "expanded_sha256": "882d8552551b7ef92d1b393eb629d2c8fa7144166954a57f244b0ca0dfb0f460"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 4096,
+            "directory_allocated_bytes": 4096,
+            "files": 2,
+            "logical_bytes": 2316
+          },
+          "elapsed_seconds": 0.0032661910001934302,
+          "error": "expanded_limit",
+          "input_mib_per_second": null,
+          "input_rows_per_second": null,
+          "private_orphans": 0,
+          "published": false,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 19148800,
+          "summary": null,
+          "throughput_is_complete_import": false,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 4096,
+            "directory_allocated_bytes": 4096,
+            "files": 2,
+            "logical_bytes": 2316
+          },
+          "elapsed_seconds": 0.006003612000085923,
+          "error": "expanded_limit",
+          "input_mib_per_second": null,
+          "input_rows_per_second": null,
+          "private_orphans": 0,
+          "published": false,
+          "python_peak_bytes": 982528,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 19410944,
+          "summary": null,
+          "throughput_is_complete_import": false,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": null,
+        "mode": "valid",
+        "name": "unique-row-boundary",
+        "rows": 50000,
+        "width": 0
+      },
+      "fixture": {
+        "compressed_bytes": 1007805,
+        "compressed_sha256": "b96b2721f8e430fbe21d9a3d3911338ef0024eb951c60b1a130caaee4598e485",
+        "expanded_bytes": 18244450,
+        "expanded_sha256": "99e3b00a0e43525d54575d6121362234a538cd9cdf6ccc592e34a6d8f243d1e3"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 650911744,
+            "directory_allocated_bytes": 13139968,
+            "files": 100004,
+            "logical_bytes": 288831778
+          },
+          "elapsed_seconds": 26.481683141000076,
+          "error": null,
+          "input_mib_per_second": 0.6570301173575981,
+          "input_rows_per_second": 1888.0975100328067,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 25788416,
+          "summary": {
+            "accepted": 50000,
+            "compressed_bytes": 1007805,
+            "expanded_bytes": 18244450,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 50000
+          },
+          "throughput_is_complete_import": true,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 650911744,
+            "directory_allocated_bytes": 13139968,
+            "files": 100004,
+            "logical_bytes": 288831778
+          },
+          "elapsed_seconds": 126.96504860200002,
+          "error": null,
+          "input_mib_per_second": 0.13703978830032068,
+          "input_rows_per_second": 393.80916677893015,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": 6629727,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 31047680,
+          "summary": {
+            "accepted": 50000,
+            "compressed_bytes": 1007805,
+            "expanded_bytes": 18244450,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 50000
+          },
+          "throughput_is_complete_import": true,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": "row_limit",
+        "mode": "valid",
+        "name": "row-overflow",
+        "rows": 50001,
+        "width": 0
+      },
+      "fixture": {
+        "compressed_bytes": 1007845,
+        "compressed_sha256": "65f03f36615c0f9889c36e355fcaad86c8a31be8cb2a6188fc0f7955adecc13c",
+        "expanded_bytes": 18244816,
+        "expanded_sha256": "e32e21aca16373554549189e7837dea543b896564b805b647aa9b833363d6e05"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 650903552,
+            "directory_allocated_bytes": 13139968,
+            "files": 100002,
+            "logical_bytes": 288830093
+          },
+          "elapsed_seconds": 40.90695754100011,
+          "error": "row_limit",
+          "input_mib_per_second": null,
+          "input_rows_per_second": null,
+          "private_orphans": 0,
+          "published": false,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 46759936,
+          "summary": null,
+          "throughput_is_complete_import": false,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 650903552,
+            "directory_allocated_bytes": 13139968,
+            "files": 100002,
+            "logical_bytes": 288830093
+          },
+          "elapsed_seconds": 138.46623648500008,
+          "error": "row_limit",
+          "input_mib_per_second": null,
+          "input_rows_per_second": null,
+          "private_orphans": 0,
+          "published": false,
+          "python_peak_bytes": 26326990,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 71237632,
+          "summary": null,
+          "throughput_is_complete_import": false,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": null,
+        "mode": "missing",
+        "name": "missing",
+        "rows": 1000,
+        "width": 0
+      },
+      "fixture": {
+        "compressed_bytes": 21097,
+        "compressed_sha256": "ee504c492b4d7568d4ee7917a584dd32c0712e15878d828f8716ed66f2eefb3a",
+        "expanded_bytes": 305450,
+        "expanded_sha256": "cd4352b9017cff27460ce6ed250f1f7c1f18b07189e19772345b5ea83f8e2141"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 8757248,
+            "directory_allocated_bytes": 262144,
+            "files": 2004,
+            "logical_bytes": 4153172
+          },
+          "elapsed_seconds": 0.9018068530001528,
+          "error": null,
+          "input_mib_per_second": 0.323017971062413,
+          "input_rows_per_second": 1108.8848977729276,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18276352,
+          "rss_hwm_bytes": 18960384,
+          "summary": {
+            "accepted": 1000,
+            "compressed_bytes": 21097,
+            "expanded_bytes": 305450,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 1000
+          },
+          "throughput_is_complete_import": true,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 8757248,
+            "directory_allocated_bytes": 262144,
+            "files": 2004,
+            "logical_bytes": 4153172
+          },
+          "elapsed_seconds": 2.485258740000063,
+          "error": null,
+          "input_mib_per_second": 0.11721106348318552,
+          "input_rows_per_second": 402.372591595825,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": 942946,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 19402752,
+          "summary": {
+            "accepted": 1000,
+            "compressed_bytes": 21097,
+            "expanded_bytes": 305450,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 1000
+          },
+          "throughput_is_complete_import": true,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": null,
+        "mode": "malformed",
+        "name": "malformed",
+        "rows": 1000,
+        "width": 0
+      },
+      "fixture": {
+        "compressed_bytes": 208,
+        "compressed_sha256": "69790fffeb3c3d70ebe1365b6cc5ae3f6dfe4c8e1bdc7a16ca7fa38678da2cca",
+        "expanded_bytes": 19500,
+        "expanded_sha256": "aaebcf76237986b2c125ccff2077dced9db9113b163ff06a8fecff7e73bbdc32"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 4300800,
+            "directory_allocated_bytes": 126976,
+            "files": 1004,
+            "logical_bytes": 213317
+          },
+          "elapsed_seconds": 0.11476247200016587,
+          "error": null,
+          "input_mib_per_second": 0.1620446897474899,
+          "input_rows_per_second": 8713.649876751999,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18276352,
+          "rss_hwm_bytes": 18743296,
+          "summary": {
+            "accepted": 0,
+            "compressed_bytes": 208,
+            "expanded_bytes": 19500,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 1000,
+            "rows": 1000
+          },
+          "throughput_is_complete_import": true,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 4300800,
+            "directory_allocated_bytes": 126976,
+            "files": 1004,
+            "logical_bytes": 213317
+          },
+          "elapsed_seconds": 0.2317761670001346,
+          "error": null,
+          "input_mib_per_second": 0.08023538144847774,
+          "input_rows_per_second": 4314.507453216358,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": 542114,
+          "repeat": 0,
+          "rss_baseline_bytes": 18276352,
+          "rss_hwm_bytes": 19050496,
+          "summary": {
+            "accepted": 0,
+            "compressed_bytes": 208,
+            "expanded_bytes": 19500,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 1000,
+            "rows": 1000
+          },
+          "throughput_is_complete_import": true,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": null,
+        "mode": "valid",
+        "name": "long-line-boundary",
+        "rows": 4,
+        "width": 2097152
+      },
+      "fixture": {
+        "compressed_bytes": 1392798,
+        "compressed_sha256": "c72e58c1f7c7b0f7949e4adef76cd29cbc496c6ed16f7af360b2bddd8de2e8d2",
+        "expanded_bytes": 8388608,
+        "expanded_sha256": "e42c54a372a2bd1a52b0973f6f5bbd58fba189119008c08b3c74132ceca8c105"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 18219008,
+            "directory_allocated_bytes": 4096,
+            "files": 12,
+            "logical_bytes": 18191746
+          },
+          "elapsed_seconds": 0.3138857469998584,
+          "error": null,
+          "input_mib_per_second": 25.486980777128466,
+          "input_rows_per_second": 12.743490388564233,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18276352,
+          "rss_hwm_bytes": 32935936,
+          "summary": {
+            "accepted": 4,
+            "compressed_bytes": 1392798,
+            "expanded_bytes": 8388608,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 4
+          },
+          "throughput_is_complete_import": true,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 18219008,
+            "directory_allocated_bytes": 4096,
+            "files": 12,
+            "logical_bytes": 18191746
+          },
+          "elapsed_seconds": 0.32002676100000826,
+          "error": null,
+          "input_mib_per_second": 24.997909471701316,
+          "input_rows_per_second": 12.498954735850658,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": 11244422,
+          "repeat": 0,
+          "rss_baseline_bytes": 18276352,
+          "rss_hwm_bytes": 33345536,
+          "summary": {
+            "accepted": 4,
+            "compressed_bytes": 1392798,
+            "expanded_bytes": 8388608,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 4
+          },
+          "throughput_is_complete_import": true,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": "line_limit",
+        "mode": "valid",
+        "name": "long-line-overflow",
+        "rows": 1,
+        "width": 2097153
+      },
+      "fixture": {
+        "compressed_bytes": 298566,
+        "compressed_sha256": "846571f8db531dd817f81c2fa624f782f17781e430ed000d0540ce0247107bd3",
+        "expanded_bytes": 2097153,
+        "expanded_sha256": "3c0ae08649ce8c97ff5a1dc7a1a9588960b122a5cd285adc84c7760387be9739"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 299008,
+            "directory_allocated_bytes": 4096,
+            "files": 2,
+            "logical_bytes": 298566
+          },
+          "elapsed_seconds": 0.016603146999841556,
+          "error": "line_limit",
+          "input_mib_per_second": null,
+          "input_rows_per_second": null,
+          "private_orphans": 0,
+          "published": false,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 22556672,
+          "summary": null,
+          "throughput_is_complete_import": false,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 299008,
+            "directory_allocated_bytes": 4096,
+            "files": 2,
+            "logical_bytes": 298566
+          },
+          "elapsed_seconds": 0.02052784000011343,
+          "error": "line_limit",
+          "input_mib_per_second": null,
+          "input_rows_per_second": null,
+          "private_orphans": 0,
+          "published": false,
+          "python_peak_bytes": 4295311,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 22818816,
+          "summary": null,
+          "throughput_is_complete_import": false,
+          "traced": true
+        }
+      ]
+    },
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": "invalid_gzip",
+        "mode": "corrupt",
+        "name": "corrupt-gzip",
+        "rows": 100,
+        "width": 0
+      },
+      "fixture": {
+        "compressed_bytes": 2295,
+        "compressed_sha256": "7ce61a55e673b308ef9158e57d3ff353265ad9a22e8d03bfc03e359636b7b9ce",
+        "expanded_bytes": 35050,
+        "expanded_sha256": "d949447f3a29bb797c2d8d31c7f3bf7d589405ec58ae6aa42b0c29e09a47bfca"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 4096,
+            "directory_allocated_bytes": 4096,
+            "files": 2,
+            "logical_bytes": 2295
+          },
+          "elapsed_seconds": 0.0008136609999382927,
+          "error": "invalid_gzip",
+          "input_mib_per_second": null,
+          "input_rows_per_second": null,
+          "private_orphans": 0,
+          "published": false,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18272256,
+          "rss_hwm_bytes": 18403328,
+          "summary": null,
+          "throughput_is_complete_import": false,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 4096,
+            "directory_allocated_bytes": 4096,
+            "files": 2,
+            "logical_bytes": 2295
+          },
+          "elapsed_seconds": 0.0018534150001414673,
+          "error": "invalid_gzip",
+          "input_mib_per_second": null,
+          "input_rows_per_second": null,
+          "private_orphans": 0,
+          "published": false,
+          "python_peak_bytes": 131435,
+          "repeat": 0,
+          "rss_baseline_bytes": 18268160,
+          "rss_hwm_bytes": 18690048,
+          "summary": null,
+          "throughput_is_complete_import": false,
+          "traced": true
+        }
+      ]
+    }
+  ],
+  "schema": "dncp-synthetic-benchmark/1",
+  "synthetic_only": true
+}

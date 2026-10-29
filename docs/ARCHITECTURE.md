@@ -42,3 +42,10 @@ version, exclusion counts, rule version and parameters. Findings inherit a snaps
 A content hash proves byte identity; it does not prove truth, authorship or collection time.
 Environment dependency ranges are currently bounded but not fully locked. Add hashed lock files
 before a real-data release and preserve environment metadata with exports.
+
+## Measured local intake budgets
+
+[ADR 0002](adr/0002-measured-dncp-workload-budgets.md) records the implemented DNCP CLI
+ceilings, browser deferral and alternatives. The [synthetic resource experiment](DNCP_BENCHMARK.md)
+measures process RSS, traced Python allocations, throughput and disk/file amplification separately.
+Empirical measurements are not guaranteed memory limits; the browser has no DNCP importer yet.
