@@ -39,3 +39,10 @@ pilot, production activation or redistribution clearance; #6 remains open.
 DNCP local publication now uses an atomic Linux no-replace directory rename; unsupported
 platforms/filesystems fail closed. Fault injection, concurrent writers and SIGKILL boundaries
 are covered with synthetic inputs. See [guarantees and recovery](DNCP_PUBLICATION.md).
+
+Implemented for the measured-workload portion of #1: [deterministic offline DNCP benchmarks](DNCP_BENCHMARK.md)
+with fresh-process RSS and separate Python-allocation passes, exact/over input boundaries,
+dense child graphs, negative inputs and retained environment/hash/measurement records.
+[ADR 0002](adr/0002-measured-dncp-workload-budgets.md) leaves byte/row defaults unchanged and
+makes the absence of a guaranteed RSS/output cap explicit. Browser intake remains unimplemented.
+These are synthetic local observations, not a real-source pilot or a production budget certification.

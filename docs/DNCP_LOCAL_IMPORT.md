@@ -116,3 +116,11 @@ award, PYG `9007199254740993.01`, unknown bid count/signing date, UTC midnight f
 `+02:00` timestamp. `test_rejects_and_quarantine` expects 1 accepted and 3 rejected rows and retains
 the parent with a missing-ID contract quarantined. No rights to an actual dataset are implied by
 these synthetic attestations.
+
+## Resource measurements
+
+The 2,000-row `tracemalloc` regression is not a process RSS guarantee. The separate
+[reproducible synthetic resource experiment](DNCP_BENCHMARK.md) covers fresh-process RSS,
+Python allocations, throughput, disk/file amplification and independent input boundaries.
+See [ADR 0002](adr/0002-measured-dncp-workload-budgets.md) before interpreting these observations
+as workload budgets; no OS-enforced RSS or output-disk cap is introduced.
