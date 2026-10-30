@@ -21,7 +21,8 @@ Planned: all live connectors, canonical real-source validation, three production
 DuckDB/Parquet processing, React explorer, search, CSV exports, graph/R/cyber modules and hosting.
 No donation account or FUNDING.yml. Branding remains provisional with known conflicts.
 DNCP activation remains gated by open #6/#7. PR #27 proposes a fuller local input contract;
-its research branch is not merged here. No actual source intake is activated.
+its reviewed files are explicitly incorporated by the stratified-quality follow-up. No automatic
+source intake is activated.
 
 The docs/product-roadmap branch expands the README into a proposed long-term product blueprint:
 six detailed modules, public/local/research workflows, shared capabilities, dependencies, v0.6
@@ -33,7 +34,7 @@ Verification and GitHub issue links are recorded in VALIDATION.md and BACKLOG.md
 source rights/fields assessment, then a bounded, local DNCP connector with synthetic mapping tests.
 
 Implemented locally for #7: [bounded DNCP gzip intake](DNCP_LOCAL_IMPORT.md), using PR #29
-canonical mapping. This supersedes the earlier planned local-intake status only. No real-data
+canonical mapping. This supersedes the earlier planned local-intake status only. A limited 22-row source-prefix compatibility check is now recorded below; no representative
 pilot, production activation or redistribution clearance; #6 remains open.
 
 DNCP local publication now uses an atomic Linux no-replace directory rename; unsupported
@@ -48,3 +49,10 @@ now requires operator-configured logical output-byte and file-count ceilings and
 space/inodes before and during work; these checks do not replace filesystem quotas or OS limits.
 Browser intake remains unimplemented. Measurements and resource tests use synthetic inputs, not a
 real-source pilot or production budget certification.
+
+Implemented for part of #6: [deterministic stratified quality assessment](DNCP_QUALITY.md) over
+private importer raw evidence, with status/UTC tender-period/lot strata, missing-field states,
+bidder/bid/lot diagnostics and explicit screening criteria. The [bounded source check](evidence/dncp-quality-2026-10-30/README.md)
+reconfirmed the same 22 prefix records using 256 KiB; no older cases or usable bid-to-lot links
+were established. All real analytical indicators remain blocked pending broader frame and
+publisher-semantic evidence. Synthetic tests establish algorithm behavior, not source representativeness.
