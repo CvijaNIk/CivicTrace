@@ -108,3 +108,39 @@ sampling, adversarial fuzzing, hosted Python-version CI, filesystem certificatio
 production pilot. Existing [atomic publication limits](DNCP_PUBLICATION.md), privacy decisions
 and provenance requirements still apply unchanged. No input limit is raised or lowered by
 this change; see ADR 0002 for why the available measurements do not justify a universal cap.
+
+## Output budget controls (2026-10-30)
+
+The local importer now requires an explicit `OutputBudget`; the CLI requires
+`--max-output-bytes` and `--max-output-files` on every invocation. Optional
+`--min-free-bytes` and `--min-free-inodes` preserve operator-selected `statvfs` safety floors.
+The application byte budget covers logical file contents for every source, raw, canonical,
+validation, manifest and summary file. The file budget counts those regular files. Available
+space and free inodes are re-read before staging and during writes. Filesystem allocation,
+directory metadata, quotas, concurrent external writes and physical device usage are distinct;
+`statvfs` checks are observations and do not reserve capacity across processes. Actual `ENOSPC`
+or `EDQUOT` failures abort before publication and trigger cleanup.
+
+Reproduce the checked small profile with:
+
+```sh
+python scripts/benchmark_dncp.py --case small --output /tmp/dncp-output-budget.json
+python -m pytest -q
+```
+
+On Linux 6.18.57 / Python 3.12.14 / zlib 1.3.2, the 100-record invented profile accepted all
+rows and published 204 files: 575,054 logical bytes, 1,314,816 allocated file bytes, plus a
+32,768-byte output-directory allocation. The fixture was 2,295 compressed bytes and 35,050
+expanded bytes. The raw run, hashes and environment are in
+[output-budget-smoke-2026-10-30.json](evidence/dncp-benchmark-2026-10-29/output-budget-smoke-2026-10-30.json).
+This is one smoke measurement on the current overlay filesystem, not a general amplification
+factor or a recommended cap. The harness passes an explicitly large budget to keep its measured
+profile from being constrained; that value is test configuration, not an importer default.
+
+The regression suite verifies exact byte/file boundaries, over-limit rejection with no final
+directory or staging orphan, low-free-space checks before and during work, a many-small-files
+limit, concurrent no-replace publication, and SIGTERM cleanup while writing. Existing SIGKILL
+tests also verify that abrupt termination cannot publish a partial result. SIGKILL cannot run
+Python cleanup: any abandoned stage remains mode 0700 and must be inspected/removed after ensuring
+no writer is active. Python 3.12.14 test result on this checkout: 87 passed and 88 subtests passed;
+these functional checks do not certify filesystem quotas or a production resource SLA.

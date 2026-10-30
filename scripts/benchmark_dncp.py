@@ -242,7 +242,14 @@ def worker(directory, traced):
     started = time.perf_counter()
     error, summary = None, None
     try:
-        summary = dncp.import_file(source, output, manifest)
+        # This generous explicit benchmark budget keeps the experiment measuring the
+        # importer, not an implicit application default. It is not a deployment setting.
+        summary = dncp.import_file(
+            source,
+            output,
+            manifest,
+            budget=dncp.OutputBudget(max_bytes=16 * 1024**3, max_files=200_000),
+        )
     except dncp.IntakeError as exc:
         error = str(exc)
     elapsed = time.perf_counter() - started

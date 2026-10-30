@@ -18,19 +18,25 @@ The future browser must obtain separate worker/cancellation/heap measurements be
 Demo JSON and DNCP JSONL are different contracts; the former's limits cannot be transferred.
 
 Use [the offline experiment](../DNCP_BENCHMARK.md) and its versioned raw observations before
-changing ceilings. Keep defaults unchanged in this iteration: the tested shapes complete at
-the allowed boundaries and reject the exceeded boundaries, but do not establish safety for all
-legal JSON structures. An operator must still supply suitable free space, file/inode quotas and
-an OS-enforced process/container memory limit where a guaranteed resource budget is required.
-Input ceilings are not a replacement for that isolation. No portable RSS cap is implemented.
-A lower per-job input limit is available through the library; CLI configuration is future work.
+changing ceilings. An operator must now supply a per-import logical output-byte ceiling and regular
+file-count ceiling, and may configure free-byte/free-inode safety floors. They are explicit
+application budgets, not defaults inferred from the single benchmark host. `statvfs` is checked
+before staging and during writes; these checks are observations, not cross-process reservations.
+Filesystem quotas and concurrent external writers can expose less capacity, so actual writes may
+still fail with `ENOSPC` or `EDQUOT`; those failures abort and clean staging. The benchmark's
+12 GiB / 120,000 inode provisioning suggestion is specific to its suite and not a universal cap.
+These output controls do not establish safety for every legal JSON shape or an OS-enforced memory
+limit. Deployments requiring hard memory or disk isolation still need OS/container limits.
 
 ## Architecture and alternatives
 
 Streaming one line/model at a time preserves exact raw evidence, canonical field states,
 source hashes and original pointers. Hashed duplicate tracking grows with accepted identities.
 The importer writes separate raw/model files; this favors inspection and crash recovery but
-amplifies disk space and inode consumption. Publication remains the single Linux atomic
+amplifies disk space and inode consumption. `OutputBudget` checks prospective logical bytes and
+file count before writes, while available bytes and free inodes are observed through `statvfs`.
+Neither count includes directory metadata or promises physical-block accounting. Publication
+remains the single Linux atomic
 no-replace rename from PR #31; no benchmark replaces it with a weaker operation.
 
 Rejected for now: loading the annual JSON into memory; an implicit browser upload; a hosted
