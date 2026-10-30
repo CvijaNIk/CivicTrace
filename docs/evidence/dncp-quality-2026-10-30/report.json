@@ -1,0 +1,1844 @@
+{
+  "analytics": {
+    "reasons": [
+      "publisher_bid_lot_status_semantics_unconfirmed",
+      "population_frame_and_selection_not_verified",
+      "field_coverage_is_descriptive_not_irregularity_evidence"
+    ],
+    "status": "blocked"
+  },
+  "checks": {
+    "awards_date": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 11,
+      "result": "pass",
+      "valid": 11
+    },
+    "awards_money": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 11,
+      "result": "pass",
+      "valid": 11
+    },
+    "awards_status": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 11,
+      "result": "pass",
+      "valid": 11
+    },
+    "bid_dates": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 28,
+      "result": "fail",
+      "valid": 0
+    },
+    "bid_identity": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 7,
+      "result": "pass",
+      "valid": 7
+    },
+    "bid_lot_linkage": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 7,
+      "result": "fail",
+      "valid": 0
+    },
+    "bid_participants": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 7,
+      "result": "pass",
+      "valid": 7
+    },
+    "bid_values": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 28,
+      "result": "fail",
+      "valid": 0
+    },
+    "contracts_date_signed": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 11,
+      "result": "fail",
+      "valid": 0
+    },
+    "contracts_id": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 11,
+      "result": "fail",
+      "valid": 10
+    },
+    "contracts_money": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 11,
+      "result": "fail",
+      "valid": 10
+    },
+    "contracts_status": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 11,
+      "result": "fail",
+      "valid": 10
+    },
+    "procedure_status": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 22,
+      "result": "pass",
+      "valid": 22
+    },
+    "reported_tenderers": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 22,
+      "result": "fail",
+      "valid": 12
+    },
+    "tender_period": {
+      "criterion": ">=95% valid in selected applicable objects",
+      "denominator": 22,
+      "result": "pass",
+      "valid": 22
+    }
+  },
+  "design": {
+    "cutoff_year_utc": 2024,
+    "date_basis": "tender.tenderPeriod.startDate (UTC year); no fallback",
+    "expanded_sha256": "3cb910737adfd0a30f43700b572413ba1861ef455bca9b544941d9ec8bed23c1",
+    "frame": "supplied immutable importer cohort only",
+    "method": "SHA256 bottom-k per process stratum",
+    "quota": 25,
+    "seed": "dncp-quality-v1",
+    "snapshot_sha256": "0a777d453313130a643852636bf11c0d346f5163a3faf8fec6e029abcb6ae3a0"
+  },
+  "frame_rows": 22,
+  "profiled_rows": 22,
+  "schema": "dncp-stratified-quality/1",
+  "source_check": {
+    "acquisition": {
+      "complete_lines": 22,
+      "compressed_prefix_bytes": 262144,
+      "compressed_prefix_sha256": "3733c34d8690810a7bb72c16afb87d17f41b8299abb52530379cbff32626d9a8",
+      "content_range": "bytes 0-262143/181731353",
+      "discarded_tail_bytes": 1083944,
+      "etag": "\"ad50019-659753e38b4f4\"",
+      "expanded_prefix_bytes": 2947318,
+      "final_url": "https://fastly.data.open-contracting.org/downloads/paraguay_dncp_records/4097/2025.jsonl.gz",
+      "full_snapshot_sha256": null,
+      "last_modified": "Thu, 20 Aug 2026 07:12:30 GMT",
+      "retrieved_at": "2026-10-30T19:05:19.426287+00:00",
+      "selection": "all complete prefix lines",
+      "status": 206,
+      "url": "https://fastly.data.open-contracting.org/downloads/paraguay_dncp_records/4097/2025.jsonl.gz"
+    },
+    "attribution": "DNCP Paraguay via OCP publication 63; CC BY 4.0; no endorsement; modifications as described",
+    "changes": "OCP compilation inherited; complete prefix lines repacked locally",
+    "import_summary": {
+      "accepted": 22,
+      "compressed_bytes": 212614,
+      "expanded_bytes": 1863374,
+      "limits": {
+        "compressed": 268435456,
+        "depth": 32,
+        "expanded": 2147483648,
+        "line": 2097152,
+        "ratio": 200,
+        "rows": 50000
+      },
+      "rejected": 0,
+      "rows": 22
+    },
+    "scope": "nonrepresentative prefix compatibility check only",
+    "terms_evidence": "docs/DNCP_SOURCE_REVIEW_2026_10_28.md at research branch 0dc03bece887ff7052b3c1dad00e8849387cae49, updated 2026-10-30; conditional local-only structured-data pilot only; no new clearance claimed"
+  },
+  "strata": [
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "single",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "complete"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "complete"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "complete"
+    },
+    {
+      "coverage": "shortfall",
+      "frame_rows": 10,
+      "inclusion_probability": {
+        "denominator": 10,
+        "numerator": 10
+      },
+      "lots": "single",
+      "observations": [
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "2fbd32186b6611a85fb7056d75122ffc2498c29a85918aa307f14251e851c2a6",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 1,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 1,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 1,
+            "unique_bid_participants": null,
+            "unique_tenderers": 1
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "daf4bad406112223170431455296f6f37933f22968b75d271bb84a52fb09af28",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 2,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 2,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 2,
+            "unique_bid_participants": null,
+            "unique_tenderers": 2
+          }
+        },
+        {
+          "fields": {
+            "awards": [
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "line_sha256": "c049001473520a6352516b7c5a1b9863042e35cbb1b9e483d1cbed45c055bc82",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 1,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 1,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 1,
+            "unique_bid_participants": null,
+            "unique_tenderers": 1
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "d7b19f707784b3592e19f5e616f96b51511579fb0fb7bd0f2bfb020c70535eaf",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 4,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 4,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 4,
+            "unique_bid_participants": null,
+            "unique_tenderers": 4
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "9f7981afbcd18d345a551027c96952bf3705661700ee0bda2a817c45706e8731",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 1,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 1,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 1,
+            "unique_bid_participants": null,
+            "unique_tenderers": 1
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "fc12f4d6e23219bd62eeaf32d25c754587b27d75c5a0e48d69a6475aea358fea",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": null,
+            "unique_tenderers": null
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "3e56f2551823215d38b08bed61ba2f8c11792c0ea4801301f5fca56c9f90eee6",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 1,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 1,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 1,
+            "unique_bid_participants": null,
+            "unique_tenderers": 1
+          }
+        },
+        {
+          "fields": {
+            "awards": [
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "bid_dates": [
+              "absent"
+            ],
+            "bid_values": [
+              {
+                "value_state": "absent"
+              }
+            ],
+            "bids_details_count": 1,
+            "bids_details_state": "valid",
+            "contracts": [
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "line_sha256": "941348a41473c940bdbc18f1f328eba4a728e1a953a31cafa5fb1abb697ee6d2",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": 1,
+            "bid_ids": "valid",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "valid",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": 1,
+            "unique_tenderers": null
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "a9d0adc0d75c977b11f921d92c5363aa7be68a67dff38360a3e5b756fa7c5205",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": null,
+            "unique_tenderers": null
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "a25511344a42bfd9093411a11908654d130e649f13e29624ddc8fe7ed3ea0a76",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 1,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 1,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 1,
+            "unique_bid_participants": null,
+            "unique_tenderers": 1
+          }
+        }
+      ],
+      "period": "recent",
+      "selected_rows": 10,
+      "status": "complete"
+    },
+    {
+      "coverage": "shortfall",
+      "frame_rows": 7,
+      "inclusion_probability": {
+        "denominator": 7,
+        "numerator": 7
+      },
+      "lots": "multiple",
+      "observations": [
+        {
+          "fields": {
+            "awards": [
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              },
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "bid_dates": [
+              "absent",
+              "absent",
+              "absent"
+            ],
+            "bid_values": [
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              }
+            ],
+            "bids_details_count": 3,
+            "bids_details_state": "valid",
+            "contracts": [
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              },
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "line_sha256": "745f9458365262144cd2a68b5606fee29e5fbecdc27ae2d575d51053713277a4",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": 3,
+            "bid_ids": "valid",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "valid",
+            "lot_ids": "valid",
+            "lots": 32,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": 3,
+            "unique_tenderers": null
+          }
+        },
+        {
+          "fields": {
+            "awards": [
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              },
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "bid_dates": [
+              "absent",
+              "absent",
+              "absent",
+              "absent"
+            ],
+            "bid_values": [
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              }
+            ],
+            "bids_details_count": 4,
+            "bids_details_state": "valid",
+            "contracts": [
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              },
+              {
+                "date_signed": "absent",
+                "id": "absent",
+                "status": "absent",
+                "value": {
+                  "value_state": "absent"
+                }
+              }
+            ],
+            "line_sha256": "68a57777c44f547c858b3e95f3013f32be59f6c15c276c1381a6ff04fd860ba8",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": 4,
+            "bid_ids": "valid",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "valid",
+            "lot_ids": "valid",
+            "lots": 6,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": 4,
+            "unique_tenderers": null
+          }
+        },
+        {
+          "fields": {
+            "awards": [
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              },
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "bid_dates": [
+              "absent",
+              "absent",
+              "absent"
+            ],
+            "bid_values": [
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              }
+            ],
+            "bids_details_count": 3,
+            "bids_details_state": "valid",
+            "contracts": [
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              },
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "line_sha256": "eb402a0b190552a7ddd56441fd92f0c9a48d195ffb81603fd4bba514d9d8b4e1",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": 3,
+            "bid_ids": "valid",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "valid",
+            "lot_ids": "valid",
+            "lots": 2,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": 3,
+            "unique_tenderers": null
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "a2dcaed9c4214c3e0b159315ec0f8c996c393ebd0aaf8d0abb407c07fe38dde5",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 4,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 11,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 4,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 4,
+            "unique_bid_participants": null,
+            "unique_tenderers": 4
+          }
+        },
+        {
+          "fields": {
+            "awards": [
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "line_sha256": "557f07afc26a1767adf3cd1097a3e6a774121ff052f7636f0cedd857c93b9793",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 1,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 2,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 1,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 1,
+            "unique_bid_participants": null,
+            "unique_tenderers": 1
+          }
+        },
+        {
+          "fields": {
+            "awards": [
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              },
+              {
+                "date": "valid",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "bid_dates": [
+              "absent",
+              "absent",
+              "absent",
+              "absent",
+              "absent",
+              "absent",
+              "absent",
+              "absent",
+              "absent"
+            ],
+            "bid_values": [
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              }
+            ],
+            "bids_details_count": 9,
+            "bids_details_state": "valid",
+            "contracts": [
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              },
+              {
+                "date_signed": "absent",
+                "id": "valid",
+                "status": "valid",
+                "value": {
+                  "amount": "valid",
+                  "currency": "valid"
+                }
+              }
+            ],
+            "line_sha256": "5ada84221bb8813f9dbb0f11b1aee9bec675789f2c2bcfa76eaac0b88b5c4933",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": 9,
+            "bid_ids": "valid",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "valid",
+            "lot_ids": "valid",
+            "lots": 2,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": 9,
+            "unique_tenderers": null
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [
+              "absent",
+              "absent",
+              "absent",
+              "absent",
+              "absent",
+              "absent",
+              "absent"
+            ],
+            "bid_values": [
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              },
+              {
+                "value_state": "absent"
+              }
+            ],
+            "bids_details_count": 7,
+            "bids_details_state": "valid",
+            "contracts": [],
+            "line_sha256": "c3caf323db45f4bab23fc009d00320eb2d0bd591e3235e7689b00d6d8993904a",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": 7,
+            "bid_ids": "valid",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "valid",
+            "lot_ids": "valid",
+            "lots": 6,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": 7,
+            "unique_tenderers": null
+          }
+        }
+      ],
+      "period": "recent",
+      "selected_rows": 7,
+      "status": "complete"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "recent",
+      "selected_rows": 0,
+      "status": "complete"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "single",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "complete"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "complete"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "complete"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "single",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "cancelled"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "cancelled"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "cancelled"
+    },
+    {
+      "coverage": "shortfall",
+      "frame_rows": 3,
+      "inclusion_probability": {
+        "denominator": 3,
+        "numerator": 3
+      },
+      "lots": "single",
+      "observations": [
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "5b3347153fe0050f6cb78f1725c25e9d8c2407aa96bffd3bc9a02a5f77265cf1",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 2,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 2,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 2,
+            "unique_bid_participants": null,
+            "unique_tenderers": 2
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "8ad1a019b0aa6b11002f25ff758c2a7617c2ba45c41cbe853a67681b94115120",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": null,
+            "unique_tenderers": null
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "92771dc906e650891526093fdbb3ee6ae387152c51e7f197fe95c6259add2db3",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 1,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 1,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 1,
+            "unique_bid_participants": null,
+            "unique_tenderers": 1
+          }
+        }
+      ],
+      "period": "recent",
+      "selected_rows": 3,
+      "status": "cancelled"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "recent",
+      "selected_rows": 0,
+      "status": "cancelled"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "recent",
+      "selected_rows": 0,
+      "status": "cancelled"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "single",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "cancelled"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "cancelled"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "cancelled"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "single",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "unsuccessful"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "unsuccessful"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "unsuccessful"
+    },
+    {
+      "coverage": "shortfall",
+      "frame_rows": 2,
+      "inclusion_probability": {
+        "denominator": 2,
+        "numerator": 2
+      },
+      "lots": "single",
+      "observations": [
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [
+              "absent"
+            ],
+            "bid_values": [
+              {
+                "value_state": "absent"
+              }
+            ],
+            "bids_details_count": 1,
+            "bids_details_state": "valid",
+            "contracts": [],
+            "line_sha256": "0d3353d555c70be76a5566e36f8dc0e442d0d13d4750bb603db4931fb9b98b89",
+            "number_of_tenderers": "absent",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": null,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": 1,
+            "bid_ids": "valid",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "valid",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": null,
+            "reported_tenderers_state": "absent",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "unknown",
+            "tenderer_entries": null,
+            "unique_bid_participants": 1,
+            "unique_tenderers": null
+          }
+        },
+        {
+          "fields": {
+            "awards": [],
+            "bid_dates": [],
+            "bid_values": [],
+            "bids_details_count": 0,
+            "bids_details_state": "absent",
+            "contracts": [],
+            "line_sha256": "ac7249cf1da8d7fc3826335775c5c52c58029c69357ead822ff74ccfbb480a8f",
+            "number_of_tenderers": "valid",
+            "release_date": "valid",
+            "release_id": "valid",
+            "reported_tenderer_count": 2,
+            "reversed_tender_period": false,
+            "tender_end": "valid",
+            "tender_id": "valid",
+            "tender_start": "valid",
+            "tender_value": {
+              "amount": "valid",
+              "currency": "valid"
+            }
+          },
+          "relationships": {
+            "bid_details": null,
+            "bid_ids": "unknown",
+            "bid_lot_linkage": "unknown",
+            "bid_participant_identity": "unknown",
+            "lot_ids": "valid",
+            "lots": 1,
+            "lots_with_bid_links": null,
+            "per_lot_unique_participants": null,
+            "reported_tenderers": 2,
+            "reported_tenderers_state": "valid",
+            "reported_vs_bid_participants": "unknown",
+            "reported_vs_unique_tenderers": "equal",
+            "tenderer_entries": 2,
+            "unique_bid_participants": null,
+            "unique_tenderers": 2
+          }
+        }
+      ],
+      "period": "recent",
+      "selected_rows": 2,
+      "status": "unsuccessful"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "recent",
+      "selected_rows": 0,
+      "status": "unsuccessful"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "recent",
+      "selected_rows": 0,
+      "status": "unsuccessful"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "single",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "unsuccessful"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "unsuccessful"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "unsuccessful"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "single",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "unknown"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "unknown"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "older",
+      "selected_rows": 0,
+      "status": "unknown"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "single",
+      "observations": [],
+      "period": "recent",
+      "selected_rows": 0,
+      "status": "unknown"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "recent",
+      "selected_rows": 0,
+      "status": "unknown"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "recent",
+      "selected_rows": 0,
+      "status": "unknown"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "single",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "unknown"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "multiple",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "unknown"
+    },
+    {
+      "coverage": "empty",
+      "frame_rows": 0,
+      "inclusion_probability": {
+        "denominator": 0,
+        "numerator": 0
+      },
+      "lots": "unknown",
+      "observations": [],
+      "period": "unknown",
+      "selected_rows": 0,
+      "status": "unknown"
+    }
+  ],
+  "unprofiled": {}
+}

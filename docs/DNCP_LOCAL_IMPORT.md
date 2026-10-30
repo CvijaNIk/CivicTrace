@@ -3,8 +3,9 @@
 This change implements an offline subset of #7 on PR #29's canonical model. It does not close
 #6, approve redistribution, download data, publish records or activate production indicators.
 The pinned design reference is PR #27 (`415bda798e75f478cb06246a0efc0b744b922fc1`), especially
-its `docs/DNCP_CONNECTOR_INPUT_CONTRACT.md` and source review. Those research files are not
-silently incorporated into this branch. No actual annual dataset was supplied or imported.
+its `docs/DNCP_CONNECTOR_INPUT_CONTRACT.md` and source review. The stratified-quality follow-up now explicitly incorporates the updated PR #27 research files
+and tests; see [compatibility and source gate](DNCP_QUALITY.md). No complete annual dataset was supplied or imported. The follow-up checks only a locally
+repacked 22-row research prefix; that is not a representative pilot.
 
 ## Operation
 
