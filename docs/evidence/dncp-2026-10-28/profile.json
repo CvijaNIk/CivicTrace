@@ -1,0 +1,908 @@
+{
+  "acquisition": {
+    "complete_lines": 22,
+    "compressed_prefix_bytes": 262144,
+    "compressed_prefix_sha256": "3733c34d8690810a7bb72c16afb87d17f41b8299abb52530379cbff32626d9a8",
+    "content_range": "bytes 0-262143/181731353",
+    "discarded_tail_bytes": 1083944,
+    "etag": "\"ad50019-659753e38b4f4\"",
+    "expanded_prefix_bytes": 2947318,
+    "final_url": "https://fastly.data.open-contracting.org/downloads/paraguay_dncp_records/4097/2025.jsonl.gz",
+    "full_snapshot_sha256": null,
+    "last_modified": "Thu, 20 Aug 2026 07:12:30 GMT",
+    "retrieved_at": "2026-10-28T18:16:03.172089+00:00",
+    "selection": "all complete prefix lines",
+    "status": 206,
+    "url": "https://fastly.data.open-contracting.org/downloads/paraguay_dncp_records/4097/2025.jsonl.gz"
+  },
+  "records": [
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 1,
+      "line_sha256": "99b5011cb0e8c952170ea967400f6b5d2078788c5d486180297d0abf2fa50b93",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-479617-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 1,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 2,
+      "line_sha256": "3b383150c9ab4b0f6b17e11f317adabe1846694ffca1ae8516eaa2766ce0341f",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-478195-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 2,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "cancelled",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 3,
+      "line_sha256": "56a69ebb27e6aae2ee2e8c86d1ffd0001715522303311737ce375f8a67a465f9",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-479618-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 1,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 4,
+      "line_sha256": "1fe580ef00d8277e88141b6af782c461a742686eb1b775b51fa37a47232bcdd4",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-479048-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 1,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "cancelled",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 5,
+      "line_sha256": "70894d60c8783b1798c3e2023fa730a14f618399c5cb9f87ed3d5452a0d237e3",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-477561-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 2,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 6,
+      "line_sha256": "4ccad310d1e8947a3995e6506145b8f929d68e74dcde7d931e2c7ae58f2b5ad7",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-478400-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "cancelled",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 7,
+      "line_sha256": "8af17c26b5cf21424bd8be393d120665e39fa0572355e3984e121ce6c6be6d9b",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-477945-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 1,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 8,
+      "line_sha256": "7cbe2ddb6c62534efd29c760e449574563ace98cb2622310a27fcead5d7f5e12",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-477858-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 1,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 9,
+      "line_sha256": "a632eb2a38a6f3422ed513e6ececd9ff53b66ac42dd96e1eebcb3ef2c39b82e8",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-477177-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 2,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "unsuccessful",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [
+        "absent"
+      ],
+      "bid_values": [
+        {
+          "value_state": "absent"
+        }
+      ],
+      "bids_details_count": 1,
+      "bids_details_state": "valid",
+      "contracts": [],
+      "line": 10,
+      "line_sha256": "609123156e6ce19eaf221ad197c6a6394e20cd9800f67b32a007262e8a4c4ee8",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-469326-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "unsuccessful",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [
+        "absent",
+        "absent",
+        "absent",
+        "absent",
+        "absent",
+        "absent",
+        "absent"
+      ],
+      "bid_values": [
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        }
+      ],
+      "bids_details_count": 7,
+      "bids_details_state": "valid",
+      "contracts": [],
+      "line": 11,
+      "line_sha256": "382efde32baf70a7290e9af479b5b5b798052be6cc6c3635d772040aa33080c1",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-476411-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 12,
+      "line_sha256": "2b90ded1f6704eae700dd767b354572895d735ec5845201cccc5c0cf3912c93a",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-469382-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 13,
+      "line_sha256": "00a0bd20c88d43afc6aa8963daa15cecf7efa3550692cc93cdcdd11176f662f6",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-466589-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "line": 14,
+      "line_sha256": "c5006a5784732cdf56b4c1e547b462e16bc60a501f025f7b232d053893b18637",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-462180-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 1,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 15,
+      "line_sha256": "9c711be6242343410f73321d0d71a8e4fc64f2d502e1e74e0a8d1c754a20d26d",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-468240-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 4,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [],
+      "line": 16,
+      "line_sha256": "39c5462f3f28fc2f71c96c646788e15c2d0e94544f70f43fef2fe5839a13f411",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-474586-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 4,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "bid_dates": [],
+      "bid_values": [],
+      "bids_details_count": 0,
+      "bids_details_state": "absent",
+      "contracts": [
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "line": 17,
+      "line_sha256": "60221056e4f9cb4e3ce3b1744f94937ad7369af943db6118dcf463eb68acfd71",
+      "number_of_tenderers": "valid",
+      "ocid": "ocds-03ad3f-476971-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": 1,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "bid_dates": [
+        "absent"
+      ],
+      "bid_values": [
+        {
+          "value_state": "absent"
+        }
+      ],
+      "bids_details_count": 1,
+      "bids_details_state": "valid",
+      "contracts": [
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "line": 18,
+      "line_sha256": "bc9b85f7871881ab3770694178e151ac546518c990d7134f0a6072e794df18c8",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-476706-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        },
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "bid_dates": [
+        "absent",
+        "absent",
+        "absent"
+      ],
+      "bid_values": [
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        }
+      ],
+      "bids_details_count": 3,
+      "bids_details_state": "valid",
+      "contracts": [
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        },
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "line": 19,
+      "line_sha256": "3bc2489b4cdb15ac04cf0bf174fc0ff4565479d234e9858ce86cf523a9f3279d",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-476338-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        },
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "bid_dates": [
+        "absent",
+        "absent",
+        "absent",
+        "absent"
+      ],
+      "bid_values": [
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        }
+      ],
+      "bids_details_count": 4,
+      "bids_details_state": "valid",
+      "contracts": [
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        },
+        {
+          "date_signed": "absent",
+          "id": "absent",
+          "value": {
+            "value_state": "absent"
+          }
+        }
+      ],
+      "line": 20,
+      "line_sha256": "8d7507ee704db0e520829f346fb51ed0c8081f9bb884bef0a7b2e367e2d0ce9e",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-462484-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        },
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "bid_dates": [
+        "absent",
+        "absent",
+        "absent",
+        "absent",
+        "absent",
+        "absent",
+        "absent",
+        "absent",
+        "absent"
+      ],
+      "bid_values": [
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        }
+      ],
+      "bids_details_count": 9,
+      "bids_details_state": "valid",
+      "contracts": [
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        },
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "line": 21,
+      "line_sha256": "713922d141f11bc941d994d0c8c8caf63763acce72a96a16f26e964157f21f34",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-475544-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    },
+    {
+      "awards": [
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        },
+        {
+          "date": "valid",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "bid_dates": [
+        "absent",
+        "absent",
+        "absent"
+      ],
+      "bid_values": [
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        },
+        {
+          "value_state": "absent"
+        }
+      ],
+      "bids_details_count": 3,
+      "bids_details_state": "valid",
+      "contracts": [
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        },
+        {
+          "date_signed": "absent",
+          "id": "valid",
+          "value": {
+            "amount": "valid",
+            "currency": "valid",
+            "currency_code": "PYG"
+          }
+        }
+      ],
+      "line": 22,
+      "line_sha256": "fd19b5f909b429d966070e7d9a1e6ceeff7b7beb5596884b73f394acdacba0ce",
+      "number_of_tenderers": "absent",
+      "ocid": "ocds-03ad3f-463728-1",
+      "release_date": "valid",
+      "release_id": "valid",
+      "reported_tenderer_count": null,
+      "reversed_tender_period": false,
+      "tender_end": "valid",
+      "tender_id": "valid",
+      "tender_start": "valid",
+      "tender_status": "complete",
+      "tender_value": {
+        "amount": "valid",
+        "currency": "valid",
+        "currency_code": "PYG"
+      }
+    }
+  ],
+  "rows": 22,
+  "schema": "dncp-research-profile/1"
+}
