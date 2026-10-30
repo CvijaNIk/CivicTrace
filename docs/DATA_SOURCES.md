@@ -20,14 +20,19 @@ assumption. Retain the entire snapshot hash even if importing a subset; record e
 compression/decompression hashes and registry retrieval date separately from CivicTrace collection.
 Do not download or serve the all-time dataset by default.
 
-The [2026-10-28 DNCP review](DNCP_SOURCE_REVIEW_2026_10_28.md) finds a current
-publisher legal notice and publisher catalogue CC BY 4.0 metadata consistent with the registry.
-The obsolete `/datos/legal` link still fails; the current path is `/datos/aviso-legal`.
+The [2026-10-28 DNCP review](DNCP_SOURCE_REVIEW_2026_10_28.md), rechecked against the live
+publisher pages on 2026-10-30, supports CC BY 4.0 reuse only for the specifically listed
+structured datasets and identified OCP publication 63 artifact, subject to attribution and
+third-party/privacy exclusions. It does not license attachments or personal information by
+implication. The obsolete `/datos/legal` link still fails; the current notice is
+`/datos/aviso-legal`.
 One 256 KiB range yielded 22 complete compiled releases. Missing tenderer counts, bid dates/values
 and contract identities/signing dates prevent blanket indicator-readiness claims. No raw real
-records are bundled. Retain terms/attribution evidence and apply the
-[proposed connector input contract](DNCP_CONNECTOR_INPUT_CONTRACT.md). This is conditional
-support for a local pilot, not completion of #6/#7 or approval of every attachment/public extract.
+records are bundled. Retain exact-artifact terms/attribution evidence and apply the
+[proposed connector input contract](DNCP_CONNECTOR_INPUT_CONTRACT.md). The narrow rights question
+is resolved for the identified structured resources; automatic intake, unrestricted storage,
+attachments, public extracts and production indicators remain gated on artifact capture, privacy
+review and representative field-quality work. This does not complete #6/#7.
 
 ## Verified documentation links
 - [DNCP registry entry and data quality](https://data.open-contracting.org/en/publication/63)

@@ -147,3 +147,30 @@ The narrow structured-data licensing question is sufficiently supported to retai
 candidate. No substitute source is declared cleared on the strength of a public download button.
 If future artifact terms conflict or evidence disappears, hold redistribution and reassess a backup
 under its own publisher terms rather than carrying DNCP's license across sources.
+
+## Publisher-rights recheck — 2026-10-30
+
+The official publisher pages were re-opened on 2026-10-30. The structured-data rights finding
+still applies only to the resources that the DNCP catalogue itself marks CC BY 4.0, and to the
+OCP Registry publication 63 artifact whose own record identifies that license. It does not extend
+to the portal software, linked tender attachments, or records from another source. No new data was
+downloaded for this recheck.
+
+| Question | Current evidence | Bounded conclusion |
+| --- | --- | --- |
+| Terms and reuse | DNCP's [catalogue](https://www.contrataciones.gov.py/datos/data) links the CC BY 4.0 legal code on listed structured datasets. The [current notice](https://www.contrataciones.gov.py/datos/aviso-legal) makes reuse the user's responsibility and disclaims accuracy, completeness and freshness. | For a specifically listed CC BY 4.0 structured dataset, copying, adaptation and redistribution are allowed under the license's attribution and change-notice terms, within rights the licensor can grant. No accuracy warranty or endorsement is implied. |
+| Registry artifact | OCP's [publication 63 record](https://data.open-contracting.org/en/publication/63) identifies CC BY 4.0 and provides annual downloadable OCDS data. | Treat this as evidence for that identified registry publication/artifact, not a blanket license for every DNCP item or every third-party element embedded in a record. Capture the exact artifact URL, version and license metadata at acquisition. |
+| Permitted acquisition route | DNCP's [Open Contracting documentation](https://www.contrataciones.gov.py/datos/open-contracting-info) distinguishes its real-time API from historical static JSON files; its [catalogue](https://www.contrataciones.gov.py/datos/data) lists annual compressed CSV downloads. The OCP record supplies annual compiled releases. | Use the publisher's listed download/API route or the exact OCP publication download. For API use, follow the current authentication and rate limits; do not scrape pages or fetch record attachments. This describes documented methods, not a new acquisition. |
+| Attribution | CC BY 4.0 requires appropriate credit, a license link and notice of changes; the publisher and registry do not endorse CivicTrace. | Use the proposed attribution above with the exact source/artifact, retrieval date and transformations filled in. Preserve supplied notices in the local manifest. |
+| Storage and redistribution limits | Neither page states a special retention period for the listed structured data. CC BY 4.0 does not grant privacy, personality, trademark or unrelated third-party rights. The DNCP notice places reuse risk on the user. | The license permits redistribution of the licensed structured data with attribution; this is not permission to republish attachments or personal information. No public extract until a record-level privacy/minimization review and exact-artifact terms capture are complete. Keep any pilot local and access-controlled. |
+| Field coverage | The 2026-10-28 prefix profile is unchanged: 22 complete records, nonrepresentative; bid details absent in 15/22 and all 28 observed bid details lack top-level date/value; 1/11 contracts lacks ID/value and all 11 lack signing dates. | Rights evidence is adequate for the named structured-data pilot. The source-quality/semantic gate remains open; do not treat the probe as representative or as permission to infer missing values. |
+
+### Rights-gate status
+
+**Resolved narrowly for the specifically identified structured DNCP catalogue resources and OCP
+publication 63 data under CC BY 4.0, subject to attribution and third-party/privacy exclusions.**
+**Still blocked for automatic intake, unrestricted storage, attachments, public extracts and
+production indicators.** Before any real-data pilot, capture the exact artifact's live license
+metadata and hash, confirm the selected fields exclude unnecessary personal information, record
+the applicable acquisition route/limits, and obtain review of the cohort and retention. The wider
+#6 issue remains open for the separate representative field-quality and semantic acceptance items.
