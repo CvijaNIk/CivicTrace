@@ -9,7 +9,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from benchmark_dncp import Case, cases, generate, line, run_case  # noqa: E402
-from civictrace.dncp import Limits, import_file  # noqa: E402
+from civictrace.dncp import Limits, OutputBudget, import_file  # noqa: E402
 
 
 def test_generator_deterministic_stream(tmp_path):
@@ -45,7 +45,12 @@ def test_worker_results(tmp_path, mode):
 def test_missing_values_remain_unknown(tmp_path):
     generate(tmp_path, Case("missing", 1, mode="missing"))
     manifest = json.loads((tmp_path / "manifest.json").read_text())
-    summary = import_file(tmp_path / "synthetic.jsonl.gz", tmp_path / "out", manifest)
+    summary = import_file(
+        tmp_path / "synthetic.jsonl.gz",
+        tmp_path / "out",
+        manifest,
+        budget=OutputBudget(max_bytes=16 * 1024**3, max_files=200_000),
+    )
     assert summary["accepted"] == 1
     model = json.loads(next((tmp_path / "out").glob("*.canonical.json")).read_text())
     assert model["releases"][0]["date"]["state"] == "absent"

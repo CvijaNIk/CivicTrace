@@ -11,7 +11,12 @@ silently incorporated into this branch. No actual annual dataset was supplied or
 Run from an installed checkout, with a new output path on a private local filesystem:
 
 ```sh
-python -m civictrace.dncp /private/cohort.jsonl.gz /private/intake --manifest /private/manifest.json
+python -m civictrace.dncp /private/cohort.jsonl.gz /private/intake \
+  --manifest /private/manifest.json \
+  --max-output-bytes "$MAX_OUTPUT_BYTES" \
+  --max-output-files "$MAX_OUTPUT_FILES" \
+  --min-free-bytes "$MIN_FREE_BYTES" \
+  --min-free-inodes "$MIN_FREE_INODES"
 ```
 
 Only regular, nonsymlink local `.jsonl.gz` inputs are accepted. No URLs, pipes, attachments or
@@ -19,7 +24,11 @@ archive members are fetched. Parent directories must already exist. Output is a 
 directory; keep it outside git, CI uploads, served directories and cloud publishing. Files inherit
 the directory protection. Access control, retention, disk quotas and backups remain the operator's
 responsibility. Output disk usage can exceed input size because source, raw rows and models are
-retained. No throughput or hard OS RSS ceiling is claimed.
+retained. The CLI requires explicit per-import application ceilings for logical output bytes and
+regular-file count, plus optional free-byte and free-inode safety floors. Choose values for the
+specific workload, filesystem and required headroom. The benchmark's recommendation of 12 GiB
+free space and 120,000 free inodes provisions that experiment only; it is not a universal importer
+limit. No throughput or hard OS RSS ceiling is claimed.
 
 The manifest must explicitly contain these nonempty fields:
 `adapter_version` (pin the reviewed code commit), `publisher` (`DNCP`), `intermediary`,
@@ -47,6 +56,17 @@ OCID digests up to the row ceiling. Python object overhead is greater than raw r
 requiring a hard process memory ceiling should use an OS-limited worker. A synthetic tracemalloc
 regression checks the 2000-row path below 16 MiB; it is not a universal RSS guarantee.
 
+`OutputBudget` is mandatory for library callers. `max_bytes` counts the logical contents of every
+regular file in the staging output: the compressed source snapshot, validation report, raw rows,
+canonical records, manifest and summary. `max_files` counts those regular files, not directories
+or filesystem metadata. Both are checked before each file or byte write; crossing either limit
+aborts the import. Before staging and during writes, the importer reads `statvfs` available bytes
+and free inode counts and preserves the configured `min_free_bytes` and `min_free_inodes` floors.
+These are observations, not reservations shared between concurrent importers. Filesystem quotas,
+container limits and other writers may expose less capacity than `statvfs` reports; the actual
+filesystem remains authoritative and `ENOSPC`/`EDQUOT` failures abort and clean staging. Logical
+bytes are not allocated blocks, physical device usage, inode metadata or a power-loss guarantee.
+
 The complete compressed snapshot is copied and hash-verified before parsing. Full gzip EOF/CRC,
 expanded hash, limits and single-member framing are required. Truncation, concatenated members,
 trailing garbage and limit failures discard staging; no canonical directory is published.
@@ -55,7 +75,10 @@ On supported Linux local filesystems a single `renameat2(RENAME_NOREPLACE)` publ
 entire closed staging directory, including summary and manifest. Existing entries are never
 replaced, including empty directories and dangling symlinks. Other platforms, missing libc/kernel
 support or filesystem refusal fail closed; there is no per-file or check-then-rename fallback.
-A process kill or failed cleanup can leave private `.dncp-*` staging, never a partial final output.
+A handled SIGINT/SIGTERM or ordinary failure removes private `.dncp-*` staging before exit. An
+uncatchable SIGKILL, host crash, or failed cleanup can leave a mode-0700 private staging directory,
+never a partial final output; inspect and remove abandoned staging manually after confirming no
+import process is using it.
 There is no resume mode. Parent directories must be private, nonsymlink and stable during import.
 This guarantees atomic visibility for process failures, not durability against power loss.
 
@@ -123,4 +146,5 @@ The 2,000-row `tracemalloc` regression is not a process RSS guarantee. The separ
 [reproducible synthetic resource experiment](DNCP_BENCHMARK.md) covers fresh-process RSS,
 Python allocations, throughput, disk/file amplification and independent input boundaries.
 See [ADR 0002](adr/0002-measured-dncp-workload-budgets.md) before interpreting these observations
-as workload budgets; no OS-enforced RSS or output-disk cap is introduced.
+as workload budgets. The configured logical output budget is application-enforced; no OS-enforced
+RSS or disk quota is installed by the importer.

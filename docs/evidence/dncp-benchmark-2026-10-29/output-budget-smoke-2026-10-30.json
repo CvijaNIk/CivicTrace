@@ -1,0 +1,119 @@
+{
+  "environment": {
+    "cgroup_cpu_max": "800000 100000",
+    "cgroup_memory_max": "8589934592",
+    "cpu_count": 9,
+    "cpu_model": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "machine": "x86_64",
+    "mem_total": "10206468 kB",
+    "packages": {
+      "civictrace": "0.0.1"
+    },
+    "page_size": 4096,
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "zlib": "1.3.2"
+  },
+  "harness_sha256": "8e43007feeeb22b7463aa4d05f0b6b7ec37fe951d339f4daacde7fbf7f986130",
+  "importer_sha256": "db2040bb5d55e200550e00117ea4a24b2b4e8ccc7b8b2ac4126efa3712a3df97",
+  "limits": {
+    "compressed": 268435456,
+    "depth": 32,
+    "expanded": 2147483648,
+    "line": 2097152,
+    "ratio": 200,
+    "rows": 50000
+  },
+  "results": [
+    {
+      "case": {
+        "compression": 1,
+        "expected_error": null,
+        "mode": "valid",
+        "name": "small",
+        "rows": 100,
+        "width": 0
+      },
+      "fixture": {
+        "compressed_bytes": 2295,
+        "compressed_sha256": "73a00030166111b32534a915738bbda002b342af1ae2d28b962cbcf402f7ae89",
+        "expanded_bytes": 35050,
+        "expanded_sha256": "d949447f3a29bb797c2d8d31c7f3bf7d589405ec58ae6aa42b0c29e09a47bfca"
+      },
+      "measurements": [
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 1314816,
+            "directory_allocated_bytes": 32768,
+            "files": 204,
+            "logical_bytes": 575054
+          },
+          "elapsed_seconds": 0.11125908899998649,
+          "error": null,
+          "input_mib_per_second": 0.30043644155708593,
+          "input_rows_per_second": 898.8029733014635,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": null,
+          "repeat": 0,
+          "rss_baseline_bytes": 18288640,
+          "rss_hwm_bytes": 19005440,
+          "summary": {
+            "accepted": 100,
+            "compressed_bytes": 2295,
+            "expanded_bytes": 35050,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 100
+          },
+          "throughput_is_complete_import": true,
+          "traced": false
+        },
+        {
+          "disk_output_high_water": {
+            "allocated_bytes": 1314816,
+            "directory_allocated_bytes": 32768,
+            "files": 204,
+            "logical_bytes": 575054
+          },
+          "elapsed_seconds": 0.40258333299993865,
+          "error": null,
+          "input_mib_per_second": 0.08302947998605834,
+          "input_rows_per_second": 248.39577747749243,
+          "private_orphans": 0,
+          "published": true,
+          "python_peak_bytes": 705685,
+          "repeat": 0,
+          "rss_baseline_bytes": 18284544,
+          "rss_hwm_bytes": 19267584,
+          "summary": {
+            "accepted": 100,
+            "compressed_bytes": 2295,
+            "expanded_bytes": 35050,
+            "limits": {
+              "compressed": 268435456,
+              "depth": 32,
+              "expanded": 2147483648,
+              "line": 2097152,
+              "ratio": 200,
+              "rows": 50000
+            },
+            "rejected": 0,
+            "rows": 100
+          },
+          "throughput_is_complete_import": true,
+          "traced": true
+        }
+      ]
+    }
+  ],
+  "schema": "dncp-synthetic-benchmark/1",
+  "synthetic_only": true
+}

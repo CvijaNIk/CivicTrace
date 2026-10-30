@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 import shutil
+import signal
 import stat
 import sys
 import tempfile
@@ -28,6 +29,68 @@ class Limits:
     line: int = 2 * 1024 * 1024
     depth: int = 32
     ratio: int = 200
+
+
+@dataclass(frozen=True)
+class OutputBudget:
+    """Operator-selected logical output limits and free-resource safety floors."""
+
+    max_bytes: int
+    max_files: int
+    min_free_bytes: int = 0
+    min_free_inodes: int = 0
+
+
+class _ResourceGuard:
+    def __init__(self, parent, budget):
+        self.parent = parent
+        self.budget = budget
+        self.bytes = 0
+        self.files = 0
+        self._check_available(0, 0, "preflight")
+
+    def _check_available(self, add_bytes, add_files, phase):
+        try:
+            stats = os.statvfs(self.parent)
+        except OSError as exc:
+            raise IntakeError("filesystem_resources_unavailable") from exc
+        free_bytes = stats.f_bavail * stats.f_frsize
+        free_inodes = stats.f_favail
+        if free_bytes < self.budget.min_free_bytes + add_bytes:
+            raise IntakeError(f"insufficient_filesystem_space:{phase}")
+        if free_inodes < self.budget.min_free_inodes + add_files:
+            raise IntakeError(f"insufficient_filesystem_inodes:{phase}")
+
+    def reserve(self, add_bytes=0, add_files=0):
+        if self.bytes + add_bytes > self.budget.max_bytes:
+            raise IntakeError("output_byte_limit")
+        if self.files + add_files > self.budget.max_files:
+            raise IntakeError("output_file_limit")
+        self._check_available(add_bytes, add_files, "during_import")
+
+    def wrote(self, add_bytes=0, add_files=0):
+        self.bytes += add_bytes
+        self.files += add_files
+
+    def write_file(self, path, data, *, text=False):
+        encoded = data.encode("utf-8") if text else data
+        self.reserve(len(encoded), 1)
+        with path.open("xb") as stream:
+            self.wrote(add_files=1)
+            self.reserve(len(encoded))
+            stream.write(encoded)
+            self.wrote(len(encoded))
+
+    def write_chunk(self, stream, data):
+        self.reserve(len(data))
+        stream.write(data)
+        self.wrote(len(data))
+
+    def write_report_line(self, stream, data):
+        encoded = (json.dumps(data, sort_keys=True) + "\n").encode("utf-8")
+        self.reserve(len(encoded))
+        stream.write(encoded.decode("utf-8"))
+        self.wrote(len(encoded))
 
 
 class IntakeError(ValueError):
@@ -191,7 +254,7 @@ def _destination(output):
     return output
 
 
-def import_file(source, output, manifest, limits=Limits()):
+def import_file(source, output, manifest, limits=Limits(), *, budget):
     """Publish a new private evidence directory only after full hash and gzip validation.
 
     Memory scales with one bounded line/model, not the annual file. Raw rows and each
@@ -202,7 +265,20 @@ def import_file(source, output, manifest, limits=Limits()):
         type(v) is not int or v < 1 or v > asdict(Limits())[k] for k, v in asdict(limits).items()
     ):
         raise IntakeError("invalid_limits")
+    if (
+        not isinstance(budget, OutputBudget)
+        or type(budget.max_bytes) is not int
+        or budget.max_bytes < 1
+        or type(budget.max_files) is not int
+        or budget.max_files < 1
+        or type(budget.min_free_bytes) is not int
+        or budget.min_free_bytes < 0
+        or type(budget.min_free_inodes) is not int
+        or budget.min_free_inodes < 0
+    ):
+        raise IntakeError("invalid_output_budget")
     source, output = Path(source), _destination(output)
+    resources = _ResourceGuard(output.parent, budget)
     publish = _publisher()
     fd = os.open(source, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
     stage = None
@@ -212,21 +288,25 @@ def import_file(source, output, manifest, limits=Limits()):
         stage = Path(tempfile.mkdtemp(prefix=".dncp-", dir=output.parent))
         # Snapshot exact compressed bytes first; no TOCTOU between hashing and parsing.
         h, size = hashlib.sha256(), 0
+        resources.reserve(add_files=1)
         with (
             os.fdopen(fd, "rb", closefd=False) as src,
-            (stage / "source.jsonl.gz").open("wb") as dst,
+            (stage / "source.jsonl.gz").open("xb") as dst,
         ):
+            resources.wrote(add_files=1)
             while chunk := src.read(min(65536, limits.compressed - size + 1)):
                 size += len(chunk)
                 if size > limits.compressed:
                     raise IntakeError("compressed_limit")
                 h.update(chunk)
-                dst.write(chunk)
+                resources.write_chunk(dst, chunk)
         if h.hexdigest() != manifest["compressed_sha256"]:
             raise IntakeError("compressed_hash")
         dec, expanded, pending = zlib.decompressobj(31), 0, b""
         eh, seen, rows, accepted = hashlib.sha256(), set(), 0, 0
-        report = (stage / "validation.jsonl").open("w", encoding="utf-8")
+        resources.reserve(add_files=1)
+        report = (stage / "validation.jsonl").open("x", encoding="utf-8")
+        resources.wrote(add_files=1)
 
         def row(raw):
             nonlocal rows, accepted
@@ -235,7 +315,7 @@ def import_file(source, output, manifest, limits=Limits()):
                 raise IntakeError("row_limit")
             rh = hashlib.sha256(raw).hexdigest()
             stem = f"{rows:06d}-{rh}"
-            (stage / (stem + ".raw")).write_bytes(raw)
+            resources.write_file(stage / (stem + ".raw"), raw)
             entry = {"line": rows, "raw_sha256": rh}
             try:
                 record = parse(raw, limits.depth)
@@ -300,12 +380,14 @@ def import_file(source, output, manifest, limits=Limits()):
 
                 observe({k: v for k, v in model.items() if k != "intake"})
                 entry["fields"] = observations
-                (stage / (stem + ".canonical.json")).write_text(serialize(model), encoding="utf-8")
+                resources.write_file(
+                    stage / (stem + ".canonical.json"), serialize(model), text=True
+                )
                 entry.update(status="accepted", quarantined=rejects)
                 accepted += 1
             except (ValueError, TypeError, AttributeError, KeyError, RecursionError) as exc:
                 entry.update(status="rejected", reason=type(exc).__name__ + ":" + str(exc)[:160])
-            report.write(json.dumps(entry, sort_keys=True) + "\n")
+            resources.write_report_line(report, entry)
 
         try:
             with (stage / "source.jsonl.gz").open("rb") as src:
@@ -347,12 +429,18 @@ def import_file(source, output, manifest, limits=Limits()):
             "expanded_bytes": expanded,
             "limits": asdict(limits),
         }
-        (stage / "manifest.json").write_text(serialize(manifest), encoding="utf-8")
-        (stage / "summary.json").write_text(serialize(summary), encoding="utf-8")
+        resources.write_file(stage / "manifest.json", serialize(manifest), text=True)
+        resources.write_file(stage / "summary.json", serialize(summary), text=True)
         # All files are closed before the single atomic namespace transition.
         publish(stage, output)
         stage = None
         return summary
+    except OSError as exc:
+        if exc.errno == errno.EDQUOT:
+            raise IntakeError("filesystem_quota_exceeded") from exc
+        if exc.errno == errno.ENOSPC:
+            raise IntakeError("filesystem_space_or_inode_exhausted") from exc
+        raise
     finally:
         os.close(fd)
         if stage is not None:
@@ -370,12 +458,34 @@ def main():
     parser.add_argument("source")
     parser.add_argument("output")
     parser.add_argument("--manifest", required=True)
+    parser.add_argument("--max-output-bytes", type=int, required=True)
+    parser.add_argument("--max-output-files", type=int, required=True)
+    parser.add_argument("--min-free-bytes", type=int, default=0)
+    parser.add_argument("--min-free-inodes", type=int, default=0)
     args = parser.parse_args()
+
+    def terminate(_signum, _frame):
+        raise KeyboardInterrupt
+
+    signal.signal(signal.SIGTERM, terminate)
     manifest_path = Path(args.manifest)
     if manifest_path.stat().st_size > 65536:
         parser.error("manifest_limit")
     try:
-        result = import_file(args.source, args.output, json.loads(manifest_path.read_text()))
+        budget = OutputBudget(
+            args.max_output_bytes,
+            args.max_output_files,
+            args.min_free_bytes,
+            args.min_free_inodes,
+        )
+        result = import_file(
+            args.source,
+            args.output,
+            json.loads(manifest_path.read_text()),
+            budget=budget,
+        )
+    except KeyboardInterrupt:
+        parser.exit(130, "Intake interrupted; private staging was removed.\n")
     except (ValueError, OSError) as exc:
         parser.exit(1, f"Intake failed: {exc}\n")
     print(json.dumps(result, sort_keys=True))

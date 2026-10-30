@@ -6,13 +6,14 @@ import os
 import signal
 import subprocess
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from threading import Barrier
 
 import civictrace.dncp as dncp
 import pytest
-from test_dncp import setup
+from test_dncp import BUDGET, setup
 
 
 def complete(out):
@@ -38,28 +39,37 @@ def test_faults(tmp_path, monkeypatch, phase):
         monkeypatch.setattr(dncp.tempfile, "mkdtemp", fail)
     elif phase == "rename":
         monkeypatch.setattr(dncp, "_publisher", lambda: fail)
-    elif phase == "snapshot":
+    else:
         original = Path.open
 
-        def opening(p, *args, **kwargs):
-            if p.name == "source.jsonl.gz" and args == ("wb",):
+        class BrokenWriter:
+            def __init__(self, stream):
+                self.stream = stream
+
+            def __enter__(self):
+                self.stream.__enter__()
+                return self
+
+            def __exit__(self, *args):
+                return self.stream.__exit__(*args)
+
+            def write(self, data):
+                self.stream.write(data[:3])
                 fail()
-            return original(p, *args, **kwargs)
+
+        def opening(p, *args, **kwargs):
+            matches = (
+                (phase == "snapshot" and p.name == "source.jsonl.gz")
+                or (phase == "raw" and p.suffix == ".raw")
+                or (phase == "canonical" and p.name.endswith(".canonical.json"))
+                or (phase in ("manifest", "summary") and p.name == phase + ".json")
+            )
+            stream = original(p, *args, **kwargs)
+            return BrokenWriter(stream) if matches else stream
 
         monkeypatch.setattr(Path, "open", opening)
-    else:
-        method = "write_bytes" if phase == "raw" else "write_text"
-        original = getattr(Path, method)
-
-        def writing(p, *args, **kwargs):
-            if (phase == "raw" and p.suffix == ".raw") or p.name.endswith(phase + ".json"):
-                original(p, args[0][:3], **kwargs)
-                fail()
-            return original(p, *args, **kwargs)
-
-        monkeypatch.setattr(Path, method, writing)
     with pytest.raises(OSError, match="injected"):
-        dncp.import_file(src, out, m)
+        dncp.import_file(src, out, m, budget=BUDGET)
     assert not os.path.lexists(out)
     assert not list(tmp_path.glob(".dncp-*"))
 
@@ -73,7 +83,7 @@ def test_cleanup_failure_is_explicit_and_never_publishes(tmp_path, monkeypatch):
 
     monkeypatch.setattr(dncp.shutil, "rmtree", fail)
     with pytest.raises(dncp.IntakeError, match="private_staging_cleanup_failed") as exc:
-        dncp.import_file(src, tmp_path / "out", m)
+        dncp.import_file(src, tmp_path / "out", m, budget=BUDGET)
     assert isinstance(exc.value.__cause__, PermissionError)
     assert not (tmp_path / "out").exists()
     assert len(list(tmp_path.glob(".dncp-*"))) == 1
@@ -86,7 +96,7 @@ def test_existing_never_replaced(tmp_path, kind):
     target = tmp_path / "target"
     target.mkdir()
     if kind == "complete":
-        dncp.import_file(src, out, m)
+        dncp.import_file(src, out, m, budget=BUDGET)
     elif kind == "empty":
         out.mkdir()
     elif kind == "file":
@@ -95,7 +105,7 @@ def test_existing_never_replaced(tmp_path, kind):
         out.symlink_to(target if kind == "link" else tmp_path / "missing")
     before = out.lstat()
     with pytest.raises(dncp.IntakeError, match="output_exists"):
-        dncp.import_file(src, out, m)
+        dncp.import_file(src, out, m, budget=BUDGET)
     assert out.lstat() == before
     if kind == "complete":
         complete(out)
@@ -119,7 +129,7 @@ def test_destination_created_at_commit_is_not_replaced(tmp_path, monkeypatch, ki
 
     monkeypatch.setattr(dncp, "_publisher", lambda: race)
     with pytest.raises(FileExistsError):
-        dncp.import_file(src, out, m)
+        dncp.import_file(src, out, m, budget=BUDGET)
     assert os.path.lexists(out)
     assert not list(tmp_path.glob(".dncp-*"))
     if kind == "empty":
@@ -135,7 +145,7 @@ def test_parent_symlink(tmp_path):
     parent = tmp_path / "alias"
     parent.symlink_to(tmp_path, target_is_directory=True)
     with pytest.raises(dncp.IntakeError, match="output_parent_not_directory"):
-        dncp.import_file(src, parent / "out", m)
+        dncp.import_file(src, parent / "out", m, budget=BUDGET)
     assert not (tmp_path / "out").exists()
 
 
@@ -152,7 +162,7 @@ def test_concurrent_writers_one_winner(tmp_path, monkeypatch):
 
     def run():
         try:
-            dncp.import_file(src, tmp_path / "out", m)
+            dncp.import_file(src, tmp_path / "out", m, budget=BUDGET)
             return "ok"
         except FileExistsError:
             return "exists"
@@ -184,7 +194,12 @@ if sys.argv[4] == 'writing':
         write(p, data[:3])
         os.kill(os.getpid(), signal.SIGKILL)
     Path.write_bytes = interrupted
-d.import_file(sys.argv[1], sys.argv[2], json.loads(Path(sys.argv[3]).read_text()))
+d.import_file(
+    sys.argv[1],
+    sys.argv[2],
+    json.loads(Path(sys.argv[3]).read_text()),
+    budget=d.OutputBudget(16 * 1024**3, 200000),
+)
 """
     result = subprocess.run(
         [sys.executable, "-c", script, str(src), str(tmp_path / "out"), str(manifest), phase],
@@ -200,7 +215,7 @@ d.import_file(sys.argv[1], sys.argv[2], json.loads(Path(sys.argv[3]).read_text()
         assert len(stages) == 1
         assert stages[0].stat().st_mode & 0o777 == 0o700
         # Recovery never promotes an abandoned staging directory: retry afresh.
-        dncp.import_file(src, tmp_path / "out", m)
+        dncp.import_file(src, tmp_path / "out", m, budget=BUDGET)
         complete(tmp_path / "out")
 
 
@@ -208,7 +223,7 @@ def test_unsupported_fails_closed(tmp_path, monkeypatch):
     src, m = setup(tmp_path)
     monkeypatch.setattr(dncp.sys, "platform", "unsupported")
     with pytest.raises(dncp.IntakeError, match="atomic_publication_unsupported"):
-        dncp.import_file(src, tmp_path / "out", m)
+        dncp.import_file(src, tmp_path / "out", m, budget=BUDGET)
     assert not list(tmp_path.glob(".dncp-*"))
 
 
@@ -228,7 +243,7 @@ def test_kernel_refusal_never_falls_back(tmp_path, monkeypatch, code):
 
     monkeypatch.setattr(dncp.ctypes, "CDLL", lambda *a, **kw: Library())
     with pytest.raises((dncp.IntakeError, OSError)):
-        dncp.import_file(src, tmp_path / "out", m)
+        dncp.import_file(src, tmp_path / "out", m, budget=BUDGET)
     assert not (tmp_path / "out").exists()
     assert not list(tmp_path.glob(".dncp-*"))
 
@@ -237,7 +252,7 @@ def test_missing_libc_primitive(tmp_path, monkeypatch):
     src, m = setup(tmp_path)
     monkeypatch.setattr(dncp.ctypes, "CDLL", lambda *a, **kw: object())
     with pytest.raises(dncp.IntakeError, match="atomic_publication_unsupported"):
-        dncp.import_file(src, tmp_path / "out", m)
+        dncp.import_file(src, tmp_path / "out", m, budget=BUDGET)
     assert not list(tmp_path.glob(".dncp-*"))
 
 
@@ -248,7 +263,7 @@ def test_no_cleanup_after_success(tmp_path, monkeypatch):
         pytest.fail("published directory must never be cleaned up")
 
     monkeypatch.setattr(dncp.shutil, "rmtree", unexpected)
-    dncp.import_file(src, tmp_path / "out", m)
+    dncp.import_file(src, tmp_path / "out", m, budget=BUDGET)
     complete(tmp_path / "out")
 
 
@@ -269,8 +284,51 @@ def test_individual_move_failure_cannot_leave_partial_output(tmp_path, monkeypat
 
     monkeypatch.setattr(Path, "rename", fail)
     try:
-        dncp.import_file(src, out, m)
+        dncp.import_file(src, out, m, budget=BUDGET)
     except OSError:
         assert not os.path.lexists(out)
     else:
         complete(out)
+
+
+def test_sigterm_interrupt_cleans_private_staging(tmp_path):
+    src, m = setup(tmp_path)
+    manifest = tmp_path / "input.json"
+    marker = tmp_path / "writing"
+    manifest.write_text(json.dumps(m))
+    script = r"""
+import sys, time
+from pathlib import Path
+import civictrace.dncp as d
+marker = sys.argv[4]
+sys.argv = [
+    "dncp", sys.argv[1], sys.argv[2], "--manifest", sys.argv[3],
+    "--max-output-bytes", "10000000", "--max-output-files", "100",
+]
+original = d._ResourceGuard.write_file
+def pause(self, path, data, *, text=False):
+    original(self, path, data, text=text)
+    if path.suffix == ".raw":
+        Path(marker).touch()
+        while True:
+            time.sleep(1)
+d._ResourceGuard.write_file = pause
+d.main()
+"""
+    process = subprocess.Popen(
+        [sys.executable, "-c", script, str(src), str(tmp_path / "out"), str(manifest), str(marker)],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    deadline = time.monotonic() + 10
+    while not marker.exists() and time.monotonic() < deadline and process.poll() is None:
+        time.sleep(0.02)
+    if not marker.exists():
+        stdout, stderr = process.communicate(timeout=2)
+        pytest.fail(f"child did not reach pause ({process.returncode}): {stdout!r} {stderr!r}")
+    process.terminate()
+    stdout, stderr = process.communicate(timeout=10)
+    assert process.returncode == 130, (stdout, stderr)
+    assert b"private staging was removed" in stderr
+    assert not (tmp_path / "out").exists()
+    assert not list(tmp_path.glob(".dncp-*"))
