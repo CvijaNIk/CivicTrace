@@ -94,10 +94,18 @@ export function parseDataset(raw: string): Dataset {
   return value as unknown as Dataset;
 }
 export async function loadDataset(signal: AbortSignal): Promise<Dataset> {
-  const response = await fetch(
-    `${import.meta.env.BASE_URL}data/synthetic-v1.json`,
-    { signal, credentials: "omit", redirect: "error" },
-  );
+  return loadBounded("data/synthetic-v1.json", parseDataset, signal);
+}
+export async function loadBounded<T>(
+  path: string,
+  parse: (raw: string) => T | Promise<T>,
+  signal: AbortSignal,
+): Promise<T> {
+  const response = await fetch(`${import.meta.env.BASE_URL}${path}`, {
+    signal,
+    credentials: "omit",
+    redirect: "error",
+  });
   if (!response.ok)
     throw Error("The local synthetic data could not be loaded.");
   if (!response.body) throw Error("The local data response is empty.");
@@ -115,7 +123,7 @@ export async function loadDataset(signal: AbortSignal): Promise<Dataset> {
       raw += decoder.decode(value, { stream: true });
     }
     raw += decoder.decode();
-    return parseDataset(raw);
+    return await parse(raw);
   } finally {
     await reader.cancel();
     reader.releaseLock();
