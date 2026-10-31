@@ -89,3 +89,10 @@ bounded table loading, preserves exact decimal strings and exclusion ledgers,
 and pins the static payload in the frontend. See
 [PARQUET_EXPLORER.md](PARQUET_EXPLORER.md). This is not real-source analytics;
 `analytics_enabled: false`, rights/quality gates and all unmerged PRs remain.
+
+## Synthetic finding presentation
+
+The existing React application now includes an opt-in `/?view=passport` view for
+legacy, migrated-incomplete and complete synthetic findings. See
+[PASSPORT_VIEW.md](PASSPORT_VIEW.md) for contracts, security boundaries and reproduction.
+Limitations stay expanded; hashes are not proof of truth. Real analytics remain disabled.

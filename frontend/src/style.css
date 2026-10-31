@@ -355,3 +355,18 @@ footer {
     scroll-behavior: auto !important;
   }
 }
+
+.passport {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.passport dd {
+  margin-inline-start: 1rem;
+  white-space: pre-wrap;
+}
+.passport dt {
+  font-weight: 600;
+}
+.passport li {
+  white-space: pre-wrap;
+}
