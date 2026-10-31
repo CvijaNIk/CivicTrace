@@ -12,9 +12,10 @@ readme = "README.md"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<10", "ruff>=0.11,<1", "jsonschema>=4.23,<5", "pyarrow==23.0.1"]
+dev = ["pytest>=8,<10", "ruff>=0.11,<1", "jsonschema>=4.23,<5", "pyarrow==23.0.1", "duckdb==1.4.3"]
 snapshots = ["pyarrow==23.0.1"]
-data = ["duckdb>=1.2,<2", "polars>=1.20,<3", "pydantic>=2.10,<3"]
+analytics = ["pyarrow==23.0.1", "duckdb==1.4.3"]
+data = ["duckdb==1.4.3", "polars>=1.20,<3", "pydantic>=2.10,<3"]
 
 [project.scripts]
 civictrace = "civictrace.cli:main"
