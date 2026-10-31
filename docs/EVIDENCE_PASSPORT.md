@@ -112,3 +112,10 @@ legal admissibility, or permitted redistribution. A trusted out-of-band pin is n
 coordinated replacement of bytes and their hashes. Synthetic metadata labels are guards, not
 proof of origin or rights clearance. Real source semantics and analytical indicators remain
 blocked. No registry enrichment or real rights approval is inferred from a synthetic example.
+
+## Synthetic finding presentation
+
+The existing React application now includes an opt-in `/?view=passport` view for
+legacy, migrated-incomplete and complete synthetic findings. See
+[PASSPORT_VIEW.md](PASSPORT_VIEW.md) for contracts, security boundaries and reproduction.
+Limitations stay expanded; hashes are not proof of truth. Real analytics remain disabled.

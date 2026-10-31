@@ -1,0 +1,336 @@
+{
+  "analytics_enabled": false,
+  "findings": [
+    {
+      "allegations": [],
+      "benchmark": {
+        "description": "Exactly one reported bid; no peer baseline",
+        "value": 1
+      },
+      "computation": {
+        "expression": "bid_count == 1",
+        "observed_result": 1,
+        "parameters": {
+          "threshold": 1
+        }
+      },
+      "facts": {
+        "buyer_id": "SYN-BUYER-A",
+        "supplier_id": "SYN-SUPPLIER-1"
+      },
+      "finding_id": "0507ddcf25562beed68e849f0f72fbe4f519c9103921dd8752a740b477cf9cfc",
+      "interpretation": "Single reported bid; review procurement context before any inference",
+      "limitations": [
+        "Synthetic data",
+        "Count does not describe bidder eligibility or quality"
+      ],
+      "rule": {
+        "id": "single-bid",
+        "version": "0.0.1"
+      },
+      "schema_version": "0.1.0",
+      "source": {
+        "collected_at": "2026-10-10T00:00:00Z",
+        "license": "Apache-2.0",
+        "name": "CivicTrace synthetic procurement fixture",
+        "original_file_sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2",
+        "original_record_id": "SYN-001",
+        "reference": "synthetic:SYN-001",
+        "snapshot_version": "synthetic-v1"
+      },
+      "uncertainty": "Reported count only; no probability of fraud is estimated",
+      "verification_steps": [
+        "Verify original notice",
+        "Check competition and exemptions"
+      ]
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "description": "Exactly one reported bid; no peer baseline",
+        "value": 1
+      },
+      "computation": {
+        "expression": "bid_count == 1",
+        "observed_result": 1,
+        "parameters": {
+          "threshold": 1
+        }
+      },
+      "facts": {
+        "buyer_id": "SYN-BUYER-A",
+        "supplier_id": "SYN-SUPPLIER-1"
+      },
+      "finding_id": "0507ddcf25562beed68e849f0f72fbe4f519c9103921dd8752a740b477cf9cfc",
+      "interpretation": "Single reported bid; review procurement context before any inference",
+      "limitations": [
+        "Synthetic data",
+        "Count does not describe bidder eligibility or quality"
+      ],
+      "lineage": {
+        "analytics_enabled": false,
+        "artifacts": [],
+        "collection_time": "2026-10-10T00:00:00Z",
+        "contract": "civictrace-lineage/1",
+        "decompressed_sha256": null,
+        "environment": null,
+        "limitations": [
+          "Hashes establish byte identity only, not source truth, authentic acquisition time, publisher identity, legal admissibility or permission to redistribute.",
+          "Legacy migration: missing provenance remains unknown."
+        ],
+        "original_file_sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2",
+        "original_pointer": null,
+        "rights": {
+          "attribution": null,
+          "evidence": null,
+          "license": "Apache-2.0",
+          "privacy_review": null,
+          "redistribution": "unknown; retain existing restrictions",
+          "registry_transformation": null
+        },
+        "source_date": null,
+        "status": "legacy-incomplete",
+        "synthetic_only": true,
+        "transformations": []
+      },
+      "rule": {
+        "id": "single-bid",
+        "version": "0.0.1"
+      },
+      "schema_version": "0.2.0",
+      "source": {
+        "collected_at": "2026-10-10T00:00:00Z",
+        "license": "Apache-2.0",
+        "name": "CivicTrace synthetic procurement fixture",
+        "original_file_sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2",
+        "original_record_id": "SYN-001",
+        "reference": "synthetic:SYN-001",
+        "snapshot_version": "synthetic-v1"
+      },
+      "uncertainty": "Reported count only; no probability of fraud is estimated",
+      "verification_steps": [
+        "Verify original notice",
+        "Check competition and exemptions"
+      ]
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "description": "Exactly one reported bid; no peer baseline",
+        "value": 1
+      },
+      "computation": {
+        "expression": "bid_count == 1",
+        "observed_result": 1,
+        "parameters": {
+          "threshold": 1
+        }
+      },
+      "facts": {
+        "buyer_id": "SYN-BUYER-A",
+        "supplier_id": "SYN-SUPPLIER-1"
+      },
+      "finding_id": "0507ddcf25562beed68e849f0f72fbe4f519c9103921dd8752a740b477cf9cfc",
+      "interpretation": "Single reported bid; review procurement context before any inference",
+      "limitations": [
+        "Synthetic data",
+        "Count does not describe bidder eligibility or quality"
+      ],
+      "lineage": {
+        "analytics_enabled": false,
+        "artifacts": [
+          {
+            "id": "original",
+            "media_type": "application/json",
+            "sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2"
+          },
+          {
+            "id": "record",
+            "media_type": "application/json",
+            "sha256": "4c79cbc9d06431cf272b72c0e48971592cec12a7d13f2753609ac04d67d85d5c"
+          },
+          {
+            "id": "finding",
+            "media_type": "application/json",
+            "sha256": "c35b269b03caa544569e1902c9382524538c0e0a9e6f438951570314f07cfce0"
+          }
+        ],
+        "collection_time": "2026-10-10T00:00:00Z",
+        "contract": "civictrace-lineage/1",
+        "decompressed_sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2",
+        "environment": {
+          "implementation": "CPython",
+          "packages": {
+            "civictrace": "0.0.1",
+            "duckdb": "1.4.3",
+            "pyarrow": "23.0.1"
+          },
+          "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+          "python": "3.12.14"
+        },
+        "limitations": [
+          "Hashes establish byte identity only, not source truth, authentic acquisition time, publisher identity, legal admissibility or permission to redistribute.",
+          "Synthetic data; source date unknown"
+        ],
+        "original_file_sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2",
+        "original_pointer": "/0",
+        "rights": {
+          "attribution": "CivicTrace contributors; invented organizations only",
+          "evidence": "LICENSE",
+          "license": "Apache-2.0",
+          "privacy_review": "Invented fixture; no natural persons or client data",
+          "redistribution": "synthetic example only",
+          "registry_transformation": "not applicable; no registry enrichment"
+        },
+        "source_date": null,
+        "status": "complete-synthetic",
+        "synthetic_only": true,
+        "transformations": [
+          {
+            "implementation_sha256": "ff05facf906cd51c9d69c6ff963446c08d97bddfc2f9d303c08643f4592a2482",
+            "inputs": ["original"],
+            "operation": "JSON array pointer selection",
+            "output": "record",
+            "version": "1"
+          },
+          {
+            "implementation_sha256": "e2dad1da4004ed2009c3814d13b8bf395188fc71bc85c99f04233654e5aca6e6",
+            "inputs": ["record"],
+            "operation": "single-bid",
+            "output": "finding",
+            "version": "0.0.1"
+          }
+        ]
+      },
+      "rule": {
+        "id": "single-bid",
+        "version": "0.0.1"
+      },
+      "schema_version": "0.2.0",
+      "source": {
+        "collected_at": "2026-10-10T00:00:00Z",
+        "license": "Apache-2.0",
+        "name": "CivicTrace synthetic procurement fixture",
+        "original_file_sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2",
+        "original_record_id": "SYN-001",
+        "reference": "synthetic:SYN-001",
+        "snapshot_version": "synthetic-v1"
+      },
+      "uncertainty": "Reported count only; no probability of fraud is estimated",
+      "verification_steps": [
+        "Verify original notice",
+        "Check competition and exemptions"
+      ]
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "description": "Exactly one reported bid; no peer baseline",
+        "value": 1
+      },
+      "computation": {
+        "expression": "bid_count == 1",
+        "observed_result": 1,
+        "parameters": {
+          "threshold": 1
+        }
+      },
+      "facts": {
+        "buyer_id": "SYN-BUYER-A",
+        "supplier_id": "SYN-SUPPLIER-1"
+      },
+      "finding_id": "ce937c03daa26ee43875c77eb8ff8629bb1cb97ed38a43cb2107836a63edcb9e",
+      "interpretation": "Single reported bid; review procurement context before any inference",
+      "limitations": [
+        "Synthetic data",
+        "Count does not describe bidder eligibility or quality"
+      ],
+      "lineage": {
+        "analytics_enabled": false,
+        "artifacts": [
+          {
+            "id": "original",
+            "media_type": "application/json",
+            "sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2"
+          },
+          {
+            "id": "record",
+            "media_type": "application/json",
+            "sha256": "35bb698439e9289cf369778278a50d2212110c1b45401cc56790823648890aa5"
+          },
+          {
+            "id": "finding",
+            "media_type": "application/json",
+            "sha256": "bdff8901cb414fa7f4bfec18d3a4f9091ff8a06e72ed0fc1dd56e1bca9ea8d86"
+          }
+        ],
+        "collection_time": "2026-10-10T00:00:00Z",
+        "contract": "civictrace-lineage/1",
+        "decompressed_sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2",
+        "environment": {
+          "implementation": "CPython",
+          "packages": {
+            "civictrace": "0.0.1",
+            "duckdb": "1.4.3",
+            "pyarrow": "23.0.1"
+          },
+          "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+          "python": "3.12.14"
+        },
+        "limitations": [
+          "Hashes establish byte identity only, not source truth, authentic acquisition time, publisher identity, legal admissibility or permission to redistribute.",
+          "Synthetic data; source date unknown"
+        ],
+        "original_file_sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2",
+        "original_pointer": "/4",
+        "rights": {
+          "attribution": "CivicTrace contributors; invented organizations only",
+          "evidence": "LICENSE",
+          "license": "Apache-2.0",
+          "privacy_review": "Invented fixture; no natural persons or client data",
+          "redistribution": "synthetic example only",
+          "registry_transformation": "not applicable; no registry enrichment"
+        },
+        "source_date": null,
+        "status": "complete-synthetic",
+        "synthetic_only": true,
+        "transformations": [
+          {
+            "implementation_sha256": "ff05facf906cd51c9d69c6ff963446c08d97bddfc2f9d303c08643f4592a2482",
+            "inputs": ["original"],
+            "operation": "JSON array pointer selection",
+            "output": "record",
+            "version": "1"
+          },
+          {
+            "implementation_sha256": "e2dad1da4004ed2009c3814d13b8bf395188fc71bc85c99f04233654e5aca6e6",
+            "inputs": ["record"],
+            "operation": "single-bid",
+            "output": "finding",
+            "version": "0.0.1"
+          }
+        ]
+      },
+      "rule": {
+        "id": "single-bid",
+        "version": "0.0.1"
+      },
+      "schema_version": "0.2.0",
+      "source": {
+        "collected_at": "2026-10-10T00:00:00Z",
+        "license": "Apache-2.0",
+        "name": "CivicTrace synthetic procurement fixture",
+        "original_file_sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2",
+        "original_record_id": "SYN-005",
+        "reference": "synthetic:SYN-005",
+        "snapshot_version": "synthetic-v1"
+      },
+      "uncertainty": "Reported count only; no probability of fraud is estimated",
+      "verification_steps": [
+        "Verify original notice",
+        "Check competition and exemptions"
+      ]
+    }
+  ],
+  "synthetic": true
+}
