@@ -90,3 +90,15 @@ def single_bid_findings(records, *, snapshot_hash, collected_at):
 def serialize_findings(findings):
     """Stable JSON makes reruns byte-identical for the same inputs and timestamp."""
     return json.dumps(findings, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+
+
+def explorer_record(record):
+    """Shared original-demo projection; keep unknown counts distinct from zero."""
+    validate_record(record)
+    return {
+        **{
+            key: record[key]
+            for key in ("record_id", "buyer_id", "supplier_id", "source_reference", "bid_count")
+        },
+        "data_status": "missing" if record["bid_count"] is None else "reported",
+    }
