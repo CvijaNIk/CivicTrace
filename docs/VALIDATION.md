@@ -86,3 +86,14 @@ Reproduce using the commands and exact filter expectations in
 [Parquet explorer](PARQUET_EXPLORER.md#buyer-suppliertenderer-and-contract-filters-19).
 Synthetic data only; all `analytics_enabled` flags remain false. No live data, merge,
 production activation or release-readiness claim.
+
+## Filtered synthetic exports (partial #20)
+
+See [FILTERED_EXPORTS.md](FILTERED_EXPORTS.md) for the CSV cell codec, manifest,
+reproducible 3/1/0/4-record filter example, independent hash/round-trip reader,
+size limits and remaining gates. Frontend tests cover combined filters,
+same-name/distinct-ID records, unknowns, exact money strings, formula prefixes,
+deterministic bytes, zero results, output boundary bytes, display mismatch,
+URL cleanup and stale asynchronous selections. Browser coverage verifies actual
+downloads against manifest hashes and displayed filters. Local browser launches
+were blocked by missing Chromium/invalid download; hosted execution is required.

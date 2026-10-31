@@ -103,3 +103,69 @@ test("entity filters retain exact identity, combine, reset and support keyboard/
     ),
   ).toBe(true);
 });
+
+test("filtered downloads agree with display and manifest; reset and empty results invalidate links", async ({
+  page,
+}) => {
+  const { readFile } = await import("node:fs/promises");
+  const { createHash } = await import("node:crypto");
+  await page.goto("/?view=parquet");
+  await page.getByLabel("Buyer name contains").fill("Invented Council");
+  await page.getByLabel("Supplier / tenderer exact ID").fill("SYN-SUPPLIER-0");
+  await expect(page.getByRole("status")).toHaveText(
+    "1 of 4 synthetic procedures shown.",
+  );
+  async function download(name: string) {
+    const pending = page.waitForEvent("download");
+    await page
+      .getByRole("link", { name: `Download filtered ${name}`, exact: true })
+      .click();
+    const file = await pending;
+    expect(file.suggestedFilename()).toBe(name);
+    return readFile((await file.path())!);
+  }
+  const json = await download("results.json");
+  const csv = await download("results.csv");
+  const manifest = JSON.parse((await download("manifest.json")).toString());
+  const result = JSON.parse(json.toString());
+  expect(result.records).toHaveLength(1);
+  expect(result.records[0].search.suppliers[0].source_id.value).toBe(
+    "SYN-SUPPLIER-0",
+  );
+  expect(result.analytics_enabled).toBe(false);
+  expect(manifest.record_ids).toEqual(
+    result.records.map(
+      (r: { release: { canonical: { id: string } } }) => r.release.canonical.id,
+    ),
+  );
+  expect(manifest.filters.entities.supplierId).toBe("SYN-SUPPLIER-0");
+  for (const [name, bytes] of [
+    ["results.json", json],
+    ["results.csv", csv],
+  ] as const) {
+    expect(manifest.files[name].sha256).toBe(
+      createHash("sha256").update(bytes).digest("hex"),
+    );
+    expect(manifest.files[name].bytes).toBe(bytes.length);
+  }
+  await expect(
+    page.getByRole("link", {
+      name: "Download verified synthetic preview JSON",
+    }),
+  ).toHaveAttribute("href", "data/parquet-v1.json");
+  await page.getByLabel("Contract exact ID").fill("no-such-id");
+  expect(
+    JSON.parse((await download("results.json")).toString()).records,
+  ).toEqual([]);
+  expect(
+    JSON.parse((await download("manifest.json")).toString()).result_count,
+  ).toBe(0);
+  await page.getByRole("button", { name: "Reset filters" }).click();
+  expect(
+    JSON.parse((await download("results.json")).toString()).records,
+  ).toHaveLength(4);
+  expect(
+    (await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze())
+      .violations,
+  ).toEqual([]);
+});
