@@ -19,7 +19,11 @@ Disclose cohort, numerator, denominator, counts and exclusions. No arbitrary uni
 threshold. Exclude unallocated joint awards to avoid double counting; preserve withdrawn/cancelled
 award treatment and test release amendments.
 
-## Submission window (planned)
+## Submission window (synthetic comparison implemented; production blocked)
+[Pinned synthetic comparison](SUBMISSION_PERIOD.md) reuses the shared UTC calculation, with
+explicit versioned comparison groups, signed deviations, denominators, exclusions and lineage.
+No real-source inputs or legal classifications are enabled.
+
 Elapsed UTC hours = tender end minus tender start. Show raw duration and a configurable,
 justified peer/procedure benchmark. Missing or invalid timestamps are data-quality findings.
 Separate calendar time from working days and local holidays; do not claim a legal violation.

@@ -1,0 +1,132 @@
+{
+  "analytics_enabled": false,
+  "contract": "civictrace-submission-fixture/1",
+  "records": [
+    {
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "record_id": "SYN-WINDOW-offset",
+      "source_reference": "synthetic://submission-period/offset",
+      "tender_end": "2026-01-02T03:30:00Z",
+      "tender_start": "2026-01-01T23:30:00-03:00"
+    },
+    {
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "record_id": "SYN-WINDOW-equal",
+      "source_reference": "synthetic://submission-period/equal",
+      "tender_end": "2026-01-01T00:00:00Z",
+      "tender_start": "2026-01-01T01:00:00+01:00"
+    },
+    {
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "record_id": "SYN-WINDOW-boundary",
+      "source_reference": "synthetic://submission-period/boundary",
+      "tender_end": "2026-01-02T00:00:00Z",
+      "tender_start": "2026-01-01T00:00:00Z"
+    },
+    {
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-limited",
+        "value_band": "invented-small"
+      },
+      "record_id": "SYN-WINDOW-longer",
+      "source_reference": "synthetic://submission-period/longer",
+      "tender_end": "2026-01-03T00:00:00Z",
+      "tender_start": "2026-01-01T00:00:00Z"
+    },
+    {
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "record_id": "SYN-WINDOW-missing",
+      "source_reference": "synthetic://submission-period/missing",
+      "tender_end": "2026-01-02T00:00:00Z",
+      "tender_start": null
+    },
+    {
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "record_id": "SYN-WINDOW-invalid",
+      "source_reference": "synthetic://submission-period/invalid",
+      "tender_end": "2026-03-01T00:00:00Z",
+      "tender_start": "2026-02-30T00:00:00Z"
+    },
+    {
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "record_id": "SYN-WINDOW-reversed",
+      "source_reference": "synthetic://submission-period/reversed",
+      "tender_end": "2026-01-01T00:00:00Z",
+      "tender_start": "2026-01-02T00:00:00Z"
+    },
+    {
+      "group": {
+        "category": "invented-works",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "record_id": "SYN-WINDOW-unmatched",
+      "source_reference": "synthetic://submission-period/unmatched",
+      "tender_end": "2026-01-02T00:00:00Z",
+      "tender_start": "2026-01-01T00:00:00Z"
+    },
+    {
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "record_id": "SYN-WINDOW-absent",
+      "source_reference": "synthetic://submission-period/absent"
+    },
+    {
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": null
+      },
+      "record_id": "SYN-WINDOW-unknown-group",
+      "source_reference": "synthetic://submission-period/unknown-group",
+      "tender_end": "2026-01-02T00:00:00Z",
+      "tender_start": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "rights": {
+    "attribution": "CivicTrace contributors; invented procedures",
+    "evidence": "LICENSE",
+    "license": "Apache-2.0",
+    "privacy_review": "No natural persons or client data",
+    "redistribution": "Invented example only"
+  },
+  "synthetic": true
+}

@@ -1,0 +1,30 @@
+{
+  "benchmarks": [
+    {
+      "basis": "Invented comparable goods cohort; 24 hours chosen solely to test boundaries, not empirical or legal evidence.",
+      "elapsed_hours": "24",
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "id": "SYN-OPEN-24",
+      "reference": "synthetic://benchmark/open-v1"
+    },
+    {
+      "basis": "Separate invented procedure cohort; 72 hours chosen for sensitivity tests only.",
+      "elapsed_hours": "72",
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-limited",
+        "value_band": "invented-small"
+      },
+      "id": "SYN-LIMITED-72",
+      "reference": "synthetic://benchmark/limited-v1"
+    }
+  ],
+  "contract": "civictrace-submission-benchmarks/1",
+  "version": "invented-v1"
+}

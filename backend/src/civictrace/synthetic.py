@@ -23,6 +23,29 @@ def instant(value):
     return datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(timezone.utc)
 
 
+def tender_period(record):
+    """Shared UTC duration diagnostics; no imputation or business-day conversion."""
+    duration = None
+    period_state = "absent"
+    if "tender_start" in record or "tender_end" in record:
+        if record.get("tender_start") is None or record.get("tender_end") is None:
+            period_state = "unknown"
+        else:
+            try:
+                duration = (
+                    instant(record["tender_end"]) - instant(record["tender_start"])
+                ).total_seconds()
+            except (ValueError, OverflowError):
+                period_state = "invalid"
+            else:
+                period_state = "present"
+                if duration < 0:
+                    period_state = "reversed"
+                    duration = None
+
+    return period_state, duration
+
+
 def assess_record(record):
     """Return deterministic eligibility diagnostics without imputing source fields.
 
@@ -65,23 +88,7 @@ def assess_record(record):
         if len(suppliers) > 1:
             reasons.append("joint_suppliers_unallocated")
 
-    duration = None
-    period_state = "absent"
-    if "tender_start" in record or "tender_end" in record:
-        if record.get("tender_start") is None or record.get("tender_end") is None:
-            period_state = "unknown"
-        else:
-            try:
-                duration = (
-                    instant(record["tender_end"]) - instant(record["tender_start"])
-                ).total_seconds()
-            except (ValueError, OverflowError):
-                period_state = "invalid"
-            else:
-                period_state = "present"
-                if duration < 0:
-                    period_state = "reversed"
-                    duration = None
+    period_state, duration = tender_period(record)
 
     if counts["bid_count"] != "present":
         reasons.append("bid_count_unknown")
