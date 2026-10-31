@@ -1,0 +1,61 @@
+{
+  "analytics_enabled": false,
+  "limitations": [
+    "Invented examples, not evidence about real procurement or wrongdoing.",
+    "Reported bid counts only; missing values are unknown, never zero.",
+    "No dates, amounts, procedure status, lots or source-authentication evidence supplied.",
+    "No production indicators, risk scores, live queries or DuckDB execution in the browser."
+  ],
+  "records": [
+    {
+      "bid_count": 1,
+      "buyer_id": "SYN-BUYER-A",
+      "data_status": "reported",
+      "record_id": "SYN-001",
+      "source_reference": "synthetic:SYN-001",
+      "supplier_id": "SYN-SUPPLIER-1"
+    },
+    {
+      "bid_count": 3,
+      "buyer_id": "SYN-BUYER-A",
+      "data_status": "reported",
+      "record_id": "SYN-002",
+      "source_reference": "synthetic:SYN-002",
+      "supplier_id": "SYN-SUPPLIER-0"
+    },
+    {
+      "bid_count": null,
+      "buyer_id": "SYN-BUYER-A",
+      "data_status": "missing",
+      "record_id": "SYN-003",
+      "source_reference": "synthetic:SYN-003",
+      "supplier_id": "SYN-SUPPLIER-1"
+    },
+    {
+      "bid_count": 0,
+      "buyer_id": "SYN-BUYER-A",
+      "data_status": "reported",
+      "record_id": "SYN-004",
+      "source_reference": "synthetic:SYN-004",
+      "supplier_id": "SYN-SUPPLIER-0"
+    },
+    {
+      "bid_count": 1,
+      "buyer_id": "SYN-BUYER-A",
+      "data_status": "reported",
+      "record_id": "SYN-005",
+      "source_reference": "synthetic:SYN-005",
+      "supplier_id": "SYN-SUPPLIER-1"
+    }
+  ],
+  "schema_version": "civictrace-explorer/1",
+  "source": {
+    "attribution": "CivicTrace contributors; invented organizations only",
+    "license": "Apache-2.0",
+    "name": "CivicTrace invented procurement fixture",
+    "path": "examples/synthetic_procurement.json",
+    "privacy_review": "Synthetic fixture; no natural persons or client data",
+    "sha256": "bb30164c2944433984b29855a5416be52e640fd94a48916ef9327ed9697bcef2"
+  },
+  "synthetic": true
+}

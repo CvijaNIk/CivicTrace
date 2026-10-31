@@ -84,8 +84,10 @@ without making accounts a condition of public access or local analysis.
 | Passport JSON Schema | Implemented; versioned machine-readable contract |
 | Unit, provenance and CLI tests | Implemented; includes rejection cases and refusal to overwrite exports |
 | CI and contributor policies | Implemented; Python checks, documentation checks and issue templates |
-| Live data connectors, web interface and search | Planned |
-| DuckDB/Parquet pipeline and local financial imports | Planned |
+| Local React/TypeScript/Vite explorer | Implemented on this draft branch; five invented records, filters, source metadata and explicit states; [run locally](docs/FRONTEND_EXPLORER.md) |
+| Live data connectors and real-data web search | Planned |
+| Synthetic Parquet snapshots and isolated DuckDB cohorts | Implemented on the unmerged draft chain; real indicators remain disabled |
+| Local financial imports | Planned |
 | Corporate graphs, R research and passive cyber modules | Planned |
 | Public deployment, collaboration and report builder | Planned |
 
