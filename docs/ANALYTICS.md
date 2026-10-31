@@ -1,4 +1,9 @@
 # Analytical rules
+
+[Isolated synthetic DuckDB cohorts](DUCKDB_COHORTS.md) now provide bounded exact projection
+diagnostics over pinned Parquet snapshots. Real indicators below remain blocked;
+`analytics_enabled: false` is required.
+
 ## Single bid (demo implemented, production planned)
 Flag bid_count == 1. Unknown counts, zero, malformed and negative values must not be flags.
 The demo rejects malformed counts and duplicate process/release identities. Optional cancellation

@@ -2,7 +2,8 @@
 
 Implemented contract: `civictrace-parquet/1`, canonical `civictrace-canonical/1`.
 This is a local storage projection, not a reviewed analytical cohort. Every manifest carries
-`analytics_enabled: false`. No rule, indicator, public export or DuckDB query layer is activated.
+`analytics_enabled: false`. No rule, indicator or public export is activated. The subsequent
+[synthetic DuckDB cohort layer](DUCKDB_COHORTS.md) retains this gate.
 
 ## Dependency review, 2026-10-31
 
@@ -17,7 +18,7 @@ which includes #29–#33; none of those PRs was merged by this work.
 | #9 | #29 scoped/versioned identities and explicit release selection; importer rejects repeated OCIDs | General amendment reconciliation, conflicting duplicates and cross-source identity resolution are not complete |
 | #10 | This snapshot writer, verifier and synthetic example | Review and larger-workload compaction remain |
 | #11 | #29 six canonical tables, decimals, UTC dates and null states | Mapping intentionally limited; no guessed field meanings |
-| #12 | No implementation in this increment | Read-only isolated analytical layer still depends on reviewed #10/#11 |
+| #12 | Subsequent [synthetic DuckDB cohort layer](DUCKDB_COHORTS.md) | Real indicators and source semantic approval remain blocked |
 
 Issue #9 is only partially implemented. This writer retains the importer's duplicate rejects and
 all imported versions; it never manufactures a latest-release view or claims full #9 completion.

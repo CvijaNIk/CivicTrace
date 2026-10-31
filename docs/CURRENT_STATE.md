@@ -18,7 +18,7 @@ and conservative award totals. This is an offline OCDS-shaped subset, tested wit
 full source mapping, database storage and live ingestion remain unimplemented.
 
 Planned: all live connectors, canonical real-source validation, three production indicators,
-DuckDB/Parquet processing, React explorer, search, CSV exports, graph/R/cyber modules and hosting.
+real-source analytical processing, React explorer, search, CSV exports, graph/R/cyber modules and hosting.
 No donation account or FUNDING.yml. Branding remains provisional with known conflicts.
 DNCP activation remains gated by open #6/#7. PR #27 proposes a fuller local input contract;
 its reviewed files are explicitly incorporated by the stratified-quality follow-up. No automatic
@@ -56,3 +56,11 @@ bidder/bid/lot diagnostics and explicit screening criteria. The [bounded source 
 reconfirmed the same 22 prefix records using 256 KiB; no older cases or usable bid-to-lot links
 were established. All real analytical indicators remain blocked pending broader frame and
 publisher-semantic evidence. Synthetic tests establish algorithm behavior, not source representativeness.
+
+Implemented locally for #10/#12: [versioned Parquet snapshots](PARQUET_SNAPSHOTS.md) and
+[isolated synthetic DuckDB cohorts](DUCKDB_COHORTS.md), stacked on draft PR #35. The latter
+reuses the verified six-table contract, requires a pinned invented snapshot, and returns exact
+currency/UTC-release-period/process-status diagnostics with exclusions. Disposable workers deny
+network syscalls, disable engine external access/extensions and enforce OS/resource budgets.
+No arbitrary SQL, latest-version inference, FX or real analytical indicators. Source quality,
+semantic validation, privacy/rights approval and integration of the draft chain remain open.
