@@ -27,6 +27,33 @@ export interface Entity {
     money?: { amount: Field; currency: Field };
   };
 }
+export interface SearchEntity {
+  source_id: Field;
+  name: Field;
+  pointer: string;
+  pointer_scope:
+    "release_source_record" | "party_canonical" | "contract_canonical";
+  canonical_id: string | null;
+  source_file: string;
+  record_sha256: string;
+}
+export type EntityFilters = Record<
+  | "buyerId"
+  | "buyerName"
+  | "supplierId"
+  | "supplierName"
+  | "contractId"
+  | "contractName",
+  string
+>;
+export const emptyEntityFilters: EntityFilters = {
+  buyerId: "",
+  buyerName: "",
+  supplierId: "",
+  supplierName: "",
+  contractId: "",
+  contractName: "",
+};
 export interface ParquetData {
   schema_version: string;
   snapshot_id: string;
@@ -34,7 +61,12 @@ export interface ParquetData {
   canonical_schema_version: string;
   analytics_enabled: false;
   synthetic: true;
-  records: { release: Entity; awards: Entity[]; contracts: Entity[] }[];
+  records: {
+    release: Entity;
+    awards: Entity[];
+    contracts: Entity[];
+    search: Record<"buyers" | "suppliers" | "contracts", SearchEntity[]>;
+  }[];
   lineage: {
     snapshot_id: string;
     original_file_sha256: string;
@@ -46,6 +78,47 @@ export interface ParquetData {
   projection_exclusions: number;
   exclusion_ledger: unknown[];
   limitations: string[];
+}
+export function matchesEntities(
+  row: ParquetData["records"][number],
+  filters: EntityFilters,
+): boolean {
+  return (
+    [
+      ["buyers", "buyerId", "buyerName"],
+      ["suppliers", "supplierId", "supplierName"],
+      ["contracts", "contractId", "contractName"],
+    ] as const
+  ).every(([kind, idKey, nameKey]) => {
+    const id = filters[idKey];
+    const name = filters[nameKey].trim().toLowerCase();
+    return (
+      (!id && !name) ||
+      row.search[kind].some(
+        (entity) =>
+          (!id ||
+            (entity.source_id.state === "present" &&
+              entity.source_id.value === id)) &&
+          (!name ||
+            (entity.name.state === "present" &&
+              entity.name.value!.toLowerCase().includes(name))),
+      )
+    );
+  });
+}
+function searchEntity(x: unknown): x is SearchEntity {
+  return (
+    obj(x) &&
+    field(x.source_id) &&
+    field(x.name) &&
+    text(x.pointer) &&
+    ["release_source_record", "party_canonical", "contract_canonical"].includes(
+      String(x.pointer_scope),
+    ) &&
+    (x.canonical_id === null || hash(x.canonical_id)) &&
+    text(x.source_file) &&
+    hash(x.record_sha256)
+  );
 }
 function field(x: unknown): x is Field {
   return (
@@ -91,7 +164,7 @@ export function parseParquet(raw: string): ParquetData {
   const x: unknown = JSON.parse(raw);
   if (
     !obj(x) ||
-    x.schema_version !== "civictrace-parquet-explorer/1" ||
+    x.schema_version !== "civictrace-parquet-explorer/2" ||
     x.synthetic !== true ||
     x.analytics_enabled !== false ||
     x.snapshot_id !== pin.snapshot_id ||
@@ -137,6 +210,38 @@ export function parseParquet(raw: string): ParquetData {
       seen.has(r.release.canonical.id)
     )
       throw Error("Invalid release");
+    const release = r.release;
+    if (!obj(r.search)) throw Error("Missing search projection");
+    for (const kind of ["buyers", "suppliers", "contracts"] as const) {
+      const items = r.search[kind];
+      if (
+        !Array.isArray(items) ||
+        items.length > 1000 ||
+        !items.every(searchEntity)
+      )
+        throw Error("Invalid search projection");
+      if (
+        items.some(
+          (item) =>
+            item.source_file !== release.source_file ||
+            item.record_sha256 !== release.record_sha256,
+        )
+      )
+        throw Error("Search evidence mismatch");
+      if (
+        kind === "contracts" &&
+        (items.length !== (r.contracts as unknown[]).length ||
+          items.some(
+            (item) =>
+              !(r.contracts as Entity[]).some(
+                (c) =>
+                  c.canonical.id === item.canonical_id &&
+                  c.canonical.source_id === item.source_id.value,
+              ),
+          ))
+      )
+        throw Error("Search contract mismatch");
+    }
     seen.add(r.release.canonical.id);
     for (const table of [r.awards, r.contracts]) {
       if (!Array.isArray(table) || table.length > 1000)

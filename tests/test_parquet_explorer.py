@@ -121,3 +121,53 @@ def test_synthetic_gate_with_consistent_rehashed_manifest(tmp_path):
     assert verify_snapshot(directory) == manifest
     with pytest.raises(ValueError):
         export_snapshot(directory, expected_snapshot_id=manifest["snapshot_id"])
+
+
+def test_search_identity_links_and_minimized_unknowns(tmp_path):
+    row = release()
+    row["buyer"] = {"id": "buyer-1", "name": "Same name", "address": {"secret": True}}
+    row["parties"] = [
+        {"id": "p1", "name": "Same name"},
+        {"id": "p2", "name": "Same name", "roles": ["tenderer"]},
+        {"id": "unlinked", "name": "Same name"},
+    ]
+    row["contracts"][0]["title"] = "Synthetic contract"
+    directory, pin = snapshot(tmp_path, [row])
+    raw = export_snapshot(directory, expected_snapshot_id=pin)
+    assert raw == export_snapshot(directory, expected_snapshot_id=pin)
+    result = json.loads(raw)["records"][0]
+    search = result["search"]
+    assert search["buyers"][0]["source_id"]["value"] == "buyer-1"
+    assert {p["source_id"]["value"] for p in search["suppliers"]} == {"p1", "p2"}
+    assert search["contracts"][0]["name"]["value"] == "Synthetic contract"
+    assert search["contracts"][0]["canonical_id"] == result["contracts"][0]["canonical"]["id"]
+    assert "secret" not in raw
+    for items in search.values():
+        for item in items:
+            assert item["record_sha256"] == result["release"]["record_sha256"]
+            assert item["source_file"] == result["release"]["source_file"]
+
+
+@pytest.mark.parametrize("buyer,state", [(None, "null"), ([], "invalid"), ({}, "absent")])
+def test_search_missing_buyer_and_contract_title(tmp_path, buyer, state):
+    row = release()
+    row["buyer"] = buyer
+    row["parties"][0]["name"] = None
+    directory, pin = snapshot(tmp_path, [row])
+    search = json.loads(export_snapshot(directory, expected_snapshot_id=pin))["records"][0][
+        "search"
+    ]
+    assert search["buyers"][0]["source_id"]["state"] == state
+    assert search["contracts"][0]["name"]["state"] == "absent"
+    assert any(p["name"]["state"] == "null" for p in search["suppliers"])
+
+
+def test_quarantined_contract_title_never_guessed(tmp_path):
+    row = release()
+    row["contracts"].insert(0, {"id": "bad", "awardID": "missing", "value": {}})
+    row["contracts"][1]["title"] = "Kept title"
+    row["contracts"].append(dict(row["contracts"][1], title="Conflicting title"))
+    directory, pin = snapshot(tmp_path, [row])
+    data = json.loads(export_snapshot(directory, expected_snapshot_id=pin))
+    assert data["records"][0]["search"]["contracts"][0]["name"]["state"] == "unsupported"
+    assert len(data["exclusion_ledger"][0]["quarantined"]) == 2

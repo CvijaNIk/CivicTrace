@@ -59,3 +59,30 @@ Combining ingestion limits with synthetic guards and preserving both diagnostic 
 35 passed and 103 subtests passed, lint/docs passed. These are rehearsal-only resolutions; neither
 branch is merged here. Recheck when either PR head changes. No source probe was executed.
 New hosted CI must be checked on this branch's own commit; other PRs' CI is not inherited.
+
+## Issue #19 synthetic entity filters — 2026-10-31
+
+Incremental base: PR #40, commit `83f24f7a6f60568dbabd6ca453d1e6ec4aed698f`.
+Checked latest open PRs, remote branches and #19 before implementation. No existing
+entity-search implementation was found; no merge performed.
+
+Local execution on Python 3.12.14 / Node 24.22.1:
+
+- 210 Python tests and 95 subtests passed, no skips (includes five new adapter cases).
+- 61 Vitest tests passed (six new cases), including duplicate names/distinct exact IDs,
+  case/whitespace/partial-ID negatives, same-entry matching, combined categories/status,
+  missing/null data, invalid projections, evidence mismatch, active counts/reset and keyboard.
+- Strict TypeScript/Vite build, locked npm ci, Prettier, Ruff lint/format, docs links,
+  all three fixture regeneration checks and whitespace checks passed. npm audit: zero findings.
+- Invented four-record Parquet fixture regenerated through existing importer, writer,
+  full replay verifier and minimized version-2 adapter; bundled SHA-256/snapshot pins updated.
+- Playwright suite was invoked: six browser launches failed because Chromium was absent;
+  browser download returned an invalid/truncated ZIP. **No local page assertions executed.**
+  The existing unchanged hosted CI must independently run the six browser tests, including
+  new entity-filter keyboard, axe WCAG A/AA and 375px viewport assertions. Consult the
+  draft PR for actual hosted results; this paragraph does not claim browser success.
+
+Reproduce using the commands and exact filter expectations in
+[Parquet explorer](PARQUET_EXPLORER.md#buyer-suppliertenderer-and-contract-filters-19).
+Synthetic data only; all `analytics_enabled` flags remain false. No live data, merge,
+production activation or release-readiness claim.
