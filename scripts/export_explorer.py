@@ -5,7 +5,7 @@ import json
 from hashlib import sha256
 from pathlib import Path
 
-from civictrace.evidence import validate_record
+from civictrace.evidence import explorer_record, validate_record
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "frontend/public/data/synthetic-v1.json"
@@ -44,22 +44,7 @@ def export():
             "No production indicators, risk scores, live queries or DuckDB execution "
             "in the browser.",
         ],
-        "records": [
-            {
-                **{
-                    key: row[key]
-                    for key in (
-                        "record_id",
-                        "buyer_id",
-                        "supplier_id",
-                        "source_reference",
-                        "bid_count",
-                    )
-                },
-                "data_status": "missing" if row["bid_count"] is None else "reported",
-            }
-            for row in records
-        ],
+        "records": [explorer_record(row) for row in records],
     }
     return json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
 

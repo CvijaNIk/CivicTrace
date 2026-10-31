@@ -70,3 +70,13 @@ using React/strict TypeScript/Vite. Five existing invented rows are exported thr
 bounded v1 JSON projection of the original Python record contract, with filters, source/rights/
 privacy notes, explicit unknown/zero and loading/error/empty states. No DuckDB/browser bridge,
 real-data indicators, accounts, production server or public hosting. #18 remains future work.
+
+## Synthetic provenance extension
+
+Opt-in Evidence Passport 0.2.0 connects the reviewed five-record fixture and its two existing
+synthetic findings to exact bytes, original pointers, transformations and a software manifest.
+0.1.0 remains accepted, with a lossless incomplete-provenance migration. Snapshot provenance
+and versioned cohort diagnostic envelopes replay the importer/writer/query chain against an
+explicit snapshot pin. Historical missing environment metadata remains unknown. See
+[EVIDENCE_PASSPORT.md](EVIDENCE_PASSPORT.md) for commands and expected results.
+The existing frontend is preserved; real analytical indicators remain disabled.
