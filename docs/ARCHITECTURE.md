@@ -49,3 +49,11 @@ before a real-data release and preserve environment metadata with exports.
 ceilings, browser deferral and alternatives. The [synthetic resource experiment](DNCP_BENCHMARK.md)
 measures process RSS, traced Python allocations, throughput and disk/file amplification separately.
 Empirical measurements are not guaranteed memory limits; the browser has no DNCP importer yet.
+
+## Local Parquet storage increment
+
+[Versioned Parquet snapshots](PARQUET_SNAPSHOTS.md) implement six partitioned canonical projections
+from byte-verified importer replay, with original private evidence, manifests, explicit Arrow schema,
+exact decimal/UTC types and atomic no-replace publication. This is a storage layer with bounded
+budgets, not an implemented DuckDB analytical service. General identity reconciliation remains
+partial and DNCP source semantics/quality still block real indicators.
