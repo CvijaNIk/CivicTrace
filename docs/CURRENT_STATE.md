@@ -110,3 +110,8 @@ from the existing Parquet page, plus a linked deterministic checksum manifest.
 The full snapshot download remains. JSON-typed CSV cells prevent formula execution
 and numeric coercion; size/display consistency checks fail closed. Real-source
 exports and indicator/release acceptance for the rest of #20 remain planned.
+
+Implemented for the limited synthetic portion of #15: [submission-period comparisons](SUBMISSION_PERIOD.md)
+over ten pinned invented records, shared UTC duration logic, explicit versioned procedure/peer
+references, signed deviations, calendar/working-day distinction, denominators, exclusions and
+byte/code lineage. No real-source indicator or activation; `analytics_enabled: false` remains.
