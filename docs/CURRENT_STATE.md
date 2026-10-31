@@ -18,7 +18,7 @@ and conservative award totals. This is an offline OCDS-shaped subset, tested wit
 full source mapping, database storage and live ingestion remain unimplemented.
 
 Planned: all live connectors, canonical real-source validation, three production indicators,
-real-source analytical processing, React explorer, search, CSV exports, graph/R/cyber modules and hosting.
+real-source analytical processing, real-data search, CSV exports, graph/R/cyber modules and hosting.
 No donation account or FUNDING.yml. Branding remains provisional with known conflicts.
 DNCP activation remains gated by open #6/#7. PR #27 proposes a fuller local input contract;
 its reviewed files are explicitly incorporated by the stratified-quality follow-up. No automatic
@@ -64,3 +64,9 @@ currency/UTC-release-period/process-status diagnostics with exclusions. Disposab
 network syscalls, disable engine external access/extensions and enforce OS/resource budgets.
 No arbitrary SQL, latest-version inference, FX or real analytical indicators. Source quality,
 semantic validation, privacy/rights approval and integration of the draft chain remain open.
+
+Implemented on the draft chain for #3: [local accessible synthetic explorer](FRONTEND_EXPLORER.md)
+using React/strict TypeScript/Vite. Five existing invented rows are exported through a pinned,
+bounded v1 JSON projection of the original Python record contract, with filters, source/rights/
+privacy notes, explicit unknown/zero and loading/error/empty states. No DuckDB/browser bridge,
+real-data indicators, accounts, production server or public hosting. #18 remains future work.

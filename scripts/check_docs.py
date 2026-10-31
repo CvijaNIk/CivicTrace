@@ -6,6 +6,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 errors = []
 for document in ROOT.rglob("*.md"):
+    if any(
+        part in {"node_modules", "dist", "test-results", "playwright-report"}
+        for part in document.relative_to(ROOT).parts
+    ):
+        continue
     if any(part.startswith(".") and part != ".github" for part in document.relative_to(ROOT).parts):
         continue
     for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", document.read_text()):
