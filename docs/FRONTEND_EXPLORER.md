@@ -101,3 +101,9 @@ actual Chromium, axe contrast/accessibility assertions, visual screenshots and n
 checks remain unverified locally. The frontend CI job keeps these checks mandatory; inspect its
 exact-head outcome before treating them as passed. This is an explicit validation limit, not a
 reason to disable or skip browser tests. No public deployment or production acceptance is claimed.
+
+## Verified synthetic Parquet view
+
+The separate local `/?view=parquet` page now uses the bounded versioned adapter
+and existing snapshot replay described in [PARQUET_EXPLORER.md](PARQUET_EXPLORER.md).
+The original `civictrace-explorer/1` fixture and its behavior remain unchanged.

@@ -21,6 +21,7 @@ jobs:
       - run: ruff format --check .
       - run: pytest -q
       - run: python scripts/check_docs.py
+      - run: python scripts/export_parquet_explorer.py --check
       - name: Reproduce synthetic demo
         run: |
           civictrace examples/synthetic_procurement.json --collected-at 2026-10-10T00:00:00Z --output /tmp/findings-a.json

@@ -80,3 +80,12 @@ and versioned cohort diagnostic envelopes replay the importer/writer/query chain
 explicit snapshot pin. Historical missing environment metadata remains unknown. See
 [EVIDENCE_PASSPORT.md](EVIDENCE_PASSPORT.md) for commands and expected results.
 The existing frontend is preserved; real analytical indicators remain disabled.
+
+## Controlled synthetic Parquet display
+
+The stacked development branch adds a local opt-in `/?view=parquet` preview over
+four verified invented procedures. It reuses snapshot integrity/replay and
+bounded table loading, preserves exact decimal strings and exclusion ledgers,
+and pins the static payload in the frontend. See
+[PARQUET_EXPLORER.md](PARQUET_EXPLORER.md). This is not real-source analytics;
+`analytics_enabled: false`, rights/quality gates and all unmerged PRs remain.

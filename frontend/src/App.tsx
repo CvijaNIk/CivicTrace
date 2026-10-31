@@ -44,6 +44,7 @@ export function App({ loader = loadDataset }: { loader?: typeof loadDataset }) {
           CivicTrace<span>Research workbench</span>
         </a>
         <nav aria-label="Page">
+          <a href="?view=parquet">Verified Parquet preview</a>
           <a href="#records">Records</a>
           <a href="#source">Source & limitations</a>
         </nav>

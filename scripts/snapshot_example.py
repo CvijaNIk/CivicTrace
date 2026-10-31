@@ -16,6 +16,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("directory", type=Path, help="New private output directory")
     parser.add_argument("--rows", type=int, default=100)
+    parser.add_argument(
+        "--preview-fixture", action="store_true", help="Invented zero/missing/excluded cases"
+    )
     args = parser.parse_args()
     if not 1 <= args.rows <= 10000:
         parser.error("rows must be 1..10000")
@@ -50,6 +53,15 @@ def main():
                     }
                 ],
             }
+            if args.preview_fixture:
+                if n == 1:
+                    record.pop("date")
+                    record["tender"]["status"] = "cancelled"
+                    record["awards"][0]["value"] = {"amount": "0", "currency": "USD"}
+                elif n == 2:
+                    record["awards"][0]["value"] = {"amount": None}
+                elif n == 3:
+                    record["awards"][0]["value"]["amount"] = "1e58"
             raw = (json.dumps(record, sort_keys=True) + "\n").encode()
             expanded.update(raw)
             gz.write(raw)
