@@ -4,9 +4,10 @@ import {
   type ParquetData,
   type Field,
   emptyEntityFilters,
-  matchesEntities,
   type EntityFilters,
 } from "./parquet";
+import { selectRecords } from "./exports";
+import { FilteredExport } from "./FilteredExport";
 const filterLabels: Record<keyof EntityFilters, string> = {
   buyerId: "Buyer exact ID",
   buyerName: "Buyer name contains",
@@ -56,17 +57,8 @@ export function ParquetExplorer({
       window.clearTimeout(timer);
     };
   }, [loader, attempt]);
-  const rows =
-    data?.records.filter(
-      (r) =>
-        matchesEntities(r, entities) &&
-        (status === "all" || r.release.canonical.status.value === status) &&
-        [
-          r.release.canonical.source_record?.ocid,
-          r.release.canonical.source_id,
-          r.release.source_file,
-        ].some((s) => s?.toLowerCase().includes(query.trim().toLowerCase())),
-    ) ?? [];
+  const filters = { query, status, entities };
+  const rows = data ? selectRecords(data, filters) : [];
   return (
     <>
       <a className="skip" href="#main">
@@ -201,6 +193,12 @@ export function ParquetExplorer({
         )}
         {data && (
           <>
+            <FilteredExport
+              key={JSON.stringify(filters) + attempt}
+              data={data}
+              filters={filters}
+              ids={rows.map((r) => r.release.canonical.id)}
+            />
             {!rows.length && <p>No procedures match these filters.</p>}
             {rows.map((r) => (
               <section

@@ -104,3 +104,9 @@ unknown/no-results states. Replay-verified buyer evidence, canonical party roles
 links and retained contracts supply the minimized version-2 adapter projection. No
 name-based identity inference, live data or analytics activation; real-source search
 remains planned. Existing Passport and original explorer routes remain available.
+
+The synthetic-only portion of #20 now has [filtered CSV/JSON exports](FILTERED_EXPORTS.md)
+from the existing Parquet page, plus a linked deterministic checksum manifest.
+The full snapshot download remains. JSON-typed CSV cells prevent formula execution
+and numeric coercion; size/display consistency checks fail closed. Real-source
+exports and indicator/release acceptance for the rest of #20 remain planned.
