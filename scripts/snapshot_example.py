@@ -54,6 +54,19 @@ def main():
                 ],
             }
             if args.preview_fixture:
+                if n != 2:
+                    record["buyer"] = {"id": f"SYN-BUYER-{n}", "name": "Invented Council"}
+                    record["parties"].append(dict(record["buyer"], roles=["buyer"]))
+                    record["parties"][0].update(
+                        id=f"SYN-SUPPLIER-{n}", name="Invented Works", roles=["supplier"]
+                    )
+                    record["awards"][0]["suppliers"][0]["id"] = f"SYN-SUPPLIER-{n}"
+                    record["contracts"][0].update(
+                        id=f"SYN-CONTRACT-{n}", title="Invented maintenance"
+                    )
+                else:
+                    record["buyer"] = None
+                    record["parties"][0]["name"] = None
                 if n == 1:
                     record.pop("date")
                     record["tender"]["status"] = "cancelled"

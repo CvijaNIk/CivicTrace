@@ -1,5 +1,20 @@
 import { useEffect, useState } from "react";
-import { loadParquet, type ParquetData, type Field } from "./parquet";
+import {
+  loadParquet,
+  type ParquetData,
+  type Field,
+  emptyEntityFilters,
+  matchesEntities,
+  type EntityFilters,
+} from "./parquet";
+const filterLabels: Record<keyof EntityFilters, string> = {
+  buyerId: "Buyer exact ID",
+  buyerName: "Buyer name contains",
+  supplierId: "Supplier / tenderer exact ID",
+  supplierName: "Supplier / tenderer name contains",
+  contractId: "Contract exact ID",
+  contractName: "Contract title contains",
+};
 const show = (f: Field) =>
   f.state === "present" ? f.value : `Unknown — ${f.state}`;
 export function ParquetExplorer({
@@ -10,6 +25,9 @@ export function ParquetExplorer({
   const [data, setData] = useState<ParquetData | null>(null);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const [entities, setEntities] = useState<EntityFilters>({
+    ...emptyEntityFilters,
+  });
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("all");
   useEffect(() => {
@@ -41,6 +59,7 @@ export function ParquetExplorer({
   const rows =
     data?.records.filter(
       (r) =>
+        matchesEntities(r, entities) &&
         (status === "all" || r.release.canonical.status.value === status) &&
         [
           r.release.canonical.source_record?.ocid,
@@ -75,7 +94,19 @@ export function ParquetExplorer({
           award and contract values are exact decimal strings; no FX or
           latest-version inference.
         </p>
-        <form className="filters" onSubmit={(e) => e.preventDefault()}>
+        <p id="identity-help">
+          Exact IDs are case-sensitive source IDs, including whitespace; names
+          are case-insensitive substrings. Names never establish legal identity.
+          ID and name must match the same entity; categories combine with AND.
+          Supplier search covers explicitly reported suppliers/tenderers or
+          award-linked parties, not all possible bidders. Counts refer to
+          release records, not unique entities.
+        </p>
+        <form
+          aria-describedby="identity-help"
+          className="filters"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <div>
             <label htmlFor="snapshot-search">Search source identifiers</label>
             <input
@@ -107,9 +138,24 @@ export function ParquetExplorer({
                 ))}
             </select>
           </div>
+          {(Object.keys(filterLabels) as (keyof EntityFilters)[]).map((key) => (
+            <div key={key}>
+              <label htmlFor={key}>{filterLabels[key]}</label>
+              <input
+                id={key}
+                type="search"
+                maxLength={4096}
+                value={entities[key]}
+                onChange={(e) =>
+                  setEntities({ ...entities, [key]: e.target.value })
+                }
+              />
+            </div>
+          ))}
           <button
             type="button"
             onClick={() => {
+              setEntities({ ...emptyEntityFilters });
               setQuery("");
               setStatus("all");
             }}
@@ -117,6 +163,29 @@ export function ParquetExplorer({
             Reset filters
           </button>
         </form>
+        <section aria-label="Active filters">
+          <h2>Active filters</h2>
+          {query ||
+          status !== "all" ||
+          Object.values(entities).some(Boolean) ? (
+            <ul>
+              {query && <li>Source identifiers: {query}</li>}
+              {status !== "all" && <li>Procedure status: {status}</li>}
+              {(Object.keys(filterLabels) as (keyof EntityFilters)[])
+                .filter((key) => entities[key])
+                .map((key) => (
+                  <li key={key}>
+                    {filterLabels[key]}:{" "}
+                    <code style={{ whiteSpace: "pre-wrap" }}>
+                      {entities[key]}
+                    </code>
+                  </li>
+                ))}
+            </ul>
+          ) : (
+            <p>No active filters.</p>
+          )}
+        </section>
         <p role="status">
           {data
             ? `${rows.length} of ${data.records.length} synthetic procedures shown.`
@@ -145,6 +214,44 @@ export function ParquetExplorer({
                   {show(r.release.canonical.status)} · Release date:{" "}
                   {show(r.release.canonical.date)}
                 </p>
+                {(["buyers", "suppliers", "contracts"] as const).map((kind) => (
+                  <div key={kind}>
+                    <h3>
+                      {kind === "buyers"
+                        ? "Buyer"
+                        : kind === "suppliers"
+                          ? "Suppliers / tenderers"
+                          : "Contract identities"}
+                    </h3>
+                    {!r.search[kind].length && (
+                      <p>Unknown — no verified {kind} available.</p>
+                    )}
+                    <ul>
+                      {r.search[kind].map((entity, i) => (
+                        <li key={i}>
+                          ID:{" "}
+                          <code style={{ whiteSpace: "pre-wrap" }}>
+                            {show(entity.source_id)}
+                          </code>{" "}
+                          · {kind === "contracts" ? "Title" : "Name"}:{" "}
+                          {show(entity.name)}
+                          <details>
+                            <summary>Identity source reference</summary>
+                            <p>
+                              {entity.source_file} · {entity.pointer_scope} ·{" "}
+                              {entity.pointer}
+                            </p>
+                            <p className="hash">{entity.record_sha256}</p>
+                            <p className="hash">
+                              Canonical identity:{" "}
+                              {entity.canonical_id ?? "Unknown — not resolved"}
+                            </p>
+                          </details>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
                 <details>
                   <summary>Source reference and row checksum</summary>
                   <p>{r.release.source_file}</p>

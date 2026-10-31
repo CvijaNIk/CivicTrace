@@ -96,3 +96,11 @@ The existing React application now includes an opt-in `/?view=passport` view for
 legacy, migrated-incomplete and complete synthetic findings. See
 [PASSPORT_VIEW.md](PASSPORT_VIEW.md) for contracts, security boundaries and reproduction.
 Limitations stay expanded; hashes are not proof of truth. Real analytics remain disabled.
+
+Implemented for the synthetic portion of #19: [precise entity filters](PARQUET_EXPLORER.md#buyer-suppliertenderer-and-contract-filters-19)
+on the existing verified Parquet page, stacked on #40. Separate exact source IDs and
+name/title substrings, same-entity matching, active filters, release counts, reset and
+unknown/no-results states. Replay-verified buyer evidence, canonical party roles/award
+links and retained contracts supply the minimized version-2 adapter projection. No
+name-based identity inference, live data or analytics activation; real-source search
+remains planned. Existing Passport and original explorer routes remain available.

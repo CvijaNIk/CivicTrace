@@ -9,11 +9,73 @@ import tempfile
 from pathlib import Path
 
 from .analytics import QueryBudget
+from .canonical import field
 
-VERSION = "civictrace-parquet-explorer/1"
+VERSION = "civictrace-parquet-explorer/2"
 MAX_BYTES = 65536
 MAX_RECORDS = 100
 BUDGET = QueryBudget(max_files=1000, max_bytes=8 * 1024**2, max_rows=1000, wall_seconds=30)
+
+
+def search_projection(release, parties, links, contracts):
+    """Project only replay-verified canonical evidence; never resolve entities by name."""
+    c = release["canonical"]
+    source = c["source_record"]
+
+    def item(obj, pointer, evidence, canonical_id=None, pointer_scope="release_source_record"):
+        # No raw object/addresses/contacts exposed by this minimized projection.
+        def minimized(key):
+            value = field(obj, key, pointer + "/" + key)
+            return {k: value[k] for k in ("state", "value", "pointer")}
+
+        return dict(
+            source_id=minimized("id"),
+            name=minimized("name"),
+            pointer=pointer,
+            pointer_scope=pointer_scope,
+            canonical_id=canonical_id,
+            source_file=evidence["source_file"],
+            record_sha256=evidence["record_sha256"],
+        )
+
+    buyer = source.get("buyer")
+    buyers = [item(buyer if isinstance(buyer, dict) else {}, "/buyer", release)]
+    if "buyer" in source and not isinstance(buyer, dict):
+        state = "null" if buyer is None else "invalid"
+        for key in ("source_id", "name"):
+            buyers[0][key] = dict(state=state, value=None)
+    suppliers = []
+    linked = {r["canonical"]["party_id"] for r in links}
+    for party in parties:
+        pc = party["canonical"]
+        roles = pc["source"].get("roles", [])
+        if pc["id"] in linked or (
+            isinstance(roles, list) and any(r in ("supplier", "tenderer") for r in roles)
+        ):
+            # Canonical party source is preserved independently of quarantined children.
+            suppliers.append(item(pc["source"], "/source", party, pc["id"], "party_canonical"))
+    projected_contracts = []
+    originals = source.get("contracts", [])
+    for contract in contracts:
+        cc = contract["canonical"]
+        matches = [
+            (i, r)
+            for i, r in enumerate(originals)
+            if isinstance(r, dict) and r.get("id") == cc["source_id"]
+        ]
+        entry = item({"id": cc["source_id"]}, "/", contract, cc["id"], "contract_canonical")
+        entry["source_id"]["pointer"] = "/source_id"
+        if len(matches) == 1:
+            i, original = matches[0]
+            entry["pointer"] = f"/contracts/{i}"
+            entry["pointer_scope"] = "release_source_record"
+            entry["source_id"]["pointer"] = f"/contracts/{i}/id"
+            title = field(original, "title", f"/contracts/{i}/title")
+            entry["name"] = {k: title[k] for k in ("state", "value", "pointer")}
+        elif len(matches) > 1:
+            entry["name"] = dict(state="unsupported", value=None)
+        projected_contracts.append(entry)
+    return dict(buyers=buyers, suppliers=suppliers, contracts=projected_contracts)
 
 
 def export_snapshot(directory, *, expected_snapshot_id):
@@ -71,7 +133,9 @@ def _worker(request):
         raise ValueError("preview record limit")
     # Reuse full importer/writer replay, original hashes, rights and pointers from #38.
     lineage = snapshot_record_lineage(private, expected_snapshot_id=request["snapshot_id"])
-    tables = {name: [] for name in ("releases", "awards", "contracts")}
+    tables = {
+        name: [] for name in ("releases", "awards", "contracts", "parties", "award_suppliers")
+    }
     for entry in manifest["files"]:
         parts = Path(entry["path"]).parts
         if entry["path"].endswith(".parquet") and parts[1] in tables:
@@ -89,10 +153,6 @@ def _worker(request):
             ):
                 for row in batch.to_pylist():
                     canonical = json.loads(row.pop("canonical_json"))
-                    if "source_record" in canonical:
-                        canonical["source_record"] = {
-                            k: canonical["source_record"][k] for k in ("ocid", "id")
-                        }
                     if "money" in canonical:
                         raw_amount = canonical["money"]["amount"].get("raw")
                         if raw_amount is not None:
@@ -115,7 +175,20 @@ def _worker(request):
                 ],
                 key=lambda r: r["canonical"]["id"],
             )
-        records.append(dict(release=release, **children))
+
+        def scoped(table):
+            return [
+                r
+                for r in tables[table]
+                if r["canonical"]["release_id"] == canonical["id"]
+                and r["canonical"]["process_id"] == canonical["process_id"]
+            ]
+
+        search = search_projection(
+            release, scoped("parties"), scoped("award_suppliers"), children["contracts"]
+        )
+        canonical["source_record"] = {k: canonical["source_record"][k] for k in ("ocid", "id")}
+        records.append(dict(release=release, search=search, **children))
     result = dict(
         schema_version=VERSION,
         synthetic=True,
