@@ -1,6 +1,6 @@
-# Evidence Passport 0.1.0
+# Versioned Evidence Passport
 Machine contract: [JSON Schema](../schemas/evidence-passport.schema.json), Draft 2020-12.
-Every schema field is required; unknown original-file hash can be null with an explicit limitation.
+The legacy 0.1.0 fields remain required; unknown original-file hash can be null with an explicit limitation.
 Validators must enable date-time format checking. The demo produces known hashes only.
 
 | Group | Human-readable presentation |
@@ -22,8 +22,8 @@ Evidence export is deterministic given ordered records, snapshot bytes and an ex
 timestamp. Demo finding IDs hash snapshot + record ID + rule/version. Input order determines
 output order; sorting and canonical production identity remain backlog tasks.
 SHA-256 verifies unchanged bytes, not source truth, timestamp authenticity or evidentiary admissibility.
-A future export manifest should include software commit, environment, licenses and chain of
-transformations. Schema changes require migration examples and compatibility tests.
+The opt-in 0.2.0 extension below adds environment, rights and transformation fingerprints.
+General production exports and historical environment reconstruction remain outside this scope.
 
 ## Implemented 0.2.0 provenance (synthetic only)
 
