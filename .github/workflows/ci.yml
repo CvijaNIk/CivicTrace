@@ -22,6 +22,7 @@ jobs:
       - run: pytest -q
       - run: python scripts/check_docs.py
       - run: python scripts/export_parquet_explorer.py --check
+      - run: python scripts/export_submission_view.py --check
       - run: python scripts/export_passport_view.py --check
       - name: Reproduce synthetic demo
         run: |

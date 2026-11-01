@@ -1,0 +1,475 @@
+{
+  "analytics_enabled": false,
+  "comparison_counts": {
+    "above": 0,
+    "below": 3,
+    "equal": 1
+  },
+  "configuration": {
+    "benchmarks": [
+      {
+        "basis": "Invented comparable goods cohort; 24 hours chosen solely to test boundaries, not empirical or legal evidence.",
+        "elapsed_hours": "24",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-open",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-OPEN-24",
+        "reference": "synthetic://benchmark/open-v1"
+      },
+      {
+        "basis": "Separate invented procedure cohort; 72 hours chosen for sensitivity tests only.",
+        "elapsed_hours": "72",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-limited",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-LIMITED-72",
+        "reference": "synthetic://benchmark/limited-v1"
+      }
+    ],
+    "contract": "civictrace-submission-benchmarks/1",
+    "version": "invented-v1"
+  },
+  "configuration_sha256": "82ce711e77197568ae0d6f2c4584b9c3012cdf7b43ab33c481d0902d7678f88f",
+  "contract": "civictrace-synthetic-submission-period/1",
+  "denominators": {
+    "comparison_records": 4,
+    "excluded_records": 6,
+    "total_records": 10,
+    "valid_duration_records": 6
+  },
+  "exclusions": {
+    "benchmark_unmatched": 1,
+    "group_unknown": 1,
+    "period_absent": 1,
+    "period_invalid": 1,
+    "period_reversed": 1,
+    "period_unknown": 1
+  },
+  "implementation_sha256": {
+    "submission_period": "26193bdb9d9254542a6f7f42b87c0d2668b516c2494cb8f4b2d521b5d592ba6b",
+    "synthetic": "a542aa1144c45bf1d8e65d1cb3cb78f72db6dcb143621d4ab2c891f3f5924760"
+  },
+  "input_sha256": "920be0ed54d1994151a74d6a9a7f80b72b7811327df10a8f909a334b84235dec",
+  "interpretation": "Descriptive comparison only; no irregularity or legal violation inferred",
+  "limitations": [
+    "Invented benchmarks, not representative peer statistics or legal minima",
+    "No working-day/holiday calculation; no rounding before comparison",
+    "No real DNCP inputs; hashes establish bytes, not factual truth"
+  ],
+  "population_unit": "one reviewed invented record; no release selection/amendment inference",
+  "results": [
+    {
+      "allegations": [],
+      "benchmark": {
+        "basis": "Invented comparable goods cohort; 24 hours chosen solely to test boundaries, not empirical or legal evidence.",
+        "elapsed_hours": "24",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-open",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-OPEN-24",
+        "reference": "synthetic://benchmark/open-v1"
+      },
+      "calendar_days": "0.04166666666666666666666666666666666666667",
+      "comparison_state": "compared",
+      "deviation_hours": "-23",
+      "elapsed_hours": "1",
+      "elapsed_seconds": 3600.0,
+      "exclusion_reason": null,
+      "field_states": {
+        "tender_end": "supplied",
+        "tender_start": "supplied"
+      },
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "original_dates": {
+        "tender_end": "2026-01-02T03:30:00Z",
+        "tender_start": "2026-01-01T23:30:00-03:00"
+      },
+      "original_pointer": "/records/0",
+      "period_state": "present",
+      "record_id": "SYN-WINDOW-offset",
+      "relation": "below",
+      "source_reference": "synthetic://submission-period/offset",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "basis": "Invented comparable goods cohort; 24 hours chosen solely to test boundaries, not empirical or legal evidence.",
+        "elapsed_hours": "24",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-open",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-OPEN-24",
+        "reference": "synthetic://benchmark/open-v1"
+      },
+      "calendar_days": "0",
+      "comparison_state": "compared",
+      "deviation_hours": "-24",
+      "elapsed_hours": "0",
+      "elapsed_seconds": 0.0,
+      "exclusion_reason": null,
+      "field_states": {
+        "tender_end": "supplied",
+        "tender_start": "supplied"
+      },
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "original_dates": {
+        "tender_end": "2026-01-01T00:00:00Z",
+        "tender_start": "2026-01-01T01:00:00+01:00"
+      },
+      "original_pointer": "/records/1",
+      "period_state": "present",
+      "record_id": "SYN-WINDOW-equal",
+      "relation": "below",
+      "source_reference": "synthetic://submission-period/equal",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "basis": "Invented comparable goods cohort; 24 hours chosen solely to test boundaries, not empirical or legal evidence.",
+        "elapsed_hours": "24",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-open",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-OPEN-24",
+        "reference": "synthetic://benchmark/open-v1"
+      },
+      "calendar_days": "1",
+      "comparison_state": "compared",
+      "deviation_hours": "0",
+      "elapsed_hours": "24",
+      "elapsed_seconds": 86400.0,
+      "exclusion_reason": null,
+      "field_states": {
+        "tender_end": "supplied",
+        "tender_start": "supplied"
+      },
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "original_dates": {
+        "tender_end": "2026-01-02T00:00:00Z",
+        "tender_start": "2026-01-01T00:00:00Z"
+      },
+      "original_pointer": "/records/2",
+      "period_state": "present",
+      "record_id": "SYN-WINDOW-boundary",
+      "relation": "equal",
+      "source_reference": "synthetic://submission-period/boundary",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "basis": "Separate invented procedure cohort; 72 hours chosen for sensitivity tests only.",
+        "elapsed_hours": "72",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-limited",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-LIMITED-72",
+        "reference": "synthetic://benchmark/limited-v1"
+      },
+      "calendar_days": "2",
+      "comparison_state": "compared",
+      "deviation_hours": "-24",
+      "elapsed_hours": "48",
+      "elapsed_seconds": 172800.0,
+      "exclusion_reason": null,
+      "field_states": {
+        "tender_end": "supplied",
+        "tender_start": "supplied"
+      },
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-limited",
+        "value_band": "invented-small"
+      },
+      "original_dates": {
+        "tender_end": "2026-01-03T00:00:00Z",
+        "tender_start": "2026-01-01T00:00:00Z"
+      },
+      "original_pointer": "/records/3",
+      "period_state": "present",
+      "record_id": "SYN-WINDOW-longer",
+      "relation": "below",
+      "source_reference": "synthetic://submission-period/longer",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "basis": "Invented comparable goods cohort; 24 hours chosen solely to test boundaries, not empirical or legal evidence.",
+        "elapsed_hours": "24",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-open",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-OPEN-24",
+        "reference": "synthetic://benchmark/open-v1"
+      },
+      "calendar_days": null,
+      "comparison_state": "excluded",
+      "deviation_hours": null,
+      "elapsed_hours": null,
+      "elapsed_seconds": null,
+      "exclusion_reason": "period_unknown",
+      "field_states": {
+        "tender_end": "supplied",
+        "tender_start": "null"
+      },
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "original_dates": {
+        "tender_end": "2026-01-02T00:00:00Z",
+        "tender_start": null
+      },
+      "original_pointer": "/records/4",
+      "period_state": "unknown",
+      "record_id": "SYN-WINDOW-missing",
+      "relation": null,
+      "source_reference": "synthetic://submission-period/missing",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "basis": "Invented comparable goods cohort; 24 hours chosen solely to test boundaries, not empirical or legal evidence.",
+        "elapsed_hours": "24",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-open",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-OPEN-24",
+        "reference": "synthetic://benchmark/open-v1"
+      },
+      "calendar_days": null,
+      "comparison_state": "excluded",
+      "deviation_hours": null,
+      "elapsed_hours": null,
+      "elapsed_seconds": null,
+      "exclusion_reason": "period_invalid",
+      "field_states": {
+        "tender_end": "supplied",
+        "tender_start": "supplied"
+      },
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "original_dates": {
+        "tender_end": "2026-03-01T00:00:00Z",
+        "tender_start": "2026-02-30T00:00:00Z"
+      },
+      "original_pointer": "/records/5",
+      "period_state": "invalid",
+      "record_id": "SYN-WINDOW-invalid",
+      "relation": null,
+      "source_reference": "synthetic://submission-period/invalid",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "basis": "Invented comparable goods cohort; 24 hours chosen solely to test boundaries, not empirical or legal evidence.",
+        "elapsed_hours": "24",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-open",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-OPEN-24",
+        "reference": "synthetic://benchmark/open-v1"
+      },
+      "calendar_days": null,
+      "comparison_state": "excluded",
+      "deviation_hours": null,
+      "elapsed_hours": null,
+      "elapsed_seconds": null,
+      "exclusion_reason": "period_reversed",
+      "field_states": {
+        "tender_end": "supplied",
+        "tender_start": "supplied"
+      },
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "original_dates": {
+        "tender_end": "2026-01-01T00:00:00Z",
+        "tender_start": "2026-01-02T00:00:00Z"
+      },
+      "original_pointer": "/records/6",
+      "period_state": "reversed",
+      "record_id": "SYN-WINDOW-reversed",
+      "relation": null,
+      "source_reference": "synthetic://submission-period/reversed",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    },
+    {
+      "allegations": [],
+      "benchmark": null,
+      "calendar_days": "1",
+      "comparison_state": "excluded",
+      "deviation_hours": null,
+      "elapsed_hours": "24",
+      "elapsed_seconds": 86400.0,
+      "exclusion_reason": "benchmark_unmatched",
+      "field_states": {
+        "tender_end": "supplied",
+        "tender_start": "supplied"
+      },
+      "group": {
+        "category": "invented-works",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "original_dates": {
+        "tender_end": "2026-01-02T00:00:00Z",
+        "tender_start": "2026-01-01T00:00:00Z"
+      },
+      "original_pointer": "/records/7",
+      "period_state": "present",
+      "record_id": "SYN-WINDOW-unmatched",
+      "relation": null,
+      "source_reference": "synthetic://submission-period/unmatched",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    },
+    {
+      "allegations": [],
+      "benchmark": {
+        "basis": "Invented comparable goods cohort; 24 hours chosen solely to test boundaries, not empirical or legal evidence.",
+        "elapsed_hours": "24",
+        "group": {
+          "category": "invented-goods",
+          "jurisdiction": "invented-jurisdiction",
+          "procedure": "invented-open",
+          "value_band": "invented-small"
+        },
+        "id": "SYN-OPEN-24",
+        "reference": "synthetic://benchmark/open-v1"
+      },
+      "calendar_days": null,
+      "comparison_state": "excluded",
+      "deviation_hours": null,
+      "elapsed_hours": null,
+      "elapsed_seconds": null,
+      "exclusion_reason": "period_absent",
+      "field_states": {
+        "tender_end": "absent",
+        "tender_start": "absent"
+      },
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": "invented-small"
+      },
+      "original_dates": {
+        "tender_end": null,
+        "tender_start": null
+      },
+      "original_pointer": "/records/8",
+      "period_state": "absent",
+      "record_id": "SYN-WINDOW-absent",
+      "relation": null,
+      "source_reference": "synthetic://submission-period/absent",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    },
+    {
+      "allegations": [],
+      "benchmark": null,
+      "calendar_days": "1",
+      "comparison_state": "excluded",
+      "deviation_hours": null,
+      "elapsed_hours": "24",
+      "elapsed_seconds": 86400.0,
+      "exclusion_reason": "group_unknown",
+      "field_states": {
+        "tender_end": "supplied",
+        "tender_start": "supplied"
+      },
+      "group": {
+        "category": "invented-goods",
+        "jurisdiction": "invented-jurisdiction",
+        "procedure": "invented-open",
+        "value_band": null
+      },
+      "original_dates": {
+        "tender_end": "2026-01-02T00:00:00Z",
+        "tender_start": "2026-01-01T00:00:00Z"
+      },
+      "original_pointer": "/records/9",
+      "period_state": "present",
+      "record_id": "SYN-WINDOW-unknown-group",
+      "relation": null,
+      "source_reference": "synthetic://submission-period/unknown-group",
+      "working_days": null,
+      "working_days_state": "not_computed_no_local_calendar"
+    }
+  ],
+  "rights": {
+    "attribution": "CivicTrace contributors; invented procedures",
+    "evidence": "LICENSE",
+    "license": "Apache-2.0",
+    "privacy_review": "No natural persons or client data",
+    "redistribution": "Invented example only"
+  },
+  "synthetic": true,
+  "time_basis": "elapsed UTC seconds; calendar_days = seconds / 86400, not date boundaries"
+}

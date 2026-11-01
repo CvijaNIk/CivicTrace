@@ -68,7 +68,10 @@ export function ParquetExplorer({
         <a className="brand" href="?">
           CivicTrace<span>Research workbench</span>
         </a>
-        <a href="?">Original fixture explorer</a>
+        <nav aria-label="Page">
+          <a href="?">Original fixture explorer</a>
+          <a href="?view=submission-period">Submission periods</a>
+        </nav>
         <span className="local">Local preview</span>
       </header>
       <main id="main" tabIndex={-1}>

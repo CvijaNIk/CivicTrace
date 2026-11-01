@@ -370,3 +370,46 @@ footer {
 .passport li {
   white-space: pre-wrap;
 }
+
+.submission {
+  overflow-wrap: anywhere;
+}
+.submission nav {
+  flex-wrap: wrap;
+}
+.period-record {
+  background: white;
+  border: 1px solid #a5b8a8;
+  padding: 20px;
+  margin: 22px 0;
+  border-radius: 6px;
+}
+.period-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.period-columns section {
+  min-width: 0;
+  padding: 16px;
+  border-top: 4px solid #12645c;
+}
+.period-columns h4 {
+  margin-top: 0;
+}
+.period-assumptions {
+  background: #f3e9d5;
+  border-color: #854500 !important;
+}
+.period-results {
+  background: #e8ede5;
+}
+.submission pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .period-columns {
+    grid-template-columns: 1fr;
+  }
+}
