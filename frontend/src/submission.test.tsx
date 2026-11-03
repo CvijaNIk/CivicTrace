@@ -120,3 +120,27 @@ it("uses bounded transport and rejects HTTP errors", async () => {
   );
   await expect(loadSubmission(new AbortController().signal)).rejects.toThrow();
 });
+
+it.each([false, true])(
+  "rejects a transport BOM, including split UTF-8 chunks (%s)",
+  async (split) => {
+    vi.stubGlobal("crypto", webcrypto);
+    const bytes = new TextEncoder().encode("\uFEFF" + raw);
+    const body = new ReadableStream<Uint8Array>({
+      start(controller) {
+        if (split) {
+          controller.enqueue(bytes.slice(0, 1));
+          controller.enqueue(bytes.slice(1, 2));
+          controller.enqueue(bytes.slice(2));
+        } else {
+          controller.enqueue(bytes);
+        }
+        controller.close();
+      },
+    });
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(body)));
+    await expect(loadSubmission(new AbortController().signal)).rejects.toThrow(
+      /checksum/,
+    );
+  },
+);

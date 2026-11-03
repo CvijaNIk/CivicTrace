@@ -110,7 +110,8 @@ export async function loadBounded<T>(
     throw Error("The local synthetic data could not be loaded.");
   if (!response.body) throw Error("The local data response is empty.");
   const reader = response.body.getReader();
-  const decoder = new TextDecoder("utf-8", { fatal: true });
+  // Preserve a transport BOM so checksum gates verify the received bytes exactly.
+  const decoder = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true });
   let raw = "",
     bytes = 0;
   try {
