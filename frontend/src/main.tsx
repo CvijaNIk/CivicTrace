@@ -1,3 +1,4 @@
+import { SubmissionPeriodView } from "./SubmissionPeriodView";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ParquetExplorer } from "./ParquetExplorer";
@@ -8,7 +9,11 @@ const root = document.getElementById("root");
 if (!root) throw Error("Missing application root");
 createRoot(root).render(
   <StrictMode>
-    {new URLSearchParams(window.location.search).get("view") === "passport" ? (
+    {new URLSearchParams(window.location.search).get("view") ===
+    "submission-period" ? (
+      <SubmissionPeriodView />
+    ) : new URLSearchParams(window.location.search).get("view") ===
+      "passport" ? (
       <PassportPreview />
     ) : new URLSearchParams(window.location.search).get("view") ===
       "parquet" ? (

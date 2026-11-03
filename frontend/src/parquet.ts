@@ -1,4 +1,9 @@
-import { loadBounded, MAX_BYTES, MAX_RECORDS } from "./data";
+import {
+  loadBounded,
+  verifyPreviewBytes,
+  MAX_BYTES,
+  MAX_RECORDS,
+} from "./data";
 import pin from "./parquet-pin.json";
 type Obj = Record<string, unknown>;
 const obj = (x: unknown): x is Obj =>
@@ -266,14 +271,7 @@ export async function loadParquet(signal: AbortSignal): Promise<ParquetData> {
   return loadBounded(
     "data/parquet-v1.json",
     async (raw) => {
-      const digest = await crypto.subtle.digest(
-        "SHA-256",
-        new TextEncoder().encode(raw),
-      );
-      const hex = Array.from(new Uint8Array(digest), (b) =>
-        b.toString(16).padStart(2, "0"),
-      ).join("");
-      if (hex !== pin.sha256) throw Error("Preview checksum mismatch");
+      await verifyPreviewBytes(raw, pin.sha256);
       return parseParquet(raw);
     },
     signal,

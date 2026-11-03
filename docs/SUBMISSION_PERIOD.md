@@ -4,7 +4,8 @@ Implemented only for the ten reviewed invented records in
 [the fixture](../examples/synthetic_submission_period.json), protected by an exact SHA-256
 pin in [the implementation](../backend/src/civictrace/submission_period.py). Arbitrary populations,
 including a real record relabelled synthetic, fail closed. No DNCP connector, DuckDB query,
-frontend route, production indicator or activation is added. `analytics_enabled: false` remains.
+production indicator or activation is added by the calculation. A separate
+[controlled React view](SUBMISSION_PERIOD_VIEW.md) now presents the reviewed static output. `analytics_enabled: false` remains.
 
 ## Reproduce and display
 

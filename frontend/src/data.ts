@@ -110,7 +110,8 @@ export async function loadBounded<T>(
     throw Error("The local synthetic data could not be loaded.");
   if (!response.body) throw Error("The local data response is empty.");
   const reader = response.body.getReader();
-  const decoder = new TextDecoder("utf-8", { fatal: true });
+  // Preserve a transport BOM so checksum gates verify the received bytes exactly.
+  const decoder = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true });
   let raw = "",
     bytes = 0;
   try {
@@ -142,4 +143,21 @@ export function filterRecords(
         (v) => v.toLowerCase().includes(needle),
       ),
   );
+}
+
+// Shared byte-integrity gate; callers keep their reviewed, compiled pins.
+export async function verifyPreviewBytes(
+  raw: string,
+  expected: string,
+): Promise<void> {
+  if (new TextEncoder().encode(raw).length > MAX_BYTES)
+    throw Error("Preview exceeds 64 KiB");
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(raw),
+  );
+  const hex = Array.from(new Uint8Array(digest), (b) =>
+    b.toString(16).padStart(2, "0"),
+  ).join("");
+  if (hex !== expected) throw Error("Preview checksum mismatch");
 }
