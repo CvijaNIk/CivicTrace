@@ -488,3 +488,37 @@ influence analytical results, suppress findings or bypass review. See [FUNDING](
 Apache-2.0 covers original project software, documentation and synthetic examples. External data
 retains its own license and attribution requirements. No warranty or legal/compliance certification
 is provided; analytical findings require source verification and informed human interpretation.
+
+---
+
+## Cross-portfolio finance and audit intelligence expansion — proposed (November 2026)
+
+**Current-state safeguard:** The default README describes CivicTrace release 0.0.1 and a synthetic offline foundation. New work in PRs including #46 and #47 is not automatically treated as merged.
+
+### User outcomes and detailed backlog
+
+1. **Initiative 1:** Evidence Passport extensions: exact source hash, extraction timestamp, original identifier, source coverage and licence audit status.
+2. **Initiative 2:** Authorized public procurement graph: link tender, buyer, bidder, supplier, award, contract and changes only through verified identifiers.
+3. **Initiative 3:** Conformance tests for incomplete official procurement data, changed notice status and duplicate announcement IDs.
+4. **Initiative 4:** Clearly separated public-source analytics versus user-uploaded restricted workspaces, with no cross-workspace result leakage.
+5. **Initiative 5:** Synthetic case workflow joining notice history, supplier relations and explanatory anomaly indicators without accusing entities.
+6. **Initiative 6:** Official-data adapter contract: permissions, reuse rights, rate limits, schema drift, retries and completeness reporting.
+7. **Initiative 7:** Reviewable investigation exports that cite original publication dates, sources and unknown/missing fields.
+
+### Phased delivery
+
+- **P0 — evidence and data contracts:** synthetic examples, input schema, original-source provenance, licence checks and expected output fixtures.
+- **P1 — minimum trustworthy workflow:** deliver one reviewer-usable vertical slice with consistent data validation and human override.
+- **P2 — reusable integration:** add stable API boundaries, source-linked exports, negative testing and performance measurements.
+- **P3 — controlled pilot:** documented approvals, privacy/security review, monitoring, backup/restore, accessible UI and explicit release owner.
+
+### Technical and responsible-use acceptance criteria
+
+- [ ] Versioned contracts with source hashes, engagement/tenant IDs, permissions, fiscal period, processing version and exact source locations.
+- [ ] Synthetic golden fixtures for normal flows, reversals, ambiguous matches, incomplete inputs and time-zone/currency edge cases.
+- [ ] Independent numeric verification, documented model assumptions, negative security tests and strict client isolation.
+- [ ] Explicit product status in README: planned vs merged and tested vs independently validated for production.
+- [ ] Security and legal review covering confidential financial data, authorized use, retention/deletion, logging and recovery.
+- [ ] Tested integration contracts with related repositories before announcing working integrations.
+
+No confidential audit workpapers may be ingested, pooled or reused outside an approved legal and professional purpose. Candidate libraries are subject to licence/security review; do not assume they are installed.
